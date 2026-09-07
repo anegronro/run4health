@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block titulo %}Error{% endblock %}
+{% block volver %}<a class="volver" href="/">←</a>{% endblock %}
+{% block contenido %}
+<h1>Programa inválido</h1>
+<p class="vacio">Hay un archivo en <code>data/programas/</code> que no se pudo leer:</p>
+<pre class="detalle">{{ detalle }}</pre>
+{% endblock %}

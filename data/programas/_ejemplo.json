@@ -1,0 +1,62 @@
+{
+  "nombre": "Fuerza básica — cuerpo completo",
+  "descripcion": "Plantilla de ejemplo. Copia este archivo con otro nombre (sin el guion bajo) y edítalo.",
+  "nivel": "Principiante",
+  "dias_por_semana": 3,
+  "equipo": ["Barra", "Mancuernas", "Banco"],
+  "color": "#5b8cff",
+  "guia": "Tres sesiones de cuerpo completo por semana, con al menos un día de descanso entre ellas.\n\nSube el peso solo cuando completes todas las series en el rango alto de repeticiones y con buena técnica. Si fallas la técnica antes que el músculo, el peso está alto.",
+  "semanas": [
+    {
+      "numero": 1,
+      "titulo": "Adaptación",
+      "objetivo": "Aprender los patrones y dejar 2-3 repeticiones en reserva en cada serie.",
+      "dias": [
+        {
+          "titulo": "Día 1 — Cuerpo completo A",
+          "enfoque": "Sentadilla y empuje",
+          "duracion": "55 min",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "notas": "5 minutos de movilidad general antes de la primera serie con peso.",
+              "ejercicios": [
+                { "nombre": "Sentadilla con peso corporal", "series": "2", "reps": "12", "descanso": "45 s" }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                { "nombre": "Sentadilla con barra", "series": "3", "reps": "6-8", "descanso": "150 s", "rpe": "7", "notas": "Baja hasta que el muslo quede paralelo al suelo." },
+                { "nombre": "Press de banca", "series": "3", "reps": "6-8", "descanso": "150 s", "rpe": "7" },
+                { "nombre": "Remo con barra", "series": "3", "reps": "8-10", "descanso": "120 s" }
+              ]
+            },
+            {
+              "titulo": "Accesorios",
+              "ejercicios": [
+                { "nombre": "Plancha frontal", "series": "3", "reps": "30 s", "descanso": "45 s" }
+              ]
+            }
+          ]
+        },
+        { "titulo": "Día 2 — Descanso", "descanso_total": true },
+        {
+          "titulo": "Día 3 — Cuerpo completo B",
+          "enfoque": "Bisagra y tracción",
+          "duracion": "55 min",
+          "bloques": [
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                { "nombre": "Peso muerto rumano", "series": "3", "reps": "8-10", "descanso": "150 s", "tempo": "3-1-1" },
+                { "nombre": "Dominadas asistidas", "series": "3", "reps": "6-8", "descanso": "120 s" },
+                { "nombre": "Press militar con mancuernas", "series": "3", "reps": "8-10", "descanso": "120 s" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %}{{ p.nombre }}{% endblock %}
+{% block volver %}<a class="volver" href="/">←</a>{% endblock %}
+{% block contenido %}
+<h1>{{ p.nombre }}</h1>
+{% if p.descripcion %}<p class="desc-larga">{{ p.descripcion }}</p>{% endif %}
+<div class="meta">
+  {% if p.nivel %}<span class="pastilla">{{ p.nivel }}</span>{% endif %}
+  {% if p.dias_por_semana %}<span class="pastilla">{{ p.dias_por_semana }} días/sem</span>{% endif %}
+  {% for e in p.equipo %}<span class="pastilla">{{ e }}</span>{% endfor %}
+</div>
+
+{% if p.guia %}
+<section class="guia">
+  <h2>Guía</h2>
+  {% for parrafo in p.guia.split("\n\n") %}<p>{{ parrafo }}</p>{% endfor %}
+</section>
+{% endif %}
+
+{% for s in p.semanas %}
+<section class="semana">
+  <h2>Semana {{ s.numero }}{% if s.titulo %} — {{ s.titulo }}{% endif %}</h2>
+  {% if s.objetivo %}<p class="objetivo">{{ s.objetivo }}</p>{% endif %}
+  <ul class="dias">
+  {% for d in s.dias %}
+    <li>
+      {% if d.descanso_total %}
+        <span class="dia descanso"><b>{{ d.titulo }}</b><span class="desc">Descanso</span></span>
+      {% else %}
+        <a class="dia" href="/programa/{{ p.slug }}/s{{ s.numero }}/d{{ loop.index }}">
+          <b>{{ d.titulo }}</b>
+          {% if d.enfoque %}<span class="desc">{{ d.enfoque }}</span>{% endif %}
+          {% if d.duracion %}<span class="pastilla">{{ d.duracion }}</span>{% endif %}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% endblock %}

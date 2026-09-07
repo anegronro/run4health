@@ -1,0 +1,14 @@
+[project]
+name = "fitness-app"
+version = "0.1.0"
+description = "Catalogo personal de programas de entrenamiento (solo lectura)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "jinja2>=3.1",
+    "pydantic>=2.9",
+]
+
+[tool.uv]
+package = false

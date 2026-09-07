@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}{{ dia.titulo }} — {{ p.nombre }}{% endblock %}
+{% block volver %}<a class="volver" href="/programa/{{ p.slug }}">←</a>{% endblock %}
+{% block contenido %}
+<p class="miga">{{ p.nombre }} · Semana {{ semana.numero }}</p>
+<h1>{{ dia.titulo }}</h1>
+<div class="meta">
+  {% if dia.enfoque %}<span class="pastilla">{{ dia.enfoque }}</span>{% endif %}
+  {% if dia.duracion %}<span class="pastilla">{{ dia.duracion }}</span>{% endif %}
+</div>
+{% if dia.notas %}<p class="notas-dia">{{ dia.notas }}</p>{% endif %}
+
+{% for b in dia.bloques %}
+<section class="bloque">
+  <h2>{{ b.titulo }}</h2>
+  {% if b.notas %}<p class="notas-bloque">{{ b.notas }}</p>{% endif %}
+  {% for e in b.ejercicios %}
+  <article class="ejercicio">
+    <h3>{{ e.nombre }}</h3>
+    <div class="cifras">
+      {% if e.series %}<span><b>{{ e.series }}</b> series</span>{% endif %}
+      {% if e.reps %}<span><b>{{ e.reps }}</b> reps</span>{% endif %}
+      {% if e.descanso %}<span>descanso <b>{{ e.descanso }}</b></span>{% endif %}
+      {% if e.tempo %}<span>tempo <b>{{ e.tempo }}</b></span>{% endif %}
+      {% if e.rpe %}<span>RPE <b>{{ e.rpe }}</b></span>{% endif %}
+    </div>
+    {% if e.notas %}<p class="notas">{{ e.notas }}</p>{% endif %}
+    {% if e.video %}<a class="video" href="{{ e.video }}" target="_blank" rel="noopener noreferrer">Ver demostración ↗</a>{% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% endfor %}
+
+<nav class="paso">
+  {% if anterior %}<a href="/programa/{{ p.slug }}/s{{ semana.numero }}/d{{ anterior }}">← Día anterior</a>{% endif %}
+  {% if siguiente %}<a class="der" href="/programa/{{ p.slug }}/s{{ semana.numero }}/d{{ siguiente }}">Día siguiente →</a>{% endif %}
+</nav>
+{% endblock %}
