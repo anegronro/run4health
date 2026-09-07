@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "art.html" as art %}
 {% block content %}
 <h1>My programs</h1>
 {% if not programs %}
@@ -10,12 +11,18 @@
 {% for p in programs %}
   <li>
     <a class="card" href="/program/{{ p.slug }}" style="--accent: {{ p.color }}">
-      <span class="title">{{ p.name }}</span>
-      {% if p.description %}<span class="desc">{{ p.description }}</span>{% endif %}
-      <span class="meta">
-        {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
-        {% if p.total_weeks %}<span class="pill">{{ p.total_weeks }} weeks</span>{% endif %}
-        {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
+      <span class="cover">
+        {% if p.image %}<img src="{{ p.image }}" alt="">{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
+      </span>
+      <span class="card-body">
+        <span class="title">{{ p.name }}</span>
+        {% if p.description %}<span class="desc">{{ p.description }}</span>{% endif %}
+        <span class="meta">
+          {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
+          {% if p.total_weeks %}<span class="pill">{{ p.total_weeks }} weeks</span>{% endif %}
+          {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
+          {% if p.shows_volume %}<span class="pill">peak {{ p.peak_km | round | int }} km</span>{% endif %}
+        </span>
       </span>
     </a>
   </li>

@@ -35,6 +35,8 @@ Program → weeks → days → blocks → exercises
 | Field | Level | Notes |
 |---|---|---|
 | `name`, `description`, `level`, `equipment`, `color` | program | `color` is the card accent |
+| `art` | program | generated cover: `route`, `track` or `weights` |
+| `image` | program | your own photo instead of the drawing, e.g. `/static/img/run.jpg` — see `app/static/img/README.md` |
 | `guide` | program | long text; separate paragraphs with a blank line |
 | `number`, `title`, `goal` | week | |
 | `title`, `focus`, `duration`, `notes` | day | `"rest_day": true` marks a rest day |
@@ -53,3 +55,12 @@ The `slug` (the URL) comes from the file name.
 | Half Marathon — 21K | 12 weeks | 4/week | Already running 10 km |
 
 These are generic, well-built plans — they are not tailored to any individual.
+
+Program pages chart the planned kilometres per week, read straight off the
+exercises, so the down weeks are visible. Warm-ups and cool-downs are written
+in minutes rather than kilometres, so they don't appear in that total.
+
+## Always on
+
+`scripts/deploy_vps.sh` copies the app to the VPS and runs it under systemd as
+`fitness.service`, reachable on the tailnet at http://203.0.113.10:8770.

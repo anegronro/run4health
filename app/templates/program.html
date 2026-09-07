@@ -1,14 +1,41 @@
 {% extends "base.html" %}
+{% import "art.html" as art %}
 {% block title %}{{ p.name }}{% endblock %}
 {% block back %}<a class="back" href="/">←</a>{% endblock %}
+{% block body_style %} style="--accent: {{ p.color }}"{% endblock %}
 {% block content %}
-<h1>{{ p.name }}</h1>
-{% if p.description %}<p class="lede">{{ p.description }}</p>{% endif %}
+
+<div class="hero">
+  {% if p.image %}<img src="{{ p.image }}" alt="">{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
+  <div class="hero-text">
+    <h1>{{ p.name }}</h1>
+    {% if p.description %}<p class="lede">{{ p.description }}</p>{% endif %}
+  </div>
+</div>
+
 <div class="meta">
   {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
   {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
   {% for e in p.equipment %}<span class="pill">{{ e }}</span>{% endfor %}
 </div>
+
+{% if p.shows_volume %}
+<section class="volume">
+  <h2>Distance per week</h2>
+  <div class="vbars">
+    {% for w in p.weeks %}
+    <div class="vbar-col">
+      <span class="vbar-km">{{ w.distance_km | round | int }}</span>
+      <span class="vbar" style="height: {{ (w.distance_km / p.peak_km * 100) | round(1) }}%"></span>
+      <span class="vbar-n">{{ w.number }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="chart-note">Kilometres of measured running per week — peak {{ p.peak_km | round | int }} km.
+  Warm-ups and cool-downs are timed rather than measured, so they are not counted here.
+  The dips are the down weeks, on purpose.</p>
+</section>
+{% endif %}
 
 {% if p.guide %}
 <section class="guide">
@@ -20,16 +47,26 @@
 {% for w in p.weeks %}
 <section class="week">
   <h2>Week {{ w.number }}{% if w.title %} — {{ w.title }}{% endif %}</h2>
+  <p class="week-meta">
+    {{ w.sessions }} session{{ "s" if w.sessions != 1 }}{% if w.distance_km %} · {{ w.distance_km }} km{% endif %}
+  </p>
   {% if w.goal %}<p class="goal">{{ w.goal }}</p>{% endif %}
   <ul class="days">
   {% for d in w.days %}
+    {% set initial = d.title.split("—")[0].strip()[:1] %}
     <li>
       {% if d.rest_day %}
-        <span class="day rest"><b>{{ d.title }}</b>{% if d.notes %}<span class="desc">{{ d.notes }}</span>{% endif %}</span>
+        <span class="day rest">
+          <span class="badge">{{ initial }}</span>
+          <span class="day-body"><b>{{ d.title }}</b>{% if d.notes %}<span class="desc">{{ d.notes }}</span>{% endif %}</span>
+        </span>
       {% else %}
         <a class="day" href="/program/{{ p.slug }}/w{{ w.number }}/d{{ loop.index }}">
-          <b>{{ d.title }}</b>
-          {% if d.focus %}<span class="desc">{{ d.focus }}</span>{% endif %}
+          <span class="badge on">{{ initial }}</span>
+          <span class="day-body">
+            <b>{{ d.title }}</b>
+            {% if d.focus %}<span class="desc">{{ d.focus }}</span>{% endif %}
+          </span>
           {% if d.duration %}<span class="pill">{{ d.duration }}</span>{% endif %}
         </a>
       {% endif %}

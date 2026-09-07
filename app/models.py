@@ -6,7 +6,12 @@ the page halfway through rendering.
 """
 from __future__ import annotations
 
+import re
+
 from pydantic import BaseModel, Field
+
+# Matches a distance written as the whole rep field: "5 km", "21.1 km".
+_KM = re.compile(r"^\s*([\d.,]+)\s*km\s*$", re.IGNORECASE)
 
 
 class Exercise(BaseModel):
@@ -42,6 +47,22 @@ class Week(BaseModel):
     goal: str | None = None
     days: list[Day] = Field(default_factory=list)
 
+    @property
+    def distance_km(self) -> float:
+        """Kilometres planned this week, read off the exercises themselves."""
+        total = 0.0
+        for day in self.days:
+            for block in day.blocks:
+                for e in block.exercises:
+                    m = _KM.match(e.reps or "")
+                    if m:
+                        total += float(m.group(1).replace(",", ".")) * int(e.sets or 1)
+        return round(total, 1)
+
+    @property
+    def sessions(self) -> int:
+        return sum(1 for d in self.days if not d.rest_day)
+
 
 class Program(BaseModel):
     slug: str                          # overwritten with the file name
@@ -54,6 +75,19 @@ class Program(BaseModel):
     guide: str | None = None           # program-wide guide (blank-line paragraphs)
     weeks: list[Week] = Field(default_factory=list)
 
+    art: str = "route"                 # cover artwork: route | track | weights
+    image: str | None = None           # optional own photo: /static/img/<file>
+
     @property
     def total_weeks(self) -> int:
         return len(self.weeks)
+
+    @property
+    def peak_km(self) -> float:
+        return max((w.distance_km for w in self.weeks), default=0.0)
+
+    @property
+    def shows_volume(self) -> bool:
+        """Only chart mileage when most weeks actually carry a distance."""
+        with_km = sum(1 for w in self.weeks if w.distance_km)
+        return with_km >= 3 and with_km >= len(self.weeks) / 2

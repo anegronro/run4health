@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ day.title }} — {{ p.name }}{% endblock %}
 {% block back %}<a class="back" href="/program/{{ p.slug }}">←</a>{% endblock %}
+{% block body_style %} style="--accent: {{ p.color }}"{% endblock %}
 {% block content %}
-<p class="crumb">{{ p.name }} · Week {{ week.number }}</p>
+<p class="crumb"><span class="dot"></span>{{ p.name }} · Week {{ week.number }}</p>
 <h1>{{ day.title }}</h1>
 <div class="meta">
   {% if day.focus %}<span class="pill">{{ day.focus }}</span>{% endif %}
