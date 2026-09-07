@@ -18,8 +18,9 @@
   <article class="ejercicio">
     <h3>{{ e.nombre }}</h3>
     <div class="cifras">
-      {% if e.series %}<span><b>{{ e.series }}</b> series</span>{% endif %}
-      {% if e.reps %}<span><b>{{ e.reps }}</b> reps</span>{% endif %}
+      {% if e.series and e.reps %}<span><b>{{ e.series }}</b> × <b>{{ e.reps }}</b></span>
+      {% elif e.series %}<span><b>{{ e.series }}</b> series</span>
+      {% elif e.reps %}<span><b>{{ e.reps }}</b></span>{% endif %}
       {% if e.descanso %}<span>descanso <b>{{ e.descanso }}</b></span>{% endif %}
       {% if e.tempo %}<span>tempo <b>{{ e.tempo }}</b></span>{% endif %}
       {% if e.rpe %}<span>RPE <b>{{ e.rpe }}</b></span>{% endif %}

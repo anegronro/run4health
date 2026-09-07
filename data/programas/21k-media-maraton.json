@@ -1,0 +1,2523 @@
+{
+  "nombre": "Media maratón — 21K en 12 semanas",
+  "descripcion": "Para quien ya corre 10 km. Doce semanas hasta los 21,1 km, con tirada larga de hasta 19 km.",
+  "nivel": "Intermedio-avanzado",
+  "dias_por_semana": 4,
+  "equipo": [
+    "Zapatillas de correr",
+    "Reloj con distancia (o app)",
+    "Gel o bebida para las tiradas largas"
+  ],
+  "color": "#f59e0b",
+  "guia": "Requisito de entrada: correr 10 km seguidos y llevar al menos dos meses corriendo con regularidad. Si no, haz antes el programa de 10K.\n\nCuatro salidas por semana: un rodaje suave, un día de series, un día a ritmo controlado y la tirada larga. Deja al menos un día entre las dos sesiones duras (series y ritmo) y no pongas la tirada larga justo después de una de ellas.\n\nEl 80 % del kilometraje va lento. Es el error más común: correr los días fáciles demasiado rápido deja sin piernas los días que sí importan.\n\nLas semanas de descarga bajan la carga a propósito. No las adelantes ni las saltes: es cuando el cuerpo asimila lo anterior.\n\nSi pierdes una semana, retoma en la semana anterior a la que te tocaba, no donde lo dejaste. Si pierdes tres o más, vuelve al principio del bloque.\n\nReferencia de esfuerzo (RPE): 3-4 puedes conversar; 7 hablas en frases de 3-4 palabras; 8-9 solo palabras sueltas.\n\nAvituallamiento: en las tiradas de más de 90 min, prueba en entrenamiento la bebida y el gel que vayas a usar en carrera. El día de la carrera no se estrena nada — ni geles, ni zapatillas, ni camiseta.",
+  "semanas": [
+    {
+      "numero": 1,
+      "titulo": "Arranque",
+      "objetivo": "Asentar la rutina de cuatro salidas con una tirada de 10 km.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 6 km",
+          "enfoque": "Base",
+          "duracion": "60 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 6 × 800 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 800 m",
+                  "series": "6",
+                  "reps": "800 m",
+                  "descanso": "2 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 20 min",
+          "enfoque": "Umbral",
+          "duracion": "50 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "20 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 10 km",
+          "enfoque": "Resistencia",
+          "duracion": "88 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "10 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Construcción",
+      "objetivo": "Subir la tirada larga sin tocar el resto.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 6 km",
+          "enfoque": "Base",
+          "duracion": "60 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 8 × 800 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 800 m",
+                  "series": "8",
+                  "reps": "800 m",
+                  "descanso": "2 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 25 min",
+          "enfoque": "Umbral",
+          "duracion": "55 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "25 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 12 km",
+          "enfoque": "Resistencia",
+          "duracion": "102 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "12 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Primer bloque duro",
+      "objetivo": "Tirada de 14 km y media hora a ritmo controlado.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 7 km",
+          "enfoque": "Base",
+          "duracion": "67 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "7 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 5 × 1000 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 1000 m",
+                  "series": "5",
+                  "reps": "1000 m",
+                  "descanso": "2:30 trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 30 min",
+          "enfoque": "Umbral",
+          "duracion": "60 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "30 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 14 km",
+          "enfoque": "Resistencia",
+          "duracion": "116 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "14 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Descarga",
+      "objetivo": "Bajar la carga: es parte del plan, no una semana perdida.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 6 km",
+          "enfoque": "Base",
+          "duracion": "60 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 6 × 400 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 400 m",
+                  "series": "6",
+                  "reps": "400 m",
+                  "descanso": "90 s trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 15 min",
+          "enfoque": "Umbral",
+          "duracion": "45 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "15 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 11 km",
+          "enfoque": "Resistencia",
+          "duracion": "95 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "11 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "titulo": "Segundo bloque",
+      "objetivo": "Volver a subir con la tirada por encima de 15 km.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 7 km",
+          "enfoque": "Base",
+          "duracion": "67 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "7 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 6 × 1000 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 1000 m",
+                  "series": "6",
+                  "reps": "1000 m",
+                  "descanso": "2:30 trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 30 min",
+          "enfoque": "Umbral",
+          "duracion": "60 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "30 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 15 km",
+          "enfoque": "Resistencia",
+          "duracion": "123 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "15 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 6,
+      "titulo": "Series largas",
+      "objetivo": "Repeticiones de 1600 m: el trabajo más específico de media.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 8 km",
+          "enfoque": "Base",
+          "duracion": "74 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "8 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 4 × 1600 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 1600 m",
+                  "series": "4",
+                  "reps": "1600 m",
+                  "descanso": "3 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 35 min",
+          "enfoque": "Umbral",
+          "duracion": "65 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "35 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 16 km",
+          "enfoque": "Resistencia",
+          "duracion": "130 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "16 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 7,
+      "titulo": "Semana clave",
+      "objetivo": "18 km en la tirada larga. La más exigente hasta ahora.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 8 km",
+          "enfoque": "Base",
+          "duracion": "74 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "8 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 5 × 1000 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 1000 m",
+                  "series": "5",
+                  "reps": "1000 m",
+                  "descanso": "2:30 trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 35 min",
+          "enfoque": "Umbral",
+          "duracion": "65 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "35 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 18 km",
+          "enfoque": "Resistencia",
+          "duracion": "144 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "18 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 8,
+      "titulo": "Descarga",
+      "objetivo": "Recuperar de verdad antes del pico.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 6 km",
+          "enfoque": "Base",
+          "duracion": "60 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 6 × 800 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 800 m",
+                  "series": "6",
+                  "reps": "800 m",
+                  "descanso": "2 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 20 min",
+          "enfoque": "Umbral",
+          "duracion": "50 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "20 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 13 km",
+          "enfoque": "Resistencia",
+          "duracion": "109 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "13 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 9,
+      "titulo": "Semana pico",
+      "objetivo": "19 km: la distancia más larga del programa.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 8 km",
+          "enfoque": "Base",
+          "duracion": "74 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "8 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 3 × 2000 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 2000 m",
+                  "series": "3",
+                  "reps": "2000 m",
+                  "descanso": "3 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 40 min",
+          "enfoque": "Umbral",
+          "duracion": "70 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "40 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 19 km",
+          "enfoque": "Resistencia",
+          "duracion": "151 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "19 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 10,
+      "titulo": "Consolidar",
+      "objetivo": "Mantener la carga alta una semana más, sin superarla.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 8 km",
+          "enfoque": "Base",
+          "duracion": "74 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "8 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 4 × 1600 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 1600 m",
+                  "series": "4",
+                  "reps": "1600 m",
+                  "descanso": "3 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 30 min",
+          "enfoque": "Umbral",
+          "duracion": "60 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "30 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 16 km",
+          "enfoque": "Resistencia",
+          "duracion": "130 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "16 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 11,
+      "titulo": "Afinamiento",
+      "objetivo": "Baja el volumen, mantén algo de intensidad.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 6 km",
+          "enfoque": "Base",
+          "duracion": "60 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 5 × 800 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 800 m",
+                  "series": "5",
+                  "reps": "800 m",
+                  "descanso": "2 min trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 20 min",
+          "enfoque": "Umbral",
+          "duracion": "50 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "20 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Tirada larga — 12 km",
+          "enfoque": "Resistencia",
+          "duracion": "102 min",
+          "notas": "La sesión más importante de la semana. Va lenta: más lenta que el rodaje.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Tirada larga",
+                  "reps": "12 km",
+                  "rpe": "3-4",
+                  "notas": "Bebe si pasa de 60 min. Terminar entero vale más que terminar rápido."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 12,
+      "titulo": "Carrera",
+      "objetivo": "Llegar fresco y correr los 21,1 km.",
+      "dias": [
+        {
+          "titulo": "Rodaje suave — 5 km",
+          "enfoque": "Base",
+          "duracion": "53 min",
+          "notas": "El día fácil tiene que ser fácil de verdad. Aquí es donde se construye el fondo.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar rápido",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Movilidad de tobillo y cadera",
+                  "reps": "3 min",
+                  "notas": "Círculos de tobillo, elevaciones de rodilla, talones al glúteo."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Rodaje continuo",
+                  "reps": "5 km",
+                  "rpe": "3-4",
+                  "notas": "Ritmo de conversación completa."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar suave",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min",
+                  "notas": "Gemelo, isquiotibial, cuádriceps y glúteo. Sin rebotes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Series — 4 × 400 m",
+          "enfoque": "Velocidad",
+          "duracion": "50-60 min",
+          "notas": "Todas las series al mismo ritmo. Si la última cae más de 10 s, saliste rápido.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Series de 400 m",
+                  "series": "4",
+                  "reps": "400 m",
+                  "descanso": "90 s trotando",
+                  "rpe": "8",
+                  "notas": "Rápido pero controlado: podrías hacer una repetición más al terminar."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Ritmo controlado — 20 min",
+          "enfoque": "Umbral",
+          "duracion": "50 min",
+          "notas": "Cómodamente incómodo: frases de 3-4 palabras, no más.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "4",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando",
+                  "notas": "Acelera hasta ritmo de serie y suelta. No es un sprint."
+                }
+              ]
+            },
+            {
+              "titulo": "Principal",
+              "ejercicios": [
+                {
+                  "nombre": "Ritmo controlado",
+                  "reps": "20 min",
+                  "rpe": "7",
+                  "notas": "Un ritmo que podrías sostener una hora si te obligaran."
+                }
+              ]
+            },
+            {
+              "titulo": "Vuelta a la calma",
+              "ejercicios": [
+                {
+                  "nombre": "Trote muy suave",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notas": "Baja pulsaciones antes de parar; no cortes en seco."
+                },
+                {
+                  "nombre": "Estiramientos",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "CARRERA — 21,1 km",
+          "enfoque": "Día de carrera",
+          "notas": "Divide la carrera en tres: 7 km cómodo, 7 km sostenido, 7 km lo que quede. Bebe en todos los avituallamientos aunque no tengas sed.",
+          "bloques": [
+            {
+              "titulo": "Calentamiento",
+              "notas": "Termina el calentamiento 10 min antes de la salida.",
+              "ejercicios": [
+                {
+                  "nombre": "Trote suave",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "nombre": "Progresiones de 60 m",
+                  "series": "3",
+                  "reps": "60 m",
+                  "descanso": "Vuelta caminando"
+                }
+              ]
+            },
+            {
+              "titulo": "Carrera",
+              "ejercicios": [
+                {
+                  "nombre": "21,1 km",
+                  "reps": "21,1 km",
+                  "rpe": "8-9",
+                  "notas": "Primer tercio por debajo de tu ritmo objetivo. Se gana en el último tercio, se pierde en el primero."
+                }
+              ]
+            },
+            {
+              "titulo": "Después",
+              "ejercicios": [
+                {
+                  "nombre": "Caminar",
+                  "reps": "10 min"
+                },
+                {
+                  "nombre": "Comer y beber",
+                  "reps": "—",
+                  "notas": "Algo con carbohidrato y proteína en la hora siguiente."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
