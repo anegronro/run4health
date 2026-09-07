@@ -1,5 +1,6 @@
 {
   "name": "Half Marathon — 21K in 12 weeks",
+  "order": 3,
   "description": "For runners who already cover 10 km. Twelve weeks to 21.1 km, with long runs up to 19 km.",
   "level": "Intermediate-advanced",
   "days_per_week": 4,

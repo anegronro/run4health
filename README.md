@@ -35,6 +35,7 @@ Program → weeks → days → blocks → exercises
 | Field | Level | Notes |
 |---|---|---|
 | `name`, `description`, `level`, `equipment`, `color` | program | `color` is the card accent |
+| `order` | program | listing order, lowest first (default 100); ties fall back to the name |
 | `art` | program | generated cover: `route`, `track` or `weights` |
 | `image` | program | your own photo instead of the drawing, e.g. `/static/img/run.jpg` — see `app/static/img/README.md` |
 | `guide` | program | long text; separate paragraphs with a blank line |

@@ -1,5 +1,6 @@
 {
   "name": "10K in 10 weeks",
+  "order": 2,
   "description": "For runners who already cover 5 km. Four runs a week up to a finished 10K.",
   "level": "Intermediate",
   "days_per_week": 4,

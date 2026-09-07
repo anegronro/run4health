@@ -75,6 +75,7 @@ class Program(BaseModel):
     guide: str | None = None           # program-wide guide (blank-line paragraphs)
     weeks: list[Week] = Field(default_factory=list)
 
+    order: int = 100                   # listing order; lower comes first
     art: str = "route"                 # cover artwork: route | track | weights
     image: str | None = None           # optional own photo: /static/img/<file>
 

@@ -1,5 +1,6 @@
 {
   "name": "Zero to 5K",
+  "order": 1,
   "description": "Eight weeks of walk-run until you can run 5 km non-stop. No running background needed.",
   "level": "Beginner",
   "days_per_week": 3,

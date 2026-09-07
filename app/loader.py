@@ -34,7 +34,7 @@ def _read(path: Path) -> Program:
 
 
 def list_all() -> list[Program]:
-    """Every program, sorted by name. Files starting with _ stay hidden."""
+    """Every program in progression order. Files starting with _ stay hidden."""
     if not PROGRAMS_DIR.is_dir():
         return []
     programs = [
@@ -42,7 +42,7 @@ def list_all() -> list[Program]:
         for p in sorted(PROGRAMS_DIR.glob("*.json"))
         if not p.name.startswith("_")
     ]
-    return sorted(programs, key=lambda p: p.name.lower())
+    return sorted(programs, key=lambda p: (p.order, p.name.lower()))
 
 
 def get(slug: str) -> Program | None:
