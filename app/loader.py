@@ -1,8 +1,8 @@
-"""Carga los programas desde data/programas/*.json.
+"""Loads programs from data/programs/*.json.
 
-Los programas son archivos en disco, no base de datos: se editan con
-cualquier editor, viven en git y se recargan solos al refrescar la pagina.
-El slug sale del nombre del archivo, para que no se pueda duplicar.
+Programs are files on disk, not a database: edit them in any editor, keep
+them in git, and they reload on every page view. The slug comes from the
+file name so two programs can never collide.
 """
 from __future__ import annotations
 
@@ -11,43 +11,43 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from .models import Programa
+from .models import Program
 
-RAIZ = Path(__file__).resolve().parent.parent
-DIR_PROGRAMAS = RAIZ / "data" / "programas"
+ROOT = Path(__file__).resolve().parent.parent
+PROGRAMS_DIR = ROOT / "data" / "programs"
 
 
-class ProgramaInvalido(Exception):
+class InvalidProgram(Exception):
     pass
 
 
-def _leer(ruta: Path) -> Programa:
+def _read(path: Path) -> Program:
     try:
-        crudo = json.loads(ruta.read_text(encoding="utf-8"))
+        raw = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as e:
-        raise ProgramaInvalido(f"{ruta.name}: JSON mal formado — {e}") from e
-    crudo["slug"] = ruta.stem
+        raise InvalidProgram(f"{path.name}: malformed JSON — {e}") from e
+    raw["slug"] = path.stem
     try:
-        return Programa(**crudo)
+        return Program(**raw)
     except ValidationError as e:
-        raise ProgramaInvalido(f"{ruta.name}: {e}") from e
+        raise InvalidProgram(f"{path.name}: {e}") from e
 
 
-def listar() -> list[Programa]:
-    """Todos los programas, ordenados por nombre. Archivos con _ delante se ocultan."""
-    if not DIR_PROGRAMAS.is_dir():
+def list_all() -> list[Program]:
+    """Every program, sorted by name. Files starting with _ stay hidden."""
+    if not PROGRAMS_DIR.is_dir():
         return []
-    programas = [
-        _leer(p)
-        for p in sorted(DIR_PROGRAMAS.glob("*.json"))
+    programs = [
+        _read(p)
+        for p in sorted(PROGRAMS_DIR.glob("*.json"))
         if not p.name.startswith("_")
     ]
-    return sorted(programas, key=lambda p: p.nombre.lower())
+    return sorted(programs, key=lambda p: p.name.lower())
 
 
-def obtener(slug: str) -> Programa | None:
-    ruta = DIR_PROGRAMAS / f"{slug}.json"
-    # Evita que un slug con ../ salga del directorio de programas.
-    if not ruta.is_file() or ruta.parent != DIR_PROGRAMAS:
+def get(slug: str) -> Program | None:
+    path = PROGRAMS_DIR / f"{slug}.json"
+    # Keeps a slug containing ../ from escaping the programs directory.
+    if not path.is_file() or path.parent != PROGRAMS_DIR:
         return None
-    return _leer(ruta)
+    return _read(path)

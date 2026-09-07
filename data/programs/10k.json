@@ -1,0 +1,2227 @@
+{
+  "name": "10K in 10 weeks",
+  "description": "For runners who already cover 5 km. Four runs a week up to a finished 10K.",
+  "level": "Intermediate",
+  "days_per_week": 4,
+  "equipment": [
+    "Running shoes",
+    "Watch or app with distance"
+  ],
+  "color": "#5b8cff",
+  "guide": "Entry requirement: run 5 km non-stop, reasonably comfortably. If you're not there yet, do the 5K program first.\n\nFour runs a week: intervals on Tuesday, an easy run on Wednesday, tempo on Thursday and the long run on Saturday. Monday, Friday and Sunday are rest. That layout keeps a day between the two hard sessions and never puts the long run straight after one.\n\n80 % of the mileage goes slow. This is the most common mistake: running the easy days too fast leaves you with no legs on the days that matter.\n\nDown weeks lower the load on purpose. Don't skip them or move them forward — that's when the body absorbs the work.\n\nIf you miss a week, restart at the week before the one you were due, not where you left off. If you miss three or more, go back to the start of the block.\n\nEffort guide (RPE): 3-4 you can hold a conversation; 7 you speak in three- or four-word bursts; 8-9 single words only.",
+  "weeks": [
+    {
+      "number": 1,
+      "title": "Getting going",
+      "goal": "Get used to four runs a week.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 6 × 400 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "400 m repeats",
+                  "sets": "6",
+                  "reps": "400 m",
+                  "rest": "90 s jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 5 km",
+          "focus": "Base",
+          "duration": "53 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "5 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 15 min",
+          "focus": "Threshold",
+          "duration": "45 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "15 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 6 km",
+          "focus": "Endurance",
+          "duration": "60 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Adding volume",
+      "goal": "Same shape, a little more load.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 8 × 400 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "400 m repeats",
+                  "sets": "8",
+                  "reps": "400 m",
+                  "rest": "90 s jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 5 km",
+          "focus": "Base",
+          "duration": "53 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "5 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 18 min",
+          "focus": "Threshold",
+          "duration": "48 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "18 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 7 km",
+          "focus": "Endurance",
+          "duration": "67 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "7 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Longer reps",
+      "goal": "First taste of 800 m repeats.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 5 × 800 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "800 m repeats",
+                  "sets": "5",
+                  "reps": "800 m",
+                  "rest": "2 min jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 6 km",
+          "focus": "Base",
+          "duration": "60 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 20 min",
+          "focus": "Threshold",
+          "duration": "50 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "20 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 8 km",
+          "focus": "Endurance",
+          "duration": "74 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "8 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Down week",
+      "goal": "Drop the load to absorb the last three weeks.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 6 × 400 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "400 m repeats",
+                  "sets": "6",
+                  "reps": "400 m",
+                  "rest": "90 s jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 5 km",
+          "focus": "Base",
+          "duration": "53 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "5 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 15 min",
+          "focus": "Threshold",
+          "duration": "45 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "15 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 6 km",
+          "focus": "Endurance",
+          "duration": "60 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Building",
+      "goal": "Climb again from a firmer base.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 6 × 800 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "800 m repeats",
+                  "sets": "6",
+                  "reps": "800 m",
+                  "rest": "2 min jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 6 km",
+          "focus": "Base",
+          "duration": "60 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 22 min",
+          "focus": "Threshold",
+          "duration": "52 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "22 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 9 km",
+          "focus": "Endurance",
+          "duration": "81 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "9 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Kilometre repeats",
+      "goal": "1000 m reps at goal 10K pace.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 4 × 1000 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "1000 m repeats",
+                  "sets": "4",
+                  "reps": "1000 m",
+                  "rest": "2:30 jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 6 km",
+          "focus": "Base",
+          "duration": "60 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 25 min",
+          "focus": "Threshold",
+          "duration": "55 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "25 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 10 km",
+          "focus": "Endurance",
+          "duration": "88 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "10 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Peak week",
+      "goal": "The highest load in the program.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 5 × 1000 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "1000 m repeats",
+                  "sets": "5",
+                  "reps": "1000 m",
+                  "rest": "2:30 jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 6 km",
+          "focus": "Base",
+          "duration": "60 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 25 min",
+          "focus": "Threshold",
+          "duration": "55 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "25 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 11 km",
+          "focus": "Endurance",
+          "duration": "95 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "11 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Down week",
+      "goal": "Recover before the last push.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 6 × 400 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "400 m repeats",
+                  "sets": "6",
+                  "reps": "400 m",
+                  "rest": "90 s jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 5 km",
+          "focus": "Base",
+          "duration": "53 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "5 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 15 min",
+          "focus": "Threshold",
+          "duration": "45 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "15 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 8 km",
+          "focus": "Endurance",
+          "duration": "74 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "8 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Past the distance",
+      "goal": "Run more than 10 km long: race day will feel short.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 3 × 1600 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "1600 m repeats",
+                  "sets": "3",
+                  "reps": "1600 m",
+                  "rest": "3 min jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 6 km",
+          "focus": "Base",
+          "duration": "60 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "6 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Tempo, 20 min",
+          "focus": "Threshold",
+          "duration": "50 min",
+          "notes": "Comfortably hard: three or four words at a time, no more.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Tempo effort",
+                  "reps": "20 min",
+                  "rpe": "7",
+                  "notes": "A pace you could hold for an hour if someone made you."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Long run, 12 km",
+          "focus": "Endurance",
+          "duration": "102 min",
+          "notes": "The most important session of the week. It goes slow — slower than the easy run.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Long run",
+                  "reps": "12 km",
+                  "rpe": "3-4",
+                  "notes": "Drink if it runs past 60 min. Finishing whole beats finishing fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Taper and race",
+      "goal": "Arrive rested, not fit — the fitness is already banked.",
+      "days": [
+        {
+          "title": "Monday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Tuesday — Intervals, 4 × 400 m",
+          "focus": "Speed",
+          "duration": "50-60 min",
+          "notes": "Every rep at the same pace. If the last one drops more than 10 s, you started too fast.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "4",
+                  "reps": "60 m",
+                  "rest": "Walk back",
+                  "notes": "Build up to interval pace and let go. This is not a sprint."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "400 m repeats",
+                  "sets": "4",
+                  "reps": "400 m",
+                  "rest": "90 s jogging",
+                  "rpe": "8",
+                  "notes": "Fast but controlled: you could do one more rep at the end."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "10 min",
+                  "rpe": "3",
+                  "notes": "Bring the heart rate down before you stop; don't cut it dead."
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Wednesday — Easy run, 5 km",
+          "focus": "Base",
+          "duration": "53 min",
+          "notes": "The easy day has to be genuinely easy. This is where the endurance is built.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous easy run",
+                  "reps": "5 km",
+                  "rpe": "3-4",
+                  "notes": "Full-conversation pace."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Rest. Nothing you do this week makes you fitter — only more tired."
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Shakeout, 15 min",
+          "focus": "Shakeout",
+          "duration": "25 min",
+          "notes": "Very easy. Just to loosen the legs and check the kit.",
+          "blocks": [
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Very easy jog",
+                  "reps": "15 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "2",
+                  "reps": "60 m",
+                  "rest": "Walk back"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sunday — RACE, 10 km",
+          "focus": "Race day",
+          "notes": "Run the first 3 km at a pace that feels too easy. From km 7 on is where the race is decided.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "notes": "Finish warming up 10 min before the gun.",
+              "exercises": [
+                {
+                  "name": "Easy jog",
+                  "reps": "10 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "60 m strides",
+                  "sets": "3",
+                  "reps": "60 m",
+                  "rest": "Walk back"
+                }
+              ]
+            },
+            {
+              "title": "Race",
+              "exercises": [
+                {
+                  "name": "10 km",
+                  "reps": "10 km",
+                  "rpe": "8-9",
+                  "notes": "First third under your goal pace. Races are won in the last third and lost in the first."
+                }
+              ]
+            },
+            {
+              "title": "After",
+              "exercises": [
+                {
+                  "name": "Walk",
+                  "reps": "10 min"
+                },
+                {
+                  "name": "Eat and drink",
+                  "reps": "—",
+                  "notes": "Something with carbohydrate and protein within the hour."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

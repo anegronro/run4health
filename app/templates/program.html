@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ p.name }}{% endblock %}
+{% block back %}<a class="back" href="/">←</a>{% endblock %}
+{% block content %}
+<h1>{{ p.name }}</h1>
+{% if p.description %}<p class="lede">{{ p.description }}</p>{% endif %}
+<div class="meta">
+  {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
+  {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
+  {% for e in p.equipment %}<span class="pill">{{ e }}</span>{% endfor %}
+</div>
+
+{% if p.guide %}
+<section class="guide">
+  <h2>Guide</h2>
+  {% for para in p.guide.split("\n\n") %}<p>{{ para }}</p>{% endfor %}
+</section>
+{% endif %}
+
+{% for w in p.weeks %}
+<section class="week">
+  <h2>Week {{ w.number }}{% if w.title %} — {{ w.title }}{% endif %}</h2>
+  {% if w.goal %}<p class="goal">{{ w.goal }}</p>{% endif %}
+  <ul class="days">
+  {% for d in w.days %}
+    <li>
+      {% if d.rest_day %}
+        <span class="day rest"><b>{{ d.title }}</b>{% if d.notes %}<span class="desc">{{ d.notes }}</span>{% endif %}</span>
+      {% else %}
+        <a class="day" href="/program/{{ p.slug }}/w{{ w.number }}/d{{ loop.index }}">
+          <b>{{ d.title }}</b>
+          {% if d.focus %}<span class="desc">{{ d.focus }}</span>{% endif %}
+          {% if d.duration %}<span class="pill">{{ d.duration }}</span>{% endif %}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% endblock %}

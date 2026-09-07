@@ -1,0 +1,1468 @@
+{
+  "name": "Zero to 5K",
+  "description": "Eight weeks of walk-run until you can run 5 km non-stop. No running background needed.",
+  "level": "Beginner",
+  "days_per_week": 3,
+  "equipment": [
+    "Running shoes",
+    "Watch or stopwatch"
+  ],
+  "color": "#4ade80",
+  "guide": "Three sessions a week — Monday, Wednesday and Friday — with a rest day in between. If your week doesn't fit that, move the days around, but never run two days back to back.\n\nAll the jogging is at conversational pace: if you can't get a full sentence out, you're going too fast. In this program running slow isn't a concession, it's the method.\n\nIf a week feels like a wall, repeat it before moving on. Losing a week costs you nothing; an injury costs you two months.\n\nDiffuse muscle soreness the next day is normal. Sharp pain in a knee, shin or Achilles that shows up while running and gets worse is not: stop and let it rest.",
+  "weeks": [
+    {
+      "number": 1,
+      "title": "Start easy",
+      "goal": "All three sessions should feel easy when you finish.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "8 × 1 min",
+          "duration": "38 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "8",
+                  "reps": "1 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "8 × 1 min",
+          "duration": "38 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "8",
+                  "reps": "1 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "9 × 1 min",
+          "duration": "40 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "9",
+                  "reps": "1 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "More time running",
+      "goal": "Match the running time to the walking time.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "7 × 90 s",
+          "duration": "39 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "7",
+                  "reps": "90 s",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "7 × 90 s",
+          "duration": "39 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "7",
+                  "reps": "90 s",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "8 × 90 s",
+          "duration": "42 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "8",
+                  "reps": "90 s",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Two-minute blocks",
+      "goal": "Run 2 min straight without running out of air.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "6 × 2 min",
+          "duration": "39 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "6",
+                  "reps": "2 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "6 × 2 min",
+          "duration": "39 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "6",
+                  "reps": "2 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "7 × 2 min",
+          "duration": "42 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "7",
+                  "reps": "2 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Three-minute blocks",
+      "goal": "First week where running outweighs walking.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "5 × 3 min",
+          "duration": "40 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "5",
+                  "reps": "3 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "5 × 3 min",
+          "duration": "40 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "5",
+                  "reps": "3 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "6 × 3 min",
+          "duration": "45 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "6",
+                  "reps": "3 min",
+                  "rest": "90 s walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Five-minute blocks",
+      "goal": "Hold 5 min straight and repeat it.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "4 × 5 min",
+          "duration": "46 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "4",
+                  "reps": "5 min",
+                  "rest": "2 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "4 × 5 min",
+          "duration": "46 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "4",
+                  "reps": "5 min",
+                  "rest": "2 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "5 × 5 min",
+          "duration": "53 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "5",
+                  "reps": "5 min",
+                  "rest": "2 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Eight-minute blocks",
+      "goal": "Fewer breaks, more continuity.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "3 × 8 min",
+          "duration": "48 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "3",
+                  "reps": "8 min",
+                  "rest": "2 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "3 × 8 min",
+          "duration": "48 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "3",
+                  "reps": "8 min",
+                  "rest": "2 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "3 × 10 min",
+          "duration": "54 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "3",
+                  "reps": "10 min",
+                  "rest": "2 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Almost continuous",
+      "goal": "Two long blocks with a single break.",
+      "days": [
+        {
+          "title": "Monday — Session 1",
+          "focus": "2 × 12 min",
+          "duration": "48 min",
+          "notes": null,
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "2",
+                  "reps": "12 min",
+                  "rest": "3 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — Session 2",
+          "focus": "2 × 12 min",
+          "duration": "48 min",
+          "notes": "Same as Monday. Repetition is what builds the base.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "2",
+                  "reps": "12 min",
+                  "rest": "3 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Session 3 — the long one",
+          "focus": "2 × 15 min",
+          "duration": "54 min",
+          "notes": "One repeat more than the others. If it doesn't happen, stay on session 1 and repeat the week.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "notes": "Alternate without fully stopping: when the jog ends, keep walking.",
+              "exercises": [
+                {
+                  "name": "Jog",
+                  "sets": "2",
+                  "reps": "15 min",
+                  "rest": "3 min walking",
+                  "rpe": "5",
+                  "notes": "Keep the jog slow: if you can't talk, you're going too fast."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Sunday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Continuous, then the test",
+      "goal": "Run 5K without stopping.",
+      "days": [
+        {
+          "title": "Monday — 25 min continuous",
+          "focus": "Continuous",
+          "duration": "43 min",
+          "notes": "No walking. Slow down if you need to, but keep jogging.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous jog",
+                  "reps": "25 min",
+                  "rpe": "5",
+                  "notes": "Conversational pace: you should manage short sentences."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tuesday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Wednesday — 20 min easy",
+          "focus": "Recovery",
+          "duration": "38 min",
+          "notes": "Deliberately short so you reach the test fresh.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "Continuous jog",
+                  "reps": "20 min",
+                  "rpe": "4"
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Thursday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Friday — Rest",
+          "rest_day": true,
+          "notes": "Full rest. Walking and stretching are fine."
+        },
+        {
+          "title": "Saturday — Rest",
+          "rest_day": true,
+          "notes": "Rest. Lay out your kit for tomorrow."
+        },
+        {
+          "title": "Sunday — 5K TEST",
+          "focus": "Test",
+          "duration": "45 min",
+          "notes": "Go out slower than your legs want for the first kilometre. Today's time is your starting mark, not a grade.",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "exercises": [
+                {
+                  "name": "Brisk walk",
+                  "reps": "5 min",
+                  "rpe": "3"
+                },
+                {
+                  "name": "Ankle and hip mobility",
+                  "reps": "3 min",
+                  "notes": "Ankle circles, knee lifts, heel kicks."
+                }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                {
+                  "name": "5 km",
+                  "reps": "5 km",
+                  "rpe": "8",
+                  "notes": "If you need to walk, walk 30 s and pick it up again. Finish the 5 km."
+                }
+              ]
+            },
+            {
+              "title": "Cool-down",
+              "exercises": [
+                {
+                  "name": "Easy walk",
+                  "reps": "5 min",
+                  "rpe": "2"
+                },
+                {
+                  "name": "Stretching",
+                  "reps": "5 min",
+                  "notes": "Calf, hamstring, quad and glute. No bouncing."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

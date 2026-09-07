@@ -1,91 +1,91 @@
 :root{
-  --fondo:#0e0f13; --panel:#171922; --panel2:#1f2230;
-  --texto:#e8eaf0; --tenue:#9aa0b0; --borde:#272b39; --acento:#5b8cff;
+  --bg:#0e0f13; --panel:#171922; --panel2:#1f2230;
+  --text:#e8eaf0; --muted:#9aa0b0; --border:#272b39; --accent:#5b8cff;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:var(--fondo); color:var(--texto);
+  background:var(--bg); color:var(--text);
   font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   -webkit-font-smoothing:antialiased;
   padding-bottom:env(safe-area-inset-bottom);
 }
 main{max-width:720px;margin:0 auto;padding:20px 16px 56px}
 
-.barra{
+.bar{
   position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;
   padding:calc(12px + env(safe-area-inset-top)) 16px 12px;
   background:rgba(14,15,19,.85);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--borde);
+  border-bottom:1px solid var(--border);
 }
-.marca{font-weight:600;letter-spacing:.02em}
-.volver{
-  color:var(--texto);text-decoration:none;font-size:20px;line-height:1;
+.brand{font-weight:600;letter-spacing:.02em}
+.back{
+  color:var(--text);text-decoration:none;font-size:20px;line-height:1;
   width:32px;height:32px;display:grid;place-items:center;
-  border:1px solid var(--borde);border-radius:9px;background:var(--panel);
+  border:1px solid var(--border);border-radius:9px;background:var(--panel);
 }
 
 h1{font-size:26px;line-height:1.25;margin:8px 0 10px;letter-spacing:-.01em}
-h2{font-size:17px;margin:26px 0 10px;color:var(--texto)}
+h2{font-size:17px;margin:26px 0 10px;color:var(--text)}
 h3{font-size:16px;margin-bottom:6px}
-.miga{color:var(--tenue);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-.desc-larga{color:var(--tenue);margin-bottom:14px}
-.vacio{color:var(--tenue);margin-top:20px}
+.crumb{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.lede{color:var(--muted);margin-bottom:14px}
+.empty{color:var(--muted);margin-top:20px}
 code{background:var(--panel2);padding:2px 6px;border-radius:5px;font-size:13px}
-.detalle{
-  background:var(--panel);border:1px solid var(--borde);border-radius:10px;
+.detail{
+  background:var(--panel);border:1px solid var(--border);border-radius:10px;
   padding:12px;margin-top:12px;overflow-x:auto;font-size:13px;color:#ffb4b4;
   white-space:pre-wrap;word-break:break-word;
 }
 
 .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
-.pastilla{
-  background:var(--panel2);border:1px solid var(--borde);color:var(--tenue);
+.pill{
+  background:var(--panel2);border:1px solid var(--border);color:var(--muted);
   border-radius:999px;padding:3px 10px;font-size:12px;white-space:nowrap;
 }
 
 ul{list-style:none}
-.tarjetas{display:grid;gap:12px;margin-top:16px}
-.tarjeta{
+.cards{display:grid;gap:12px;margin-top:16px}
+.card{
   display:grid;gap:8px;text-decoration:none;color:inherit;
-  background:var(--panel);border:1px solid var(--borde);
-  border-left:3px solid var(--acento);border-radius:14px;padding:16px;
+  background:var(--panel);border:1px solid var(--border);
+  border-left:3px solid var(--accent);border-radius:14px;padding:16px;
 }
-.tarjeta .titulo{font-size:18px;font-weight:600}
-.tarjeta .desc,.dia .desc{color:var(--tenue);font-size:14px}
+.card .title{font-size:18px;font-weight:600}
+.card .desc,.day .desc{color:var(--muted);font-size:14px}
 
-.dias{display:grid;gap:8px}
-.dia{
+.days{display:grid;gap:8px}
+.day{
   display:flex;flex-wrap:wrap;align-items:center;gap:10px;
   text-decoration:none;color:inherit;
-  background:var(--panel);border:1px solid var(--borde);
+  background:var(--panel);border:1px solid var(--border);
   border-radius:12px;padding:14px 16px;
 }
-.dia.descanso{color:var(--tenue);background:transparent;border-style:dashed}
-.objetivo{color:var(--tenue);font-size:14px;margin-bottom:10px}
+.day.rest{color:var(--muted);background:transparent;border-style:dashed}
+.goal{color:var(--muted);font-size:14px;margin-bottom:10px}
 
-.guia p,.notas-dia,.notas-bloque{color:var(--tenue);margin-bottom:10px}
-.bloque{
-  background:var(--panel);border:1px solid var(--borde);
+.guide p,.day-notes,.block-notes{color:var(--muted);margin-bottom:10px}
+.block{
+  background:var(--panel);border:1px solid var(--border);
   border-radius:14px;padding:4px 16px 16px;margin-top:18px;
 }
-.ejercicio{border-top:1px solid var(--borde);padding:14px 0 4px}
-.ejercicio:first-of-type{border-top:0}
-.cifras{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--tenue);font-size:14px}
-.cifras b{color:var(--texto)}
-.notas{color:var(--tenue);font-size:14px;margin-top:8px}
+.exercise{border-top:1px solid var(--border);padding:14px 0 4px}
+.exercise:first-of-type{border-top:0}
+.figures{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:14px}
+.figures b{color:var(--text)}
+.notes{color:var(--muted);font-size:14px;margin-top:8px}
 .video{
   display:inline-block;margin-top:10px;font-size:14px;
-  color:var(--acento);text-decoration:none;
+  color:var(--accent);text-decoration:none;
 }
 
-.paso{display:flex;justify-content:space-between;gap:10px;margin-top:28px}
-.paso a{
-  color:var(--texto);text-decoration:none;font-size:14px;
-  background:var(--panel);border:1px solid var(--borde);
+.step{display:flex;justify-content:space-between;gap:10px;margin-top:28px}
+.step a{
+  color:var(--text);text-decoration:none;font-size:14px;
+  background:var(--panel);border:1px solid var(--border);
   border-radius:10px;padding:10px 14px;
 }
-.paso .der{margin-left:auto}
+.step .right{margin-left:auto}
 
 @media (hover:hover){
-  .tarjeta:hover,.dia:hover,.paso a:hover{border-color:var(--acento)}
+  .card:hover,.day:hover,.step a:hover{border-color:var(--accent)}
 }

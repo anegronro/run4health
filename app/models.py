@@ -1,59 +1,59 @@
-"""Modelo de datos de un programa de entrenamiento.
+"""Data model for a training program.
 
-El contenido vive en data/programas/*.json y se valida contra estos modelos
-al cargarlo, para que un JSON mal escrito falle con un mensaje claro en vez
-de romper la pagina a mitad del render.
+Content lives in data/programs/*.json and is validated against these models
+on load, so a malformed file fails with a clear message instead of breaking
+the page halfway through rendering.
 """
 from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
 
-class Ejercicio(BaseModel):
-    nombre: str
-    series: str | None = None          # "4" o "3-4" — texto libre a proposito
-    reps: str | None = None            # "8-10", "AMRAP", "30 s"
-    descanso: str | None = None        # "90 s"
+class Exercise(BaseModel):
+    name: str
+    sets: str | None = None            # "4" or "3-4" — free text on purpose
+    reps: str | None = None            # "8-10", "AMRAP", "30 s", "5 km"
+    rest: str | None = None            # "90 s"
     tempo: str | None = None           # "3-1-1"
     rpe: str | None = None             # "7-8"
-    notas: str | None = None
-    video: str | None = None           # enlace externo, no se incrusta
+    notes: str | None = None
+    video: str | None = None           # external link, never embedded
 
 
-class Bloque(BaseModel):
-    """Agrupa ejercicios dentro de un dia: calentamiento, superserie A, etc."""
-    titulo: str
-    notas: str | None = None
-    ejercicios: list[Ejercicio] = Field(default_factory=list)
+class Block(BaseModel):
+    """Groups exercises within a day: warm-up, superset A, cool-down…"""
+    title: str
+    notes: str | None = None
+    exercises: list[Exercise] = Field(default_factory=list)
 
 
-class Dia(BaseModel):
-    titulo: str                        # "Dia 1 — Empuje"
-    enfoque: str | None = None
-    duracion: str | None = None        # "60 min"
-    descanso_total: bool = False       # dia de descanso: sin bloques
-    notas: str | None = None
-    bloques: list[Bloque] = Field(default_factory=list)
+class Day(BaseModel):
+    title: str                         # "Monday — Push"
+    focus: str | None = None
+    duration: str | None = None        # "60 min"
+    rest_day: bool = False             # a full rest day carries no blocks
+    notes: str | None = None
+    blocks: list[Block] = Field(default_factory=list)
 
 
-class Semana(BaseModel):
-    numero: int
-    titulo: str | None = None
-    objetivo: str | None = None
-    dias: list[Dia] = Field(default_factory=list)
+class Week(BaseModel):
+    number: int
+    title: str | None = None
+    goal: str | None = None
+    days: list[Day] = Field(default_factory=list)
 
 
-class Programa(BaseModel):
-    slug: str                          # se sobreescribe con el nombre del archivo
-    nombre: str
-    descripcion: str | None = None
-    nivel: str | None = None           # "Principiante", "Intermedio", "Avanzado"
-    dias_por_semana: int | None = None
-    equipo: list[str] = Field(default_factory=list)
-    color: str = "#5b8cff"             # acento de la tarjeta
-    guia: str | None = None            # guia general del programa (markdown ligero)
-    semanas: list[Semana] = Field(default_factory=list)
+class Program(BaseModel):
+    slug: str                          # overwritten with the file name
+    name: str
+    description: str | None = None
+    level: str | None = None           # "Beginner", "Intermediate", "Advanced"
+    days_per_week: int | None = None
+    equipment: list[str] = Field(default_factory=list)
+    color: str = "#5b8cff"             # card accent
+    guide: str | None = None           # program-wide guide (blank-line paragraphs)
+    weeks: list[Week] = Field(default_factory=list)
 
     @property
-    def total_semanas(self) -> int:
-        return len(self.semanas)
+    def total_weeks(self) -> int:
+        return len(self.weeks)

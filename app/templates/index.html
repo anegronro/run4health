@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My programs</h1>
+{% if not programs %}
+  <p class="empty">No programs yet.<br>
+  Create one with <code>python scripts/new_program.py</code>, or copy
+  <code>data/programs/_example.json</code> under a different name.</p>
+{% endif %}
+<ul class="cards">
+{% for p in programs %}
+  <li>
+    <a class="card" href="/program/{{ p.slug }}" style="--accent: {{ p.color }}">
+      <span class="title">{{ p.name }}</span>
+      {% if p.description %}<span class="desc">{{ p.description }}</span>{% endif %}
+      <span class="meta">
+        {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
+        {% if p.total_weeks %}<span class="pill">{{ p.total_weeks }} weeks</span>{% endif %}
+        {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
+      </span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,62 @@
+{
+  "name": "Basic Strength — Full Body",
+  "description": "Example template. Copy this file under a different name (no leading underscore) and edit it.",
+  "level": "Beginner",
+  "days_per_week": 3,
+  "equipment": ["Barbell", "Dumbbells", "Bench"],
+  "color": "#a78bfa",
+  "guide": "Three full-body sessions a week, with at least one rest day between them.\n\nAdd weight only when you complete every set at the top of the rep range with clean technique. If your form fails before your muscles do, the weight is too heavy.",
+  "weeks": [
+    {
+      "number": 1,
+      "title": "Adaptation",
+      "goal": "Learn the patterns and leave 2-3 reps in reserve on every set.",
+      "days": [
+        {
+          "title": "Monday — Full Body A",
+          "focus": "Squat and push",
+          "duration": "55 min",
+          "blocks": [
+            {
+              "title": "Warm-up",
+              "notes": "Five minutes of general mobility before the first loaded set.",
+              "exercises": [
+                { "name": "Bodyweight squat", "sets": "2", "reps": "12", "rest": "45 s" }
+              ]
+            },
+            {
+              "title": "Main",
+              "exercises": [
+                { "name": "Back squat", "sets": "3", "reps": "6-8", "rest": "150 s", "rpe": "7", "notes": "Descend until the thigh is parallel to the floor." },
+                { "name": "Bench press", "sets": "3", "reps": "6-8", "rest": "150 s", "rpe": "7" },
+                { "name": "Barbell row", "sets": "3", "reps": "8-10", "rest": "120 s" }
+              ]
+            },
+            {
+              "title": "Accessories",
+              "exercises": [
+                { "name": "Front plank", "sets": "3", "reps": "30 s", "rest": "45 s" }
+              ]
+            }
+          ]
+        },
+        { "title": "Tuesday — Rest", "rest_day": true, "notes": "Full rest. Walking and stretching are fine." },
+        {
+          "title": "Wednesday — Full Body B",
+          "focus": "Hinge and pull",
+          "duration": "55 min",
+          "blocks": [
+            {
+              "title": "Main",
+              "exercises": [
+                { "name": "Romanian deadlift", "sets": "3", "reps": "8-10", "rest": "150 s", "tempo": "3-1-1" },
+                { "name": "Assisted pull-up", "sets": "3", "reps": "6-8", "rest": "120 s" },
+                { "name": "Dumbbell overhead press", "sets": "3", "reps": "8-10", "rest": "120 s" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

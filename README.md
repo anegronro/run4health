@@ -1,44 +1,55 @@
-# fitness-app — catálogo de programas
+# fitness-app — program catalogue
 
-Lector personal de programas de entrenamiento. **Solo lectura**: muestra las
-rutinas y sus guías, no registra entrenamientos ni progreso.
+A personal reader for training programs. **Read only**: it shows the routines
+and their guides. It does not log workouts or track progress.
 
-El contenido es tuyo: cada programa es un archivo JSON en `data/programas/`.
+The content is yours: every program is a JSON file in `data/programs/`.
 
-## Correr
+## Run it
 
 ```bash
 ./scripts/run.sh                 # http://127.0.0.1:8770
-./scripts/run.sh 100.64.0.1   # accesible desde el teléfono por Tailscale
+./scripts/run.sh 100.64.0.1   # reachable from the phone over Tailscale
 ```
 
-## Crear un programa
+## Create a program
 
 ```bash
-uv run python scripts/nuevo_programa.py
+uv run python scripts/new_program.py
 ```
 
-Genera el esqueleto (semanas y días vacíos) en `data/programas/<slug>.json`;
-los ejercicios se escriben después en ese archivo. También puedes copiar
-`data/programas/_ejemplo.json` con otro nombre — los archivos que empiezan
-con `_` no salen en el listado.
+It writes the skeleton — every week laid out Monday to Sunday, with the days
+you don't train marked as rest — into `data/programs/<slug>.json`. Fill in the
+exercises there. You can also copy `data/programs/_example.json` under another
+name; files starting with `_` stay out of the listing.
 
-La app relee los archivos en cada carga, así que basta con refrescar.
-Si un JSON está mal, la página lo dice con el nombre del archivo y el error.
+The app re-reads the files on every request, so a refresh is enough. If a JSON
+file is broken, the page says which file and what the error is.
 
-## Estructura de un programa
+## Program structure
 
 ```
-Programa → semanas → días → bloques → ejercicios
+Program → weeks → days → blocks → exercises
 ```
 
-| Campo | Dónde | Notas |
+| Field | Level | Notes |
 |---|---|---|
-| `nombre`, `descripcion`, `nivel`, `equipo`, `color` | programa | `color` es el acento de la tarjeta |
-| `guia` | programa | texto largo; separa párrafos con línea en blanco |
-| `numero`, `titulo`, `objetivo` | semana | |
-| `titulo`, `enfoque`, `duracion`, `notas` | día | `"descanso_total": true` lo marca como día libre |
-| `titulo`, `notas` | bloque | calentamiento, superserie A, accesorios… |
-| `nombre`, `series`, `reps`, `descanso`, `tempo`, `rpe`, `notas`, `video` | ejercicio | todo texto libre; `video` es un enlace externo |
+| `name`, `description`, `level`, `equipment`, `color` | program | `color` is the card accent |
+| `guide` | program | long text; separate paragraphs with a blank line |
+| `number`, `title`, `goal` | week | |
+| `title`, `focus`, `duration`, `notes` | day | `"rest_day": true` marks a rest day |
+| `title`, `notes` | block | warm-up, superset A, accessories… |
+| `name`, `sets`, `reps`, `rest`, `tempo`, `rpe`, `notes`, `video` | exercise | all free text; `video` is an external link |
 
-El `slug` (la URL) sale del nombre del archivo.
+A week lists all seven days, rest included, so the plan reads as a calendar.
+The `slug` (the URL) comes from the file name.
+
+## Included programs
+
+| Program | Length | Days | For |
+|---|---|---|---|
+| Zero to 5K | 8 weeks | 3/week | No running background |
+| 10K in 10 weeks | 10 weeks | 4/week | Already running 5 km |
+| Half Marathon — 21K | 12 weeks | 4/week | Already running 10 km |
+
+These are generic, well-built plans — they are not tailored to any individual.

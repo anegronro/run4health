@@ -1,7 +1,7 @@
-"""Catalogo personal de programas de entrenamiento — solo lectura.
+"""Personal catalogue of training programs — read only.
 
-Sin tracker, sin login: es un lector de las rutinas que guardes en
-data/programas/. Pensado para abrirse en el telefono.
+No tracker, no login: it reads the routines you keep in data/programs/.
+Built to be opened on a phone.
 """
 from __future__ import annotations
 
@@ -13,60 +13,60 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from . import loader
-from .loader import ProgramaInvalido
+from .loader import InvalidProgram
 
-AQUI = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent
 
-app = FastAPI(title="Programas", docs_url=None, redoc_url=None)
-app.mount("/static", StaticFiles(directory=AQUI / "static"), name="static")
-plantillas = Jinja2Templates(directory=str(AQUI / "templates"))
+app = FastAPI(title="Programs", docs_url=None, redoc_url=None)
+app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
+templates = Jinja2Templates(directory=str(HERE / "templates"))
 
 
-@app.exception_handler(ProgramaInvalido)
-async def programa_invalido(request: Request, exc: ProgramaInvalido):
-    """Un JSON roto se muestra como error legible, no como stacktrace."""
-    return plantillas.TemplateResponse(
-        request, "error.html", {"detalle": str(exc)}, status_code=500
+@app.exception_handler(InvalidProgram)
+async def invalid_program(request: Request, exc: InvalidProgram):
+    """A broken JSON file shows a readable error, not a stack trace."""
+    return templates.TemplateResponse(
+        request, "error.html", {"detail": str(exc)}, status_code=500
     )
 
 
 @app.get("/", response_class=HTMLResponse)
-def indice(request: Request):
-    return plantillas.TemplateResponse(
-        request, "indice.html", {"programas": loader.listar()}
+def index(request: Request):
+    return templates.TemplateResponse(
+        request, "index.html", {"programs": loader.list_all()}
     )
 
 
-@app.get("/programa/{slug}", response_class=HTMLResponse)
-def programa(request: Request, slug: str):
-    prog = loader.obtener(slug)
+@app.get("/program/{slug}", response_class=HTMLResponse)
+def program(request: Request, slug: str):
+    prog = loader.get(slug)
     if prog is None:
-        raise HTTPException(404, "Programa no encontrado")
-    return plantillas.TemplateResponse(request, "programa.html", {"p": prog})
+        raise HTTPException(404, "Program not found")
+    return templates.TemplateResponse(request, "program.html", {"p": prog})
 
 
-@app.get("/programa/{slug}/s{semana}/d{dia}", response_class=HTMLResponse)
-def dia(request: Request, slug: str, semana: int, dia: int):
-    prog = loader.obtener(slug)
+@app.get("/program/{slug}/w{week}/d{day}", response_class=HTMLResponse)
+def day(request: Request, slug: str, week: int, day: int):
+    prog = loader.get(slug)
     if prog is None:
-        raise HTTPException(404, "Programa no encontrado")
-    sem = next((s for s in prog.semanas if s.numero == semana), None)
-    if sem is None or not (1 <= dia <= len(sem.dias)):
-        raise HTTPException(404, "Dia no encontrado")
-    return plantillas.TemplateResponse(
+        raise HTTPException(404, "Program not found")
+    wk = next((w for w in prog.weeks if w.number == week), None)
+    if wk is None or not (1 <= day <= len(wk.days)):
+        raise HTTPException(404, "Day not found")
+    return templates.TemplateResponse(
         request,
-        "dia.html",
+        "day.html",
         {
             "p": prog,
-            "semana": sem,
-            "dia": sem.dias[dia - 1],
-            "n_dia": dia,
-            "anterior": dia - 1 if dia > 1 else None,
-            "siguiente": dia + 1 if dia < len(sem.dias) else None,
+            "week": wk,
+            "day": wk.days[day - 1],
+            "n_day": day,
+            "previous": day - 1 if day > 1 else None,
+            "next": day + 1 if day < len(wk.days) else None,
         },
     )
 
 
-@app.get("/salud")
-def salud():
-    return {"ok": True, "programas": len(loader.listar())}
+@app.get("/health")
+def health():
+    return {"ok": True, "programs": len(loader.list_all())}

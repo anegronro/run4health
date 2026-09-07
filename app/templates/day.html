@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ day.title }} — {{ p.name }}{% endblock %}
+{% block back %}<a class="back" href="/program/{{ p.slug }}">←</a>{% endblock %}
+{% block content %}
+<p class="crumb">{{ p.name }} · Week {{ week.number }}</p>
+<h1>{{ day.title }}</h1>
+<div class="meta">
+  {% if day.focus %}<span class="pill">{{ day.focus }}</span>{% endif %}
+  {% if day.duration %}<span class="pill">{{ day.duration }}</span>{% endif %}
+</div>
+{% if day.notes %}<p class="day-notes">{{ day.notes }}</p>{% endif %}
+
+{% for b in day.blocks %}
+<section class="block">
+  <h2>{{ b.title }}</h2>
+  {% if b.notes %}<p class="block-notes">{{ b.notes }}</p>{% endif %}
+  {% for e in b.exercises %}
+  <article class="exercise">
+    <h3>{{ e.name }}</h3>
+    <div class="figures">
+      {% if e.sets and e.reps %}<span><b>{{ e.sets }}</b> × <b>{{ e.reps }}</b></span>
+      {% elif e.sets %}<span><b>{{ e.sets }}</b> sets</span>
+      {% elif e.reps %}<span><b>{{ e.reps }}</b></span>{% endif %}
+      {% if e.rest %}<span>rest <b>{{ e.rest }}</b></span>{% endif %}
+      {% if e.tempo %}<span>tempo <b>{{ e.tempo }}</b></span>{% endif %}
+      {% if e.rpe %}<span>RPE <b>{{ e.rpe }}</b></span>{% endif %}
+    </div>
+    {% if e.notes %}<p class="notes">{{ e.notes }}</p>{% endif %}
+    {% if e.video %}<a class="video" href="{{ e.video }}" target="_blank" rel="noopener noreferrer">Watch demo ↗</a>{% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% endfor %}
+
+<nav class="step">
+  {% if previous %}<a href="/program/{{ p.slug }}/w{{ week.number }}/d{{ previous }}">← Previous day</a>{% endif %}
+  {% if next %}<a class="right" href="/program/{{ p.slug }}/w{{ week.number }}/d{{ next }}">Next day →</a>{% endif %}
+</nav>
+{% endblock %}
