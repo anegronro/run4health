@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Deploys the app to the VPS and (re)starts it under systemd.
-# Reachable on the tailnet only: http://203.0.113.10:8770
+# The app itself listens on loopback; the "run4health" Tailscale node puts it
+# on the tailnet at https://your-app.example.ts.net (no IP, no port).
 set -euo pipefail
 
 HOST="${WBJ_FITNESS_HOST:-root@203.0.113.10}"
-BIND="${WBJ_FITNESS_BIND:-203.0.113.10}"
+BIND="${WBJ_FITNESS_BIND:-127.0.0.1}"
 PORT="${WBJ_FITNESS_PORT:-8770}"
 REMOTE=/opt/fitness-app
 
@@ -44,4 +45,4 @@ sleep 2
 echo "→ health check"
 ssh "$HOST" "systemctl is-active fitness.service && curl -sf http://$BIND:$PORT/health"
 echo
-echo "Live at http://$BIND:$PORT"
+echo "Live at https://your-app.example.ts.net"
