@@ -14,12 +14,14 @@ from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import gate, loader, people, progress
+from . import accounts, db, gate, loader, migrate, progress
 from .loader import InvalidProgram
 
 HERE = Path(__file__).resolve().parent
 
-app = FastAPI(title="Programs", docs_url=None, redoc_url=None)
+app = FastAPI(title="run4health", docs_url=None, redoc_url=None)
+db.setup()
+migrate.run()
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 
 templates = Jinja2Templates(directory=str(HERE / "templates"))
@@ -63,19 +65,18 @@ def photo(name: str) -> str:
     return _data_uris[name][1]
 
 
-COOKIE = "who"
+COOKIE = "sid"
 A_YEAR = 60 * 60 * 24 * 365
 
 
 def whoami(request: Request) -> dict | None:
-    """The person this browser last signed in as, if their profile still exists."""
-    email = request.cookies.get(COOKIE)
-    return people.get(email) if email else None
+    """The person whose session this browser is holding."""
+    return accounts.whoami(request.cookies.get(COOKIE))
 
 
 def _sign_in_first(request: Request) -> RedirectResponse:
     back = request.url.path or "/"
-    return RedirectResponse(f"/who?back={quote(back, safe='')}", status_code=303)
+    return RedirectResponse(f"/signin?back={quote(back, safe='')}", status_code=303)
 
 
 # Same mark as the header logo, small enough to read at 16 px.
@@ -134,7 +135,7 @@ def program(request: Request, slug: str, reset: int = 0):
     prog = loader.get(slug)
     if prog is None:
         raise HTTPException(404, "Program not found")
-    done = progress.load(me["id"])
+    done = progress.load(me["email"])
     return templates.TemplateResponse(
         request,
         "program.html",
@@ -177,7 +178,7 @@ def day(request: Request, slug: str, week: int, day: int):
             "n_day": day,
             "previous": day - 1 if day > 1 else None,
             "next": day + 1 if day < len(wk.days) else None,
-            "is_done": progress.key(slug, week, day) in progress.load(me["id"]),
+            "is_done": progress.key(slug, week, day) in progress.load(me["email"]),
         },
     )
 
@@ -203,7 +204,7 @@ def toggle(
         raise HTTPException(404, "Day not found")
     if wk.days[day - 1].rest_day:
         raise HTTPException(400, "Rest days are not sessions")
-    progress.set_done(me["id"], slug, week, day, bool(done))
+    progress.set_done(me["email"], slug, week, day, bool(done))
     return RedirectResponse(_safe_back(back, slug), status_code=303)
 
 
@@ -214,7 +215,7 @@ def reset(request: Request, slug: str = Form(...)):
         return _sign_in_first(request)
     if loader.get(slug) is None:
         raise HTTPException(404, "Program not found")
-    progress.clear_program(me["id"], slug)
+    progress.clear_program(me["email"], slug)
     return RedirectResponse(f"/program/{slug}", status_code=303)
 
 
@@ -241,7 +242,7 @@ def me_page(request: Request):
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
-    done = progress.load(me["id"])
+    done = progress.load(me["email"])
 
     tracked, done_km, done_sessions, plan_km, plan_sessions = [], 0.0, 0, 0.0, 0
     for prog in loader.list_all():
@@ -335,84 +336,137 @@ def enter_post(password: str = Form(""), back: str = Form("/")):
     return response
 
 
-@app.get("/who", response_class=HTMLResponse)
-def who(request: Request, back: str = "/", error: str = "", name: str = "", email: str = ""):
-    """Tapping your name lands here: it offers, it doesn't demand.
-
-    Signed in, this is an account screen — back, or sign out. Signed out, it
-    asks for an email, which is also how you change to a different person.
-    """
+@app.get("/signin", response_class=HTMLResponse)
+def signin_page(request: Request, back: str = "/", error: str = "", email: str = ""):
     return templates.TemplateResponse(
         request,
-        "who.html",
-        {
-            "back": _safe_back(back, ""),
-            "error": error,
-            "me": whoami(request),
-            "name": name,
-            "email": email,
-        },
+        "signin.html",
+        {"back": _safe_back(back, ""), "error": error, "email": email,
+         "me": whoami(request)},
     )
 
 
-@app.post("/who")
-def sign_in(
-    name: str = Form(""), email: str = Form(""), back: str = Form("/")
+@app.post("/signin")
+def signin(
+    email: str = Form(""), password: str = Form(""), back: str = Form("/")
 ):
     target = _safe_back(back, "")
-
-    def again(message: str):
-        # Hand back what they typed, so a typo in one field doesn't cost them
-        # the other.
+    try:
+        person = accounts.sign_in(email, password)
+    except accounts.AccountError as e:
+        # Hand the address back, never the password.
         return RedirectResponse(
-            f"/who?back={quote(target, safe='')}&error={quote(message, safe='')}"
+            f"/signin?back={quote(target, safe='')}&error={quote(str(e), safe='')}"
+            f"&email={quote(email, safe='')}",
+            status_code=303,
+        )
+    return _start(person, target)
+
+
+@app.get("/signup", response_class=HTMLResponse)
+def signup_page(request: Request, back: str = "/", error: str = "",
+                name: str = "", email: str = ""):
+    return templates.TemplateResponse(
+        request,
+        "signup.html",
+        {"back": _safe_back(back, ""), "error": error, "name": name,
+         "email": email, "me": whoami(request),
+         "min_password": accounts.MIN_PASSWORD},
+    )
+
+
+@app.post("/signup")
+def signup(
+    name: str = Form(""), email: str = Form(""), password: str = Form(""),
+    back: str = Form("/"),
+):
+    target = _safe_back(back, "")
+    try:
+        person = accounts.sign_up(name, email, password)
+    except accounts.AccountError as e:
+        return RedirectResponse(
+            f"/signup?back={quote(target, safe='')}&error={quote(str(e), safe='')}"
             f"&name={quote(name, safe='')}&email={quote(email, safe='')}",
             status_code=303,
         )
+    return _start(person, target)
 
-    try:
-        person = people.sign_in(email, name)
-    except people.PersonError as e:
-        return again(str(e))
+
+def _start(person: dict, target: str) -> RedirectResponse:
     response = RedirectResponse(target, status_code=303)
     response.set_cookie(
-        COOKIE, person["id"], max_age=A_YEAR, httponly=True, samesite="lax"
+        COOKIE, accounts.start_session(person["email"]),
+        max_age=A_YEAR, httponly=True, samesite="lax",
     )
     return response
 
 
-@app.get("/name", response_class=HTMLResponse)
-def name_page(request: Request, back: str = "/", error: str = ""):
+@app.post("/signout")
+def signout(request: Request):
+    """Ends this browser's session. Nothing is deleted."""
+    accounts.end_session(request.cookies.get(COOKIE))
+    response = RedirectResponse("/signin", status_code=303)
+    response.delete_cookie(COOKIE)
+    return response
+
+
+@app.get("/account", response_class=HTMLResponse)
+def account(request: Request, back: str = "/", error: str = "", saved: str = ""):
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
     return templates.TemplateResponse(
-        request, "name.html", {"me": me, "back": _safe_back(back, ""), "error": error}
+        request,
+        "account.html",
+        {"me": me, "back": _safe_back(back, ""), "error": error, "saved": saved,
+         "min_password": accounts.MIN_PASSWORD},
     )
 
 
-@app.post("/name")
-def name_save(request: Request, name: str = Form(""), back: str = Form("/")):
+@app.post("/account/name")
+def account_name(request: Request, name: str = Form(""), back: str = Form("/")):
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
     target = _safe_back(back, "")
     try:
-        people.set_name(me["id"], name)
-    except people.PersonError as e:
+        accounts.set_name(me["email"], name)
+    except accounts.AccountError as e:
         return RedirectResponse(
-            f"/name?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
+            f"/account?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
             status_code=303,
         )
-    return RedirectResponse(target, status_code=303)
+    return RedirectResponse(
+        f"/account?back={quote(target, safe='')}&saved=name", status_code=303
+    )
 
 
-@app.post("/who/out")
-def sign_out():
-    """Forget this browser. Nothing is deleted — the progress stays."""
-    response = RedirectResponse("/who", status_code=303)
+@app.post("/account/password")
+def account_password(
+    request: Request, current: str = Form(""), new: str = Form(""),
+    back: str = Form("/"),
+):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
+    target = _safe_back(back, "")
+    try:
+        accounts.change_password(me["email"], current, new)
+    except accounts.AccountError as e:
+        return RedirectResponse(
+            f"/account?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
+            status_code=303,
+        )
+    # Changing the password ends every session, including this one.
+    response = RedirectResponse("/signin?error=Password+changed.+Sign+in+again.",
+                                status_code=303)
     response.delete_cookie(COOKIE)
     return response
+
+
+@app.get("/privacy", response_class=HTMLResponse)
+def privacy(request: Request):
+    return templates.TemplateResponse(request, "privacy.html", {"me": whoami(request)})
 
 
 @app.get("/share.jpg")

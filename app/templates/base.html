@@ -27,8 +27,8 @@
   {% block back %}{% endblock %}
   <a class="brand" href="/">{{ brand.lockup() }}</a>
   {% if me %}
-    <a class="me" href="/who?back={{ request.url.path | urlencode }}"
-       style="--accent: {{ me.color }}" title="Switch profile">
+    <a class="me" href="/account?back={{ request.url.path | urlencode }}"
+       style="--accent: {{ me.color }}" title="Your account">
       <span class="me-dot">{{ me.name[:1] | upper }}</span>
       <span class="me-name">{{ me.name }}</span>
     </a>

@@ -19,13 +19,18 @@ ssh "$HOST" "mkdir -p $REMOTE"
 rsync -az --delete \
   --exclude '.git' --exclude '.venv' --exclude '__pycache__' \
   --exclude '.DS_Store' --exclude '.claude' \
-  --exclude 'data/progress.json' --exclude 'data/progress.json.tmp' \
-  --exclude 'data/people.json' --exclude 'data/people.json.tmp' \
+  --exclude 'data/app.db' --exclude 'data/app.db-wal' --exclude 'data/app.db-shm' \
+  --exclude 'data/*.json' --exclude 'data/*.json.tmp' --exclude 'data/*.migrated' \
   ./ "$HOST:$REMOTE/"
 
 echo "→ installing dependencies"
 ssh "$HOST" "cd $REMOTE && python3 -m venv --upgrade-deps .venv >/dev/null && \
   .venv/bin/pip install -q 'fastapi>=0.115' 'uvicorn[standard]>=0.32' 'jinja2>=3.1' 'pydantic>=2.9'"
+
+echo "→ installing the nightly backup"
+ssh "$HOST" "mkdir -p /var/backups/fitness && \
+  ( crontab -l 2>/dev/null | grep -v 'fitness-app/scripts/backup.sh' ; \
+    echo '17 4 * * * $REMOTE/scripts/backup.sh >> /var/log/fitness-backup.log 2>&1' ) | crontab -"
 
 echo "→ writing unit file"
 ssh "$HOST" "cat > /etc/systemd/system/fitness.service <<UNIT

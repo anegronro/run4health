@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Privacy{% endblock %}
+{% block content %}
+<article class="prose">
+  <h1>What run4health stores about you</h1>
+  <p class="lede">Plain version, because you deserve to know before you sign up.</p>
+
+  <h2>What we keep</h2>
+  <ul>
+    <li><b>Your name and email address</b> — so the app knows who you are and your progress stays yours.</li>
+    <li><b>Your password, hashed</b> — scrambled with scrypt so that even we cannot read it. Nobody here can see or recover your password; if you lose it, it gets replaced, not looked up.</li>
+    <li><b>Which sessions you have ticked off, and when.</b></li>
+    <li><b>A session token</b> for each browser you sign in from, so you stay signed in.</li>
+  </ul>
+
+  <h2>What we don't keep</h2>
+  <p>No location, no GPS traces, no heart rate, no health records, no device
+  data, no analytics, no advertising identifiers. There are no third-party
+  trackers on any page — the app loads nothing from anyone else's servers.</p>
+
+  <h2>Where it lives</h2>
+  <p>On one server rented from DigitalOcean in New York, in a single database
+  file. It is backed up nightly, and the backups are kept for two weeks.
+  Nothing is shared with, sold to, or sent to anybody.</p>
+
+  <h2>Who can see it</h2>
+  <p>You, and Angel, who runs the server and can read the database directly.
+  Be aware that everyone here shares one password to open the app, so treat
+  this as a private space among people who know each other rather than a
+  vault.</p>
+
+  <h2>Deleting it</h2>
+  <p>Ask Angel and your account and everything attached to it is deleted from
+  the database. It disappears from the backups within two weeks after that.</p>
+
+  <p class="fineprint">Last updated 8 September 2026.
+  {% if me %}<a href="/">Back to the app</a>{% else %}<a href="/signin">Sign in</a>{% endif %}</p>
+</article>
+{% endblock %}

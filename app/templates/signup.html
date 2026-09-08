@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Create an account{% endblock %}
+{% block body_class %}veil{% endblock %}
+{% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
+{% block content %}
+<section class="signin">
+  <h1>Create an account</h1>
+  <p class="lede">Your name, your email, and a password only you know.</p>
+
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+  <form method="post" action="/signup" class="signin-form">
+    <input type="hidden" name="back" value="{{ back }}">
+    <input type="text" name="name" placeholder="Your name" value="{{ name }}"
+           maxlength="40" autocomplete="name" autocapitalize="words"
+           spellcheck="false" required autofocus>
+    <input type="email" name="email" placeholder="Email" value="{{ email }}"
+           autocomplete="email" autocapitalize="none" autocorrect="off"
+           spellcheck="false" required>
+    <input type="password" name="password"
+           placeholder="Password — at least {{ min_password }} characters"
+           autocomplete="new-password" minlength="{{ min_password }}" required>
+    <button type="submit">Create account</button>
+  </form>
+
+  <p class="fineprint">
+    Write your name the way you write it, accents and all.<br>
+    Already have an account? <a href="/signin?back={{ back | urlencode }}">Sign in</a><br>
+    <a href="/privacy">What we store about you</a>
+  </p>
+</section>
+{% endblock %}

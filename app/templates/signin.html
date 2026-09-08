@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block body_class %}veil{% endblock %}
+{% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
+{% block content %}
+<section class="signin">
+  <h1>Welcome back</h1>
+  <p class="lede">Sign in to pick up where you left off.</p>
+
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+  <form method="post" action="/signin" class="signin-form">
+    <input type="hidden" name="back" value="{{ back }}">
+    <input type="email" name="email" placeholder="Email" value="{{ email }}"
+           autocomplete="email" autocapitalize="none" autocorrect="off"
+           spellcheck="false" required autofocus>
+    <input type="password" name="password" placeholder="Password"
+           autocomplete="current-password" required>
+    <button type="submit">Sign in</button>
+  </form>
+
+  <p class="fineprint">
+    New here? <a href="/signup?back={{ back | urlencode }}">Create an account</a>
+  </p>
+</section>
+{% endblock %}
