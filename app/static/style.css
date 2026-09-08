@@ -10,7 +10,7 @@ body{
   -webkit-font-smoothing:antialiased;
   padding-bottom:env(safe-area-inset-bottom);
 }
-main{max-width:720px;margin:0 auto;padding:20px 16px 56px}
+main{max-width:720px;margin:0 auto;padding:20px 16px 96px}
 
 .bar{
   position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;
@@ -18,7 +18,7 @@ main{max-width:720px;margin:0 auto;padding:20px 16px 56px}
   background:rgba(14,15,19,.85);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
 }
-.brand{font-weight:600;letter-spacing:.02em}
+
 .back{
   color:var(--text);text-decoration:none;font-size:20px;line-height:1;
   width:32px;height:32px;display:grid;place-items:center;
@@ -309,3 +309,29 @@ a.reset{text-decoration:none;display:inline-block}
 }
 .vbar.ghost > .vbar{width:100%;border-radius:0}
 @media (max-width:400px){ .tile-n{font-size:20px} }
+
+
+/* ── Logo ──────────────────────────────────────────────────────────── */
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text)}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-mark{color:#4ade80;flex:0 0 auto}
+.logo-word{
+  font-size:17px;font-weight:700;letter-spacing:-.02em;
+  font-feature-settings:"ss01";
+}
+.logo-word b{color:#4ade80;font-weight:700}
+
+/* ── Bottom tabs ───────────────────────────────────────────────────── */
+.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;
+  background:rgba(14,15,19,.92);backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:9px 6px 8px;text-decoration:none;color:var(--muted);font-size:11px;
+}
+.tab svg{width:22px;height:22px;fill:currentColor;opacity:.75}
+.tab.on{color:#4ade80}
+.tab.on svg{opacity:1}

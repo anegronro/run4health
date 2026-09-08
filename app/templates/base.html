@@ -1,25 +1,39 @@
+{% import "brand.html" as brand %}
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e0f13">
-<title>{% block title %}Programs{% endblock %}</title>
+<title>{% block title %}run4health{% endblock %}</title>
+<link rel="icon" href="data:image/svg+xml,{{ favicon | urlencode }}">
 <style>{{ asset("style.css") | safe }}</style>
 {% block head_extra %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
 <header class="bar">
   {% block back %}{% endblock %}
-  <span class="brand">Programs</span>
+  <a class="brand" href="/">{{ brand.lockup() }}</a>
   {% if me %}
-    <a class="me" href="/me"
-       style="--accent: {{ me.color }}" title="Your training log">
+    <a class="me" href="/who?back={{ request.url.path | urlencode }}"
+       style="--accent: {{ me.color }}" title="Switch profile">
       <span class="me-dot">{{ me.name[:1] | upper }}</span>
       <span class="me-name">{{ me.name }}</span>
     </a>
   {% endif %}
 </header>
 <main{% block body_style %}{% endblock %}>{% block content %}{% endblock %}</main>
+{% if me %}
+<nav class="tabs">
+  <a href="/" class="tab{{ ' on' if request.url.path == '/' or request.url.path.startswith('/program') }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/></svg>
+    Programs
+  </a>
+  <a href="/me" class="tab{{ ' on' if request.url.path == '/me' }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="12" width="4" height="8" rx="1.2"/><rect x="10" y="7" width="4" height="13" rx="1.2"/><rect x="16" y="3" width="4" height="17" rx="1.2"/></svg>
+    Training log
+  </a>
+</nav>
+{% endif %}
 </body>
 </html>

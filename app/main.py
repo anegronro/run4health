@@ -78,6 +78,18 @@ def _sign_in_first(request: Request) -> RedirectResponse:
     return RedirectResponse(f"/who?back={quote(back, safe='')}", status_code=303)
 
 
+# Same mark as the header logo, small enough to read at 16 px.
+FAVICON = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">'
+    '<rect width="32" height="32" rx="7" fill="#0e0f13"/>'
+    '<path d="M7 24 C 11 12, 21 12, 25 24" fill="none" stroke="#4ade80" '
+    'stroke-width="2.6" stroke-linecap="round" stroke-opacity=".55"/>'
+    '<path d="M11.5 24 C 14 17, 18 17, 20.5 24" fill="none" stroke="#4ade80" '
+    'stroke-width="2.6" stroke-linecap="round"/>'
+    '<circle cx="16" cy="9.6" r="2.6" fill="#4ade80"/></svg>'
+)
+
+templates.env.globals["favicon"] = FAVICON
 templates.env.globals["asset"] = asset
 templates.env.globals["photo"] = photo
 

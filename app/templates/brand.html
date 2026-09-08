@@ -1,0 +1,24 @@
+{# The logo: a mark plus the wordmark. Drawn inline so it costs no request
+   and picks up the page's own colours. The mark is two track lanes bending
+   away, the same idea as the programme covers. #}
+
+{% macro mark(size=26) %}
+<svg class="logo-mark" width="{{ size }}" height="{{ size }}" viewBox="0 0 32 32"
+     aria-hidden="true" focusable="false">
+  <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor"
+          stroke-opacity=".28" stroke-width="1.5"/>
+  <path d="M7 24 C 11 12, 21 12, 25 24" fill="none" stroke="currentColor"
+        stroke-width="2.6" stroke-linecap="round" stroke-opacity=".55"/>
+  <path d="M11.5 24 C 14 17, 18 17, 20.5 24" fill="none" stroke="currentColor"
+        stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="16" cy="9.6" r="2.6" fill="currentColor"/>
+</svg>
+{% endmacro %}
+
+{% macro wordmark() %}
+<span class="logo-word">run<b>4</b>health</span>
+{% endmacro %}
+
+{% macro lockup(size=26) %}
+<span class="logo">{{ mark(size) }}{{ wordmark() }}</span>
+{% endmacro %}

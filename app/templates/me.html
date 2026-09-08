@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %}{{ me.name }} — Training log{% endblock %}
-{% block back %}<a class="back" href="/">←</a>{% endblock %}
 {% block body_style %} style="--accent: {{ me.color }}"{% endblock %}
 {% block content %}
 
@@ -55,8 +54,4 @@
   distance — tempo runs, the walk-run weeks — add no miles here.</p>
 </section>
 {% endfor %}
-
-<form method="post" action="/who/out" class="signout">
-  <button type="submit">Sign out</button>
-</form>
 {% endblock %}
