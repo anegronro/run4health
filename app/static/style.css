@@ -246,7 +246,7 @@ a.reset{text-decoration:none;display:inline-block}
 .veil .signin{margin-top:14vh}
 .gate h1{font-size:34px;letter-spacing:-.02em}
 
-/* ── Who's training ────────────────────────────────────────────────── */
+/* ── Profile screen ────────────────────────────────────────────────── */
 .me{
   margin-left:auto;display:flex;align-items:center;gap:8px;
   text-decoration:none;color:var(--muted);font-size:13px;
@@ -335,3 +335,20 @@ a.reset{text-decoration:none;display:inline-block}
 .tab svg{width:22px;height:22px;fill:currentColor;opacity:.75}
 .tab.on{color:#4ade80}
 .tab.on svg{opacity:1}
+
+
+/* ── Account screen ────────────────────────────────────────────────── */
+.account{display:grid;gap:10px;margin-top:22px}
+.account a,.account button{
+  display:block;width:100%;text-align:center;font:inherit;font-size:15px;
+  border-radius:12px;padding:14px 16px;cursor:pointer;text-decoration:none;
+}
+.account-go{background:var(--accent);color:var(--bg);border:0;font-weight:600}
+.account-alt{
+  background:var(--panel);border:1px solid var(--border);color:var(--text);
+}
+.account button.account-out{
+  background:transparent;border:1px solid #ff6b6b;color:#ffb4b4;font-weight:400;
+}
+.fineprint{margin-top:18px;color:var(--muted);font-size:13px;line-height:1.5}
+.fineprint a{color:var(--muted)}

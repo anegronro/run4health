@@ -83,8 +83,9 @@ shows miles with the kilometres beside them.
 ## Profiles
 
 Everyone types their email once and the app remembers that browser for a
-year; the chip in the header shows who you are and tapping it switches
-profile or signs out. A profile is
+year. The chip in the header opens an account screen that offers rather than
+demands: back to where you were, use a different email, or sign out. Signing
+out only forgets the browser — the ticks stay. A profile is
 created the first time an address is used — there is nothing to set up.
 
 **The email is not a password.** It is a label that keeps each person's

@@ -1,9 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Who's training?{% endblock %}
+{% block title %}{{ "Your profile" if me and not switching else "Who's training?" }}{% endblock %}
 {% block body_class %}veil{% endblock %}
 {% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
 {% block content %}
 <section class="signin">
+
+{% if me and not switching %}
+  <h1>You're signed in</h1>
+  <p class="lede">{{ me.id }}</p>
+
+  <div class="account">
+    <a class="account-go" href="{{ back }}">Back to the app</a>
+    <a class="account-alt" href="/who?back={{ back | urlencode }}&amp;switch=1">Use a different email</a>
+    <form method="post" action="/who/out">
+      <button class="account-out" type="submit">Sign out</button>
+    </form>
+  </div>
+  <p class="fineprint">Signing out only forgets this browser. Your ticked
+  sessions stay exactly where they are.</p>
+
+{% else %}
   <h1>Who's training?</h1>
   <p class="lede">Type your email to keep your own progress.</p>
 
@@ -18,9 +34,9 @@
   </form>
 
   {% if me %}
-    <form method="post" action="/who/out" class="signout">
-      <button type="submit">Not {{ me.name }}? Sign out</button>
-    </form>
+    <p class="fineprint"><a href="/who?back={{ back | urlencode }}">Cancel — stay as {{ me.name }}</a></p>
   {% endif %}
+{% endif %}
+
 </section>
 {% endblock %}
