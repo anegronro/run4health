@@ -73,4 +73,9 @@ its path. There is no login: the tailnet is the boundary.
 ## Always on
 
 `scripts/deploy_vps.sh` copies the app to the VPS and runs it under systemd as
-`fitness.service`, reachable on the tailnet at http://203.0.113.10:8770.
+`fitness.service`. Two tailnet addresses reach it, and neither is public:
+
+- <https://your-app.example.ts.net> — a separate Tailscale node
+  (`tailscaled-run4health.service`) fronting the app over HTTPS, no port
+- <http://203.0.113.10:8770> — the plain address, kept working for
+  bookmarks and home-screen shortcuts

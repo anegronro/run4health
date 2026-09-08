@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 # Deploys the app to the VPS and (re)starts it under systemd.
-# The app itself listens on loopback; the "run4health" Tailscale node puts it
-# on the tailnet at https://your-app.example.ts.net (no IP, no port).
+# The app listens on the tailnet address, and the "run4health" Tailscale node
+# also fronts it over HTTPS. Both work, on the tailnet only:
+#   https://your-app.example.ts.net   (the name, no port)
+#   http://203.0.113.10:8770            (the old address, still valid)
+# It is never bound to the droplet's public IP.
 set -euo pipefail
 
 HOST="${WBJ_FITNESS_HOST:-root@203.0.113.10}"
-BIND="${WBJ_FITNESS_BIND:-127.0.0.1}"
+BIND="${WBJ_FITNESS_BIND:-203.0.113.10}"
 PORT="${WBJ_FITNESS_PORT:-8770}"
 REMOTE=/opt/fitness-app
 
