@@ -19,7 +19,7 @@ from starlette.responses import RedirectResponse
 
 COOKIE = "gate"
 A_YEAR = 60 * 60 * 24 * 365
-OPEN_PATHS = {"/health", "/enter"}
+OPEN_PATHS = {"/health", "/enter", "/share.jpg"}
 
 
 def password() -> str:

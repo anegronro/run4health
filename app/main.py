@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -89,6 +89,20 @@ FAVICON = (
     '<circle cx="16" cy="9.6" r="2.6" fill="#4ade80"/></svg>'
 )
 
+def absolute(request: Request, path: str) -> str:
+    """An absolute URL for link previews.
+
+    Behind the Tailscale proxy the request arrives as plain http on the
+    forwarded port, so building the URL from it alone advertises http on a
+    TLS-only port and the preview image never loads. Trust the proxy's own
+    headers when they are there.
+    """
+    scheme = request.headers.get("x-forwarded-proto") or request.url.scheme
+    host = request.headers.get("x-forwarded-host") or request.url.netloc
+    return f"{scheme.split(',')[0].strip()}://{host.split(',')[0].strip()}{path}"
+
+
+templates.env.globals["absolute"] = absolute
 templates.env.globals["favicon"] = FAVICON
 templates.env.globals["asset"] = asset
 templates.env.globals["photo"] = photo
@@ -392,6 +406,18 @@ def sign_out():
     response = RedirectResponse("/who", status_code=303)
     response.delete_cookie(COOKIE)
     return response
+
+
+@app.get("/share.jpg")
+def share_image():
+    """The picture link previews show. Deliberately outside the password:
+    the services that build those previews cannot type one. It is the only
+    thing in the app a stranger can see."""
+    return FileResponse(
+        HERE / "static" / "img" / "share.jpg",
+        media_type="image/jpeg",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
 
 
 @app.get("/health")

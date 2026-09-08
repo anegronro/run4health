@@ -132,6 +132,11 @@ are not authentication. It lives in `/etc/fitness.env` on the server (mode
 600, read by the unit's `EnvironmentFile`), never in this repo. Unset, the
 gate is off, which is fine for purely local runs.
 
+`/share.jpg` sits outside the password on purpose — the services that build
+link previews cannot type one — so that image is the single thing a stranger
+with the URL can see. Everything else, including the other photos under
+`/static`, stays behind the gate.
+
 It is asked for on a page of our own, not through HTTP Basic Auth, whose
 browser dialog cannot be styled. A browser that has answered holds a cookie
 derived from the password with HMAC, so it cannot be forged and changing the
