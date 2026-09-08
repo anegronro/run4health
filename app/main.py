@@ -199,6 +199,33 @@ def _safe_back(back: str, slug: str) -> str:
     return f"/program/{slug}" if slug else "/"
 
 
+@app.get("/enter", response_class=HTMLResponse)
+def enter(request: Request, back: str = "/", error: str = ""):
+    if not gate.password():
+        return RedirectResponse(_safe_back(back, ""), status_code=303)
+    return templates.TemplateResponse(
+        request, "enter.html", {"back": _safe_back(back, ""), "error": error}
+    )
+
+
+@app.post("/enter")
+def enter_post(password: str = Form(""), back: str = Form("/")):
+    target = _safe_back(back, "")
+    if not gate.check(password, gate.password()):
+        return RedirectResponse(
+            f"/enter?back={quote(target, safe='')}&error=1", status_code=303
+        )
+    response = RedirectResponse(target, status_code=303)
+    response.set_cookie(
+        gate.COOKIE,
+        gate.token(gate.password()),
+        max_age=gate.A_YEAR,
+        httponly=True,
+        samesite="lax",
+    )
+    return response
+
+
 @app.get("/who", response_class=HTMLResponse)
 def who(request: Request, back: str = "/", error: str = ""):
     return templates.TemplateResponse(

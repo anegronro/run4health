@@ -100,11 +100,16 @@ never cached on its own.
 
 ## Getting in
 
-`FITNESS_BASIC_AUTH="user:password"` puts one shared password in front of the
-whole app — required now that it is published to the internet, since the email
-profiles are not authentication. It lives in `/etc/fitness.env` on the server
-(mode 600, read by the unit's `EnvironmentFile`), never in this repo. Unset,
-the gate is off, which is fine for purely local runs.
+`FITNESS_PASSWORD` puts one shared password in front of the whole app —
+required now that it is published to the internet, since the email profiles
+are not authentication. It lives in `/etc/fitness.env` on the server (mode
+600, read by the unit's `EnvironmentFile`), never in this repo. Unset, the
+gate is off, which is fine for purely local runs.
+
+It is asked for on a page of our own, not through HTTP Basic Auth, whose
+browser dialog cannot be styled. A browser that has answered holds a cookie
+derived from the password with HMAC, so it cannot be forged and changing the
+password signs everyone out.
 
 To change it: edit `/etc/fitness.env` and `systemctl restart fitness`.
 

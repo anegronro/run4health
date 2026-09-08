@@ -1,54 +1,66 @@
 """Shared password in front of the whole app.
 
-Once the app is published to the internet, the private network stops being
-the boundary. This is one password for the whole group — it decides who gets
-in at all; the email profiles inside only decide whose ticks are whose.
+Once the app is published to the internet the private network stops being the
+boundary, so one password guards everything. It is asked for on a normal page
+of our own rather than through HTTP Basic Auth, whose browser dialog is both
+ugly and impossible to style.
 
-Off unless FITNESS_BASIC_AUTH is set, as "user:password".
+Off unless FITNESS_PASSWORD is set.
 """
 from __future__ import annotations
 
-import base64
-import binascii
+import hashlib
+import hmac
 import os
 import secrets
 
 from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.responses import PlainTextResponse
+from starlette.responses import RedirectResponse
 
-OPEN_PATHS = {"/health"}
+COOKIE = "gate"
+A_YEAR = 60 * 60 * 24 * 365
+OPEN_PATHS = {"/health", "/enter"}
 
 
-class BasicAuth(BaseHTTPMiddleware):
-    def __init__(self, app, credentials: str):
+def password() -> str:
+    return os.environ.get("FITNESS_PASSWORD", "").strip()
+
+
+def token(secret: str) -> str:
+    """What a browser holds once it has proved it knows the password.
+
+    Derived from the password, so changing the password logs everyone out.
+    """
+    return hmac.new(secret.encode(), b"fitness-gate-v1", hashlib.sha256).hexdigest()
+
+
+def check(supplied: str, secret: str) -> bool:
+    # Constant-time: a plain == leaks the answer one character at a time to
+    # anyone who can measure the response.
+    return secrets.compare_digest(supplied.strip(), secret)
+
+
+class Gate(BaseHTTPMiddleware):
+    def __init__(self, app, secret: str):
         super().__init__(app)
-        user, _, password = credentials.partition(":")
-        self.expected = f"{user}:{password}"
+        self.secret = secret
+        self.token = token(secret)
 
     async def dispatch(self, request, call_next):
         if request.url.path in OPEN_PATHS:
             return await call_next(request)
-        header = request.headers.get("authorization", "")
-        scheme, _, token = header.partition(" ")
-        if scheme.lower() == "basic":
-            try:
-                supplied = base64.b64decode(token).decode("utf-8")
-            except (binascii.Error, UnicodeDecodeError):
-                supplied = ""
-            # Constant-time: a plain == leaks the password one character at a
-            # time to anyone who can measure the response.
-            if secrets.compare_digest(supplied, self.expected):
-                return await call_next(request)
-        return PlainTextResponse(
-            "Authentication required.",
-            status_code=401,
-            headers={"WWW-Authenticate": 'Basic realm="Programs", charset="UTF-8"'},
-        )
+        held = request.cookies.get(COOKIE, "")
+        if secrets.compare_digest(held, self.token):
+            return await call_next(request)
+        target = request.url.path or "/"
+        from urllib.parse import quote
+
+        return RedirectResponse(f"/enter?back={quote(target, safe='')}", status_code=303)
 
 
 def install(app) -> bool:
-    credentials = os.environ.get("FITNESS_BASIC_AUTH", "").strip()
-    if not credentials or ":" not in credentials:
+    secret = password()
+    if not secret:
         return False
-    app.add_middleware(BasicAuth, credentials=credentials)
+    app.add_middleware(Gate, secret=secret)
     return True

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Programs{% endblock %}
+{% block body_class %}veil{% endblock %}
+{% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
+{% block content %}
+<section class="signin gate">
+  <h1>Programs</h1>
+  <p class="lede">Enter the password to open the app.</p>
+
+  {% if error %}<p class="error">Wrong password. Try again.</p>{% endif %}
+
+  <form method="post" action="/enter" class="signin-form">
+    <input type="hidden" name="back" value="{{ back }}">
+    <input type="password" name="password" placeholder="Password"
+           autocomplete="current-password" autocapitalize="none"
+           autocorrect="off" spellcheck="false" required autofocus>
+    <button type="submit">Enter</button>
+  </form>
+</section>
+{% endblock %}
