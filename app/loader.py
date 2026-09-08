@@ -15,6 +15,20 @@ from .models import Program
 
 ROOT = Path(__file__).resolve().parent.parent
 PROGRAMS_DIR = ROOT / "data" / "programs"
+IMG_DIR = Path(__file__).resolve().parent / "static" / "img"
+IMG_SUFFIXES = (".jpg", ".jpeg", ".png", ".webp", ".avif")
+
+
+def _photo_for(slug: str) -> str | None:
+    """A photo named after the program is picked up with no config.
+
+    Drop app/static/img/<slug>.jpg and that program uses it as its cover;
+    an explicit "image" in the JSON still wins.
+    """
+    for suffix in IMG_SUFFIXES:
+        if (IMG_DIR / f"{slug}{suffix}").is_file():
+            return f"/static/img/{slug}{suffix}"
+    return None
 
 
 class InvalidProgram(Exception):
@@ -28,9 +42,12 @@ def _read(path: Path) -> Program:
         raise InvalidProgram(f"{path.name}: malformed JSON — {e}") from e
     raw["slug"] = path.stem
     try:
-        return Program(**raw)
+        program = Program(**raw)
     except ValidationError as e:
         raise InvalidProgram(f"{path.name}: {e}") from e
+    if not program.image:
+        program.image = _photo_for(program.slug)
+    return program
 
 
 def list_all() -> list[Program]:

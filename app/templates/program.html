@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="hero">
-  {% if p.image %}<img src="{{ p.image }}" alt="">{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
+  {% if p.image %}<span class="shot"><img src="{{ p.image }}" alt=""></span>{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
   <div class="hero-text">
     <h1>{{ p.name }}</h1>
     {% if p.description %}<p class="lede">{{ p.description }}</p>{% endif %}
