@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% import "brand.html" as brand %}
 {% block body_class %}veil{% endblock %}
+{% block header %}{% endblock %}
 {% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
 {% block content %}
 <section class="signin gate">
-  <h1>Programs</h1>
+  <div class="gate-logo">
+    {{ brand.mark(64) }}
+    <span class="gate-word">run<b>4</b>health</span>
+  </div>
   <p class="lede">Enter the password to open the app.</p>
 
   {% if error %}<p class="error">Wrong password. Try again.</p>{% endif %}

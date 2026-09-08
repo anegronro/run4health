@@ -1,5 +1,5 @@
 {% import "brand.html" as brand %}
-{% block share_text %}Running programs and your own training log.{% endblock %}
+{% set share_text = "Running programs and your own training log." %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e0f13">
 <title>{% block title %}run4health{% endblock %}</title>
-<meta name="description" content="{{ self.share_text() }}">
+<meta name="description" content="{{ share_text }}">
 <meta property="og:site_name" content="run4health">
 <meta property="og:title" content="run4health">
-<meta property="og:description" content="{{ self.share_text() }}">
+<meta property="og:description" content="{{ share_text }}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="{{ absolute(request, '/share.jpg') }}">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 {% block head_extra %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
-<header class="bar">
+{% block header %}<header class="bar">
   {% block back %}{% endblock %}
   <a class="brand" href="/">{{ brand.lockup() }}</a>
   {% if me %}
@@ -33,7 +33,7 @@
       <span class="me-name">{{ me.name }}</span>
     </a>
   {% endif %}
-</header>
+</header>{% endblock %}
 <main{% block body_style %}{% endblock %}>{% block content %}{% endblock %}</main>
 {% if me %}
 <nav class="tabs">
