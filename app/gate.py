@@ -41,10 +41,11 @@ def check(supplied: str, secret: str) -> bool:
 
 
 class Gate(BaseHTTPMiddleware):
-    def __init__(self, app, secret: str):
+    def __init__(self, app, secret: str, render):
         super().__init__(app)
         self.secret = secret
         self.token = token(secret)
+        self.render = render
 
     async def dispatch(self, request, call_next):
         if request.url.path in OPEN_PATHS:
@@ -52,15 +53,21 @@ class Gate(BaseHTTPMiddleware):
         held = request.cookies.get(COOKIE, "")
         if secrets.compare_digest(held, self.token):
             return await call_next(request)
-        target = request.url.path or "/"
+        # The bare URL answers 200 with the password page rather than
+        # redirecting: the crawlers that build link previews often don't
+        # follow redirects, and a shared link has to preview as itself.
+        if request.url.path == "/":
+            return self.render(request, "/")
         from urllib.parse import quote
 
-        return RedirectResponse(f"/enter?back={quote(target, safe='')}", status_code=303)
+        return RedirectResponse(
+            f"/enter?back={quote(request.url.path, safe='')}", status_code=303
+        )
 
 
-def install(app) -> bool:
+def install(app, render) -> bool:
     secret = password()
     if not secret:
         return False
-    app.add_middleware(Gate, secret=secret)
+    app.add_middleware(Gate, secret=secret, render=render)
     return True

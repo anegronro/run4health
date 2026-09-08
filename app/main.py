@@ -21,7 +21,7 @@ HERE = Path(__file__).resolve().parent
 
 app = FastAPI(title="Programs", docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
-gate.install(app)
+
 templates = Jinja2Templates(directory=str(HERE / "templates"))
 
 _assets: dict[str, tuple[float, str]] = {}
@@ -299,6 +299,13 @@ def me_page(request: Request):
             "plan_sessions": plan_sessions,
         },
     )
+
+
+def _gate_page(request: Request, back: str):
+    return templates.TemplateResponse(request, "enter.html", {"back": back, "error": ""})
+
+
+gate.install(app, _gate_page)
 
 
 @app.get("/enter", response_class=HTMLResponse)
