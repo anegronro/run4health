@@ -199,6 +199,82 @@ def _safe_back(back: str, slug: str) -> str:
     return f"/program/{slug}" if slug else "/"
 
 
+MILES_PER_KM = 0.621371
+
+
+def miles(km: float) -> float:
+    return round(km * MILES_PER_KM, 1)
+
+
+templates.env.globals["miles"] = miles
+
+
+@app.get("/me", response_class=HTMLResponse)
+def me_page(request: Request):
+    """One runner's own numbers: what they have actually ticked off."""
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
+    done = progress.load(me["id"])
+
+    tracked, done_km, done_sessions, plan_km, plan_sessions = [], 0.0, 0, 0.0, 0
+    for prog in loader.list_all():
+        weeks, p_done_km, p_done, p_plan_km, p_plan = [], 0.0, 0, 0.0, 0
+        for w in prog.weeks:
+            w_km, w_done = 0.0, 0
+            for i, d in enumerate(w.days, 1):
+                if d.rest_day:
+                    continue
+                if progress.key(prog.slug, w.number, i) in done:
+                    w_km += d.distance_km
+                    w_done += 1
+            weeks.append(
+                {
+                    "number": w.number,
+                    "done_km": round(w_km, 2),
+                    "plan_km": w.distance_km,
+                    "done": w_done,
+                    "sessions": w.sessions,
+                }
+            )
+            p_done_km += w_km
+            p_done += w_done
+            p_plan_km += w.distance_km
+            p_plan += w.sessions
+        if p_done:
+            tracked.append(
+                {
+                    "program": prog,
+                    "weeks": weeks,
+                    "done_km": round(p_done_km, 2),
+                    "plan_km": round(p_plan_km, 2),
+                    "done": p_done,
+                    "sessions": p_plan,
+                    # Scale to the biggest PLANNED week: the outline is the
+                    # yardstick, so it has to fit.
+                    "top_km": max((w["plan_km"] for w in weeks), default=0.0),
+                }
+            )
+        done_km += p_done_km
+        done_sessions += p_done
+        plan_km += p_plan_km
+        plan_sessions += p_plan
+
+    return templates.TemplateResponse(
+        request,
+        "me.html",
+        {
+            "me": me,
+            "tracked": tracked,
+            "started": bool(tracked),
+            "done_km": round(done_km, 2),
+            "done_sessions": done_sessions,
+            "plan_km": round(plan_km, 2),
+            "plan_sessions": plan_sessions,
+        },
+    )
+
+
 @app.get("/enter", response_class=HTMLResponse)
 def enter(request: Request, back: str = "/", error: str = ""):
     if not gate.password():

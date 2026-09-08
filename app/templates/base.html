@@ -13,8 +13,8 @@
   {% block back %}{% endblock %}
   <span class="brand">Programs</span>
   {% if me %}
-    <a class="me" href="/who?back={{ request.url.path | urlencode }}"
-       style="--accent: {{ me.color }}" title="Switch profile">
+    <a class="me" href="/me"
+       style="--accent: {{ me.color }}" title="Your training log">
       <span class="me-dot">{{ me.name[:1] | upper }}</span>
       <span class="me-name">{{ me.name }}</span>
     </a>

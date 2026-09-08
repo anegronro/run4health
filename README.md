@@ -68,6 +68,18 @@ Every training day carries a checkbox, and each day page has a "Mark as done"
 button. Ticks live server-side, so a session ticked on the phone shows as
 ticked on the Mac.
 
+## Training log
+
+Tapping your name in the header opens `/me`: miles run, sessions completed,
+and a bar per week of each program you have started — solid for what you
+ticked off, outline for what the week plans.
+
+Distance is read off the exercises, so only what the plan writes as a
+distance counts (`5 km`, `400 m`). A tempo run prescribed as "20 min"
+contributes nothing rather than an invented number, and warm-up strides
+don't count toward the session. Programs are written in kilometres; the log
+shows miles with the kilometres beside them.
+
 ## Profiles
 
 Everyone types their email once and the app remembers that browser for a

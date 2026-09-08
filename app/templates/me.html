@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ me.name }} — Training log{% endblock %}
+{% block back %}<a class="back" href="/">←</a>{% endblock %}
+{% block body_style %} style="--accent: {{ me.color }}"{% endblock %}
+{% block content %}
+
+<h1>Training log</h1>
+<p class="lede">{{ me.id }}</p>
+
+<section class="tiles">
+  <div class="tile">
+    <span class="tile-n">{{ miles(done_km) }}</span>
+    <span class="tile-l">miles run</span>
+    <span class="tile-s">{{ done_km }} km</span>
+  </div>
+  <div class="tile">
+    <span class="tile-n">{{ done_sessions }}</span>
+    <span class="tile-l">sessions done</span>
+    <span class="tile-s">of {{ plan_sessions }} planned</span>
+  </div>
+  <div class="tile">
+    <span class="tile-n">{{ ((done_km / plan_km * 100) | round | int) if plan_km else 0 }}%</span>
+    <span class="tile-l">of the distance</span>
+    <span class="tile-s">of {{ miles(plan_km) }} mi across all programs</span>
+  </div>
+</section>
+
+{% if not started %}
+  <p class="empty">Nothing ticked off yet. Open a program and mark a session
+  as done — the miles land here.</p>
+{% endif %}
+
+{% for t in tracked %}
+{% set p = t.program %}
+<section class="log" style="--accent: {{ p.color }}">
+  <h2><a href="/program/{{ p.slug }}">{{ p.name }}</a></h2>
+  <p class="week-meta">
+    {{ miles(t.done_km) }} mi run · {{ t.done }} of {{ t.sessions }} sessions
+  </p>
+
+  <div class="vbars">
+    {% set top = t.top_km if t.top_km else 1 %}
+    {% for w in t.weeks %}
+    <div class="vbar-col" title="Week {{ w.number }}: {{ miles(w.done_km) }} mi">
+      <span class="vbar-km">{{ miles(w.done_km) | round | int if w.done_km else "" }}</span>
+      <span class="vbar ghost" style="height: {{ (w.plan_km / top * 100) | round(1) if w.plan_km else 0 }}%">
+        <span class="vbar" style="height: {{ (w.done_km / w.plan_km * 100) | round(1) if w.plan_km else 0 }}%"></span>
+      </span>
+      <span class="vbar-n">{{ w.number }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="chart-note">Miles per week: solid is what you ticked off, the
+  outline is what the week plans. Sessions written in minutes rather than a
+  distance — tempo runs, the walk-run weeks — add no miles here.</p>
+</section>
+{% endfor %}
+
+<form method="post" action="/who/out" class="signout">
+  <button type="submit">Sign out</button>
+</form>
+{% endblock %}

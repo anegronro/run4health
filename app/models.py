@@ -10,8 +10,17 @@ import re
 
 from pydantic import BaseModel, Field
 
-# Matches a distance written as the whole rep field: "5 km", "21.1 km".
-_KM = re.compile(r"^\s*([\d.,]+)\s*km\s*$", re.IGNORECASE)
+# A distance written as the whole rep field: "5 km", "21.1 km", "400 m".
+_DISTANCE = re.compile(r"^\s*([\d.,]+)\s*(km|m)\s*$", re.IGNORECASE)
+
+
+def _km_of(reps: str | None) -> float:
+    """Kilometres in a rep field, or 0 if it isn't a distance at all."""
+    m = _DISTANCE.match(reps or "")
+    if not m:
+        return 0.0
+    value = float(m.group(1).replace(",", "."))
+    return value if m.group(2).lower() == "km" else value / 1000
 
 
 class Exercise(BaseModel):
@@ -31,6 +40,15 @@ class Block(BaseModel):
     notes: str | None = None
     exercises: list[Exercise] = Field(default_factory=list)
 
+    @property
+    def is_warmup(self) -> bool:
+        """Warm-ups and cool-downs don't count toward the session's distance.
+
+        By title, since that is all a block has. Strides in a warm-up are
+        real running, but nobody counts them as part of the workout.
+        """
+        return self.title.strip().lower() in {"warm-up", "warmup", "cool-down", "cooldown"}
+
 
 class Day(BaseModel):
     title: str                         # "Monday — Push"
@@ -39,6 +57,22 @@ class Day(BaseModel):
     rest_day: bool = False             # a full rest day carries no blocks
     notes: str | None = None
     blocks: list[Block] = Field(default_factory=list)
+
+    @property
+    def distance_km(self) -> float:
+        """Kilometres this session prescribes, read off the exercises.
+
+        Only what is written as a distance counts: a 15-minute tempo run is
+        prescribed in time, so it contributes nothing rather than an invented
+        number.
+        """
+        total = 0.0
+        for block in self.blocks:
+            if block.is_warmup:
+                continue
+            for e in block.exercises:
+                total += _km_of(e.reps) * int(e.sets or 1)
+        return round(total, 2)
 
 
 class Week(BaseModel):
@@ -49,15 +83,8 @@ class Week(BaseModel):
 
     @property
     def distance_km(self) -> float:
-        """Kilometres planned this week, read off the exercises themselves."""
-        total = 0.0
-        for day in self.days:
-            for block in day.blocks:
-                for e in block.exercises:
-                    m = _KM.match(e.reps or "")
-                    if m:
-                        total += float(m.group(1).replace(",", ".")) * int(e.sets or 1)
-        return round(total, 1)
+        """Kilometres planned this week."""
+        return round(sum(d.distance_km for d in self.days), 2)
 
     @property
     def sessions(self) -> int:

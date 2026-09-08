@@ -284,3 +284,28 @@ a.reset{text-decoration:none;display:inline-block}
   border:1px solid #ff6b6b;color:#ffb4b4;
   border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:14px;
 }
+
+
+/* ── Training log ──────────────────────────────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 26px}
+.tile{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:14px 12px;display:grid;gap:2px;text-align:center;
+}
+.tile-n{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.tile-l{font-size:12px;color:var(--muted)}
+.tile-s{font-size:11px;color:var(--muted);opacity:.7}
+
+.log{margin-top:26px}
+.log h2{margin-bottom:2px}
+.log h2 a{color:inherit;text-decoration:none}
+.log .vbars{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:14px 12px 10px;height:150px;
+}
+.vbar.ghost{
+  background:none;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  display:flex;align-items:flex-end;overflow:hidden;
+}
+.vbar.ghost > .vbar{width:100%;border-radius:0}
+@media (max-width:400px){ .tile-n{font-size:20px} }
