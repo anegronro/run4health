@@ -37,6 +37,8 @@ Wants=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=$REMOTE
+# Shared password for the public URL. Lives only on the server, never in git.
+EnvironmentFile=-/etc/fitness.env
 ExecStart=$REMOTE/.venv/bin/uvicorn app.main:app --host $BIND --port $PORT
 Restart=always
 RestartSec=5

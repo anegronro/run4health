@@ -14,13 +14,14 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import loader, people, progress
+from . import gate, loader, people, progress
 from .loader import InvalidProgram
 
 HERE = Path(__file__).resolve().parent
 
 app = FastAPI(title="Programs", docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
+gate.install(app)
 templates = Jinja2Templates(directory=str(HERE / "templates"))
 
 _assets: dict[str, tuple[float, str]] = {}

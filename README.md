@@ -74,11 +74,10 @@ Everyone types their email once and the app remembers that browser for a
 year; the header shows who you are and tapping it switches. A profile is
 created the first time an address is used — there is nothing to set up.
 
-**There is no password and no verification.** An email here is a label that
-keeps each person's progress apart, not proof of who they are: anyone who can
-reach the app can type anyone's address and see their ticks. The private
-network is the only thing keeping people out, so don't put this on the public
-internet as it stands.
+**The email is not a password.** It is a label that keeps each person's
+progress apart, not proof of who they are: anyone who gets in can type anyone
+else's address and see their ticks. What keeps strangers out is the shared
+password below.
 
 `data/people.json` holds the profiles and `data/progress.json` the ticks, one
 list per person. Both are kept out of git and out of the deploy sync, so
@@ -99,12 +98,26 @@ The inlined photos come from `app/static/img/inline/`, deliberately smaller
 than the originals, since an inlined image is re-sent with every page view and
 never cached on its own.
 
+## Getting in
+
+`FITNESS_BASIC_AUTH="user:password"` puts one shared password in front of the
+whole app — required now that it is published to the internet, since the email
+profiles are not authentication. It lives in `/etc/fitness.env` on the server
+(mode 600, read by the unit's `EnvironmentFile`), never in this repo. Unset,
+the gate is off, which is fine for purely local runs.
+
+To change it: edit `/etc/fitness.env` and `systemctl restart fitness`.
+
 ## Always on
 
 `scripts/deploy_vps.sh` copies the app to the VPS and runs it under systemd as
 `fitness.service`. Two tailnet addresses reach it, and neither is public:
 
-- <https://your-app.example.ts.net> — a separate Tailscale node
-  (`tailscaled-run4health.service`) fronting the app over HTTPS, no port
-- <http://203.0.113.10:8770> — the plain address, kept working for
-  bookmarks and home-screen shortcuts
+- <https://your-server.example.ts.net:8443> — **public**, for
+  people outside the tailnet, behind the shared password. Port 8443 keeps it
+  clear of the Gatsby Funnel already on 443 of that name.
+- <https://your-app.example.ts.net> — tailnet only, from a separate node
+  (`tailscaled-run4health.service`). Tailscale never published a public DNS
+  record for this second node, which is why the public URL uses the other
+  hostname.
+- <http://203.0.113.10:8770> — tailnet only, the plain address
