@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 
-from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi import FastAPI, Form, HTTPException, Request, Response
 from fastapi.responses import (
     FileResponse,
     HTMLResponse,
@@ -20,7 +20,7 @@ from fastapi.responses import (
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import accounts, db, gate, loader, migrate, progress
+from . import accounts, db, gate, loader, migrate, progress, report
 from .loader import InvalidProgram
 
 HERE = Path(__file__).resolve().parent
@@ -470,17 +470,40 @@ def account_password(
     return response
 
 
+def _download_name(me: dict, suffix: str) -> str:
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return f"run4health-{me['email'].split('@')[0]}-{stamp}.{suffix}"
+
+
 @app.get("/account/export")
 def account_export(request: Request):
+    """A PDF, because this is something a person reads and keeps."""
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
-    data = accounts.export(me["email"])
-    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    name = f"run4health-{me['email'].split('@')[0]}-{stamp}.json"
+    pdf = report.build(accounts.export(me["email"]))
+    return Response(
+        pdf,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition":
+                f'attachment; filename="{_download_name(me, "pdf")}"'
+        },
+    )
+
+
+@app.get("/account/export.json")
+def account_export_json(request: Request):
+    """The same data, machine-readable, for moving it somewhere else."""
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
     return JSONResponse(
-        data,
-        headers={"Content-Disposition": f'attachment; filename="{name}"'},
+        accounts.export(me["email"]),
+        headers={
+            "Content-Disposition":
+                f'attachment; filename="{_download_name(me, "json")}"'
+        },
     )
 
 
