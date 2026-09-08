@@ -415,3 +415,14 @@ a.reset{text-decoration:none;display:inline-block}
 .prose ul{padding-left:20px;margin:0 0 12px}
 .prose li{margin-bottom:8px}
 .prose li::marker{color:var(--accent)}
+
+.panel.danger{border-color:color-mix(in srgb,#ff6b6b 40%,var(--border))}
+.panel.danger summary{color:#ffb4b4}
+.panel .account-alt{
+  display:inline-block;width:auto;padding:10px 16px;border-radius:10px;
+  background:var(--panel2);border:1px solid var(--border);color:var(--text);
+  text-decoration:none;font-size:15px;
+}
+.signin-form button.danger-btn{
+  background:transparent;border:1px solid #ff6b6b;color:#ffb4b4;font-weight:600;
+}

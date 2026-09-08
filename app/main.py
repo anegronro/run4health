@@ -6,11 +6,17 @@ Built to be opened on a phone.
 from __future__ import annotations
 
 import base64
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.responses import (
+    FileResponse,
+    HTMLResponse,
+    JSONResponse,
+    RedirectResponse,
+)
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -462,6 +468,43 @@ def account_password(
                                 status_code=303)
     response.delete_cookie(COOKIE)
     return response
+
+
+@app.get("/account/export")
+def account_export(request: Request):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
+    data = accounts.export(me["email"])
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    name = f"run4health-{me['email'].split('@')[0]}-{stamp}.json"
+    return JSONResponse(
+        data,
+        headers={"Content-Disposition": f'attachment; filename="{name}"'},
+    )
+
+
+@app.post("/account/delete")
+def account_delete(request: Request, confirm: str = Form("")):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
+    # Typing the address is the confirmation: a yes/no dialog is too easy to
+    # click through for something that cannot be undone.
+    if accounts.normalise(confirm) != me["email"]:
+        return RedirectResponse(
+            "/account?error=" + quote("Type your email address exactly to confirm.", safe=""),
+            status_code=303,
+        )
+    accounts.delete(me["email"])
+    response = RedirectResponse("/gone", status_code=303)
+    response.delete_cookie(COOKIE)
+    return response
+
+
+@app.get("/gone", response_class=HTMLResponse)
+def gone(request: Request):
+    return templates.TemplateResponse(request, "gone.html", {"me": None})
 
 
 @app.get("/privacy", response_class=HTMLResponse)

@@ -38,6 +38,27 @@
     <p class="fineprint">Changing it signs you out everywhere, including here.</p>
   </details>
 
+  <details class="panel">
+    <summary>Download your data</summary>
+    <p class="fineprint">Everything the app holds about you — your account and
+    every session you ticked off, with the date. Your password isn't included:
+    it's stored hashed and can't be read back.</p>
+    <p class="fineprint"><a class="account-alt" href="/account/export">Download my data</a></p>
+  </details>
+
+  <details class="panel danger">
+    <summary>Delete your account</summary>
+    <p class="fineprint">This deletes your name, your email and every session
+    you've ticked off. It cannot be undone. Your data stays in the nightly
+    backups for up to fourteen days before those expire too.<br><br>
+    Consider downloading your data first.</p>
+    <form method="post" action="/account/delete" class="signin-form">
+      <input type="email" name="confirm" placeholder="Type {{ me.email }} to confirm"
+             autocapitalize="none" autocorrect="off" spellcheck="false" required>
+      <button class="danger-btn" type="submit">Delete my account for good</button>
+    </form>
+  </details>
+
   <form method="post" action="/signout" class="account">
     <button class="account-out" type="submit">Sign out</button>
   </form>

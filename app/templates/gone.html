@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Account deleted{% endblock %}
+{% block body_class %}veil{% endblock %}
+{% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
+{% block content %}
+<section class="signin">
+  <h1>Your account is gone</h1>
+  <p class="lede">Your name, email and every session you ticked off have been
+  deleted from the database.</p>
+  <p class="fineprint">
+    They remain in the nightly backups for up to fourteen days, then those
+    expire too — that window is what protects everyone from an accidental
+    deletion.<br><br>
+    You're welcome back any time.
+    <a href="/signup">Create a new account</a>
+  </p>
+</section>
+{% endblock %}

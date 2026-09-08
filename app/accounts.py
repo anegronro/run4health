@@ -158,6 +158,44 @@ def change_password(email: str, current: str, new: str) -> None:
         con.execute("DELETE FROM sessions WHERE email = ?", (email,))
 
 
+def export(email: str) -> dict:
+    """Everything the app holds about one person, in one file.
+
+    Offered before deleting, because plenty of people who reach for delete
+    actually want to take their record with them, not lose it.
+    """
+    email = normalise(email)
+    with db.connect() as con:
+        person = con.execute(
+            "SELECT email, name, color, created_at FROM people WHERE email = ?",
+            (email,),
+        ).fetchone()
+        ticks = con.execute(
+            "SELECT item, done_at FROM done WHERE email = ? ORDER BY done_at", (email,)
+        ).fetchall()
+        sessions = con.execute(
+            "SELECT created_at, last_seen FROM sessions WHERE email = ?", (email,)
+        ).fetchall()
+    if not person:
+        raise AccountError("No such account.")
+    return {
+        "account": dict(person),
+        "completed_sessions": [dict(r) for r in ticks],
+        "signed_in_browsers": [dict(r) for r in sessions],
+        "note": "Your password is not here. It is stored hashed and cannot be read back.",
+    }
+
+
+def delete(email: str) -> None:
+    """Removes the account and everything attached to it.
+
+    The foreign keys carry the sessions and the ticks with it — see
+    db.connect(), which turns them on for every connection.
+    """
+    with db.connect() as con:
+        con.execute("DELETE FROM people WHERE email = ?", (normalise(email),))
+
+
 # ── sessions ───────────────────────────────────────────────────────────
 def _hash_token(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
