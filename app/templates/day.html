@@ -33,6 +33,12 @@
 </section>
 {% endfor %}
 
+<button class="done-btn{{ ' is-done' if is_done }}" type="button" id="done-btn"
+        data-slug="{{ p.slug }}" data-week="{{ week.number }}" data-day="{{ n_day }}"
+        aria-pressed="{{ 'true' if is_done else 'false' }}">
+  <span class="tick"></span><span class="label">{{ "Completed" if is_done else "Mark as done" }}</span>
+</button>
+
 <nav class="step">
   {% if previous %}<a href="/program/{{ p.slug }}/w{{ week.number }}/d{{ previous }}">← Previous day</a>{% endif %}
   {% if next %}<a class="right" href="/program/{{ p.slug }}/w{{ week.number }}/d{{ next }}">Next day →</a>{% endif %}

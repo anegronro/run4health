@@ -13,6 +13,15 @@
   </div>
 </div>
 
+<section class="progress" data-slug="{{ p.slug }}">
+  <div class="progress-top">
+    <b><span id="done-count">{{ completed }}</span> of {{ sessions }} sessions</b>
+    <button class="reset" type="button">Reset</button>
+  </div>
+  <div class="track"><span class="fill" id="progress-fill" data-total="{{ sessions }}"
+       style="width: {{ (completed / sessions * 100) | round(1) if sessions else 0 }}%"></span></div>
+</section>
+
 <div class="meta">
   {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
   {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
@@ -61,14 +70,22 @@
           <span class="day-body"><b>{{ d.title }}</b>{% if d.notes %}<span class="desc">{{ d.notes }}</span>{% endif %}</span>
         </span>
       {% else %}
-        <a class="day" href="/program/{{ p.slug }}/w{{ w.number }}/d{{ loop.index }}">
-          <span class="badge on">{{ initial }}</span>
-          <span class="day-body">
-            <b>{{ d.title }}</b>
-            {% if d.focus %}<span class="desc">{{ d.focus }}</span>{% endif %}
-          </span>
-          {% if d.duration %}<span class="pill">{{ d.duration }}</span>{% endif %}
-        </a>
+        {% set marked = key(p.slug, w.number, loop.index) in done %}
+        <div class="row{{ ' is-done' if marked }}">
+          <a class="day" href="/program/{{ p.slug }}/w{{ w.number }}/d{{ loop.index }}">
+            <span class="badge on">{{ initial }}</span>
+            <span class="day-body">
+              <b>{{ d.title }}</b>
+              {% if d.focus or d.duration %}
+                <span class="desc">{{ d.focus }}{% if d.focus and d.duration %} · {% endif %}{{ d.duration }}</span>
+              {% endif %}
+            </span>
+          </a>
+          <button class="check" type="button" role="checkbox"
+                  aria-checked="{{ 'true' if marked else 'false' }}"
+                  aria-label="Mark {{ d.title }} as done"
+                  data-week="{{ w.number }}" data-day="{{ loop.index }}"></button>
+        </div>
       {% endif %}
     </li>
   {% endfor %}

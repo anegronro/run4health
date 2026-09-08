@@ -1,7 +1,8 @@
 # fitness-app — program catalogue
 
-A personal reader for training programs. **Read only**: it shows the routines
-and their guides. It does not log workouts or track progress.
+A personal reader for training programs. It shows the routines and their
+guides, and lets you tick off each session as you complete it. It does not
+record weights, times or any other workout detail.
 
 The content is yours: every program is a JSON file in `data/programs/`.
 
@@ -60,6 +61,14 @@ These are generic, well-built plans — they are not tailored to any individual.
 Program pages chart the planned kilometres per week, read straight off the
 exercises, so the down weeks are visible. Warm-ups and cool-downs are written
 in minutes rather than kilometres, so they don't appear in that total.
+
+## Completed sessions
+
+Every training day carries a checkbox, and each day page has a "Mark as done"
+button. Ticks live server-side in `data/progress.json`, so a session ticked on
+the phone shows as ticked on the Mac. That file is kept out of git and out of
+the deploy sync, so redeploying never clears it. `FITNESS_PROGRESS` overrides
+its path. There is no login: the tailnet is the boundary.
 
 ## Always on
 
