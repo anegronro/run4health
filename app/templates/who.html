@@ -21,17 +21,21 @@
 
 {% else %}
   <h1>Who's training?</h1>
-  <p class="lede">Type your email to keep your own progress.</p>
+  <p class="lede">Your name and email keep your own progress apart.</p>
 
   {% if error %}<p class="error">{{ error }}</p>{% endif %}
 
   <form method="post" action="/who" class="signin-form">
     <input type="hidden" name="back" value="{{ back }}">
-    <input type="email" name="email" placeholder="you@example.com"
-           autocomplete="email" autocapitalize="none" autocorrect="off"
+    <input type="text" name="name" placeholder="Your name" maxlength="40"
+           value="{{ name }}" autocomplete="given-name" autocapitalize="words"
            spellcheck="false" required autofocus>
+    <input type="email" name="email" placeholder="you@example.com"
+           value="{{ email }}" autocomplete="email" autocapitalize="none"
+           autocorrect="off" spellcheck="false" required>
     <button type="submit">Continue</button>
   </form>
+  <p class="fineprint">Write your name the way you write it, accents and all.</p>
 {% endif %}
 
 </section>

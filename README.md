@@ -83,10 +83,11 @@ shows miles with the kilometres beside them.
 ## Profiles
 
 Everyone types their email once and the app remembers that browser for a
-The first time an address is used the app asks what to call you, prefilled
-with a guess from the address — a guess, because no address knows that angel
-is written Ángel. Typed all in lower case, the name gets its capitals; typed
-with any of your own, it is left exactly as written.
+The sign-in screen asks for a name as well as an email, because no address
+knows that angel is written Ángel. Typed all in lower case, the name gets its
+capitals; typed with any of your own, it is left exactly as written. Neither
+field is written to disk until both are valid, so a rejected form leaves
+nothing behind.
 
 The chip in the header opens an account screen that offers rather than
 demands: back to where you were, change your name, or sign out. Signing out only forgets the

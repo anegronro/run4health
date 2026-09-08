@@ -67,8 +67,10 @@ def load() -> list[dict]:
 def _save(people: list[dict]) -> None:
     STORE.parent.mkdir(parents=True, exist_ok=True)
     tmp = STORE.with_suffix(".json.tmp")
+    # "named" is worked out when reading; it has no business on disk.
+    clean = [{k: v for k, v in p.items() if k != "named"} for p in people]
     tmp.write_text(
-        json.dumps({"people": people}, ensure_ascii=False, indent=2) + "\n",
+        json.dumps({"people": clean}, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
     tmp.replace(STORE)
@@ -79,9 +81,16 @@ def get(email: str) -> dict | None:
     return next((p for p in load() if p["id"] == email), None)
 
 
-def sign_in(email: str) -> dict:
-    """Look the address up, creating the profile the first time it is used."""
+def sign_in(email: str, name: str = "") -> dict:
+    """Look the address up, creating the profile the first time it is used.
+
+    The name is checked before anything is written, so a rejected form never
+    leaves a half-made profile behind.
+    """
     email = normalise(email)
+    name = tidy_name(name)
+    if not name:
+        raise PersonError("Type the name you want to be called.")
     if not email:
         raise PersonError("Type your email address.")
     if not EMAIL.match(email):
@@ -89,13 +98,15 @@ def sign_in(email: str) -> dict:
     people = load()
     existing = next((p for p in people if p["id"] == email), None)
     if existing:
-        return existing
+        existing["name"] = name
+        _save(people)
+        return {**existing, "named": True}
     if len(people) >= MAX_PEOPLE:
         raise PersonError(f"This app is set up for {MAX_PEOPLE} people at most.")
-    person = {"id": email, "name": "", "color": COLORS[len(people) % len(COLORS)]}
+    person = {"id": email, "name": name, "color": COLORS[len(people) % len(COLORS)]}
     people.append(person)
     _save(people)
-    return {**person, "name": guess_name(email), "named": False}
+    return {**person, "named": True}
 
 
 def set_name(email: str, name: str) -> dict | None:
@@ -107,7 +118,7 @@ def set_name(email: str, name: str) -> dict | None:
     for person in people:
         if person["id"] == email:
             person["name"] = name
-            _save([{k: v for k, v in p.items() if k != "named"} for p in people])
+            _save(people)
             return {**person, "named": True}
     return None
 

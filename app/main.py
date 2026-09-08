@@ -315,7 +315,7 @@ def enter_post(password: str = Form(""), back: str = Form("/")):
 
 
 @app.get("/who", response_class=HTMLResponse)
-def who(request: Request, back: str = "/", error: str = ""):
+def who(request: Request, back: str = "/", error: str = "", name: str = "", email: str = ""):
     """Tapping your name lands here: it offers, it doesn't demand.
 
     Signed in, this is an account screen — back, or sign out. Signed out, it
@@ -328,24 +328,31 @@ def who(request: Request, back: str = "/", error: str = ""):
             "back": _safe_back(back, ""),
             "error": error,
             "me": whoami(request),
+            "name": name,
+            "email": email,
         },
     )
 
 
 @app.post("/who")
-def sign_in(email: str = Form(""), back: str = Form("/")):
+def sign_in(
+    name: str = Form(""), email: str = Form(""), back: str = Form("/")
+):
     target = _safe_back(back, "")
-    try:
-        person = people.sign_in(email)
-    except people.PersonError as e:
+
+    def again(message: str):
+        # Hand back what they typed, so a typo in one field doesn't cost them
+        # the other.
         return RedirectResponse(
-            f"/who?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
+            f"/who?back={quote(target, safe='')}&error={quote(message, safe='')}"
+            f"&name={quote(name, safe='')}&email={quote(email, safe='')}",
             status_code=303,
         )
-    # First time with this address: ask what they want to be called, since
-    # an email cannot know that angel is written Ángel.
-    if not person.get("named"):
-        target = f"/name?back={quote(target, safe='')}"
+
+    try:
+        person = people.sign_in(email, name)
+    except people.PersonError as e:
+        return again(str(e))
     response = RedirectResponse(target, status_code=303)
     response.set_cookie(
         COOKIE, person["id"], max_age=A_YEAR, httponly=True, samesite="lax"
