@@ -352,3 +352,26 @@ a.reset{text-decoration:none;display:inline-block}
 }
 .fineprint{margin-top:18px;color:var(--muted);font-size:13px;line-height:1.5}
 .fineprint a{color:var(--muted)}
+
+
+/* ── Week-by-week table ────────────────────────────────────────────── */
+.weeklog{
+  width:100%;border-collapse:collapse;margin:14px 0 10px;font-size:14px;
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;
+}
+.weeklog th,.weeklog td{padding:9px 12px;text-align:right}
+.weeklog th:first-child,.weeklog td:first-child{text-align:left;width:22%}
+.weeklog thead th{
+  font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.05em;border-bottom:1px solid var(--border);
+}
+.weeklog tbody tr+tr td{border-top:1px solid color-mix(in srgb,var(--border) 55%,transparent)}
+.weeklog .mi{font-weight:700;color:var(--text)}
+.weeklog .plan,.weeklog .ses{color:var(--muted)}
+.weeklog tr.idle td{color:var(--muted);opacity:.55}
+.weeklog tr.idle .mi{font-weight:400}
+.weeklog tfoot td{
+  border-top:1px solid var(--border);font-weight:600;
+  background:color-mix(in srgb,var(--accent) 8%,transparent);
+}

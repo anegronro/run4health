@@ -49,9 +49,35 @@
     </div>
     {% endfor %}
   </div>
-  <p class="chart-note">Miles per week: solid is what you ticked off, the
-  outline is what the week plans. Sessions written in minutes rather than a
-  distance — tempo runs, the walk-run weeks — add no miles here.</p>
+  <p class="chart-note">Solid is what you ticked off, the outline is what the
+  week plans.</p>
+
+  <table class="weeklog">
+    <thead>
+      <tr><th>Week</th><th>Miles run</th><th>Planned</th><th>Sessions</th></tr>
+    </thead>
+    <tbody>
+      {% for w in t.weeks %}
+      <tr class="{{ 'idle' if not w.done }}">
+        <td>{{ w.number }}</td>
+        <td class="mi">{{ miles(w.done_km) }}</td>
+        <td class="plan">{{ miles(w.plan_km) }}</td>
+        <td class="ses">{{ w.done }}/{{ w.sessions }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>All</td>
+        <td class="mi">{{ miles(t.done_km) }}</td>
+        <td class="plan">{{ miles(t.plan_km) }}</td>
+        <td class="ses">{{ t.done }}/{{ t.sessions }}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <p class="chart-note">Sessions written in minutes rather than a distance —
+  tempo runs, the walk-run weeks — add no miles here, but still count as
+  sessions.</p>
 </section>
 {% endfor %}
 {% endblock %}
