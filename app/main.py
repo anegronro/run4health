@@ -5,29 +5,64 @@ Built to be opened on a phone.
 """
 from __future__ import annotations
 
+import base64
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
 
 from . import loader, progress
 from .loader import InvalidProgram
-
-
-class Mark(BaseModel):
-    slug: str
-    week: int
-    day: int
-    done: bool
 
 HERE = Path(__file__).resolve().parent
 
 app = FastAPI(title="Programs", docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 templates = Jinja2Templates(directory=str(HERE / "templates"))
+
+_assets: dict[str, tuple[float, str]] = {}
+
+
+def asset(name: str) -> str:
+    """The stylesheet and script are inlined into the page.
+
+    Content blockers happily block every subresource of a host they don't
+    recognise while letting the document through, which left the app
+    rendering as naked HTML. Inlined, there is nothing left to block.
+    Re-read whenever the file changes, so editing still hot-reloads.
+    """
+    path = HERE / "static" / name
+    stamp = path.stat().st_mtime
+    cached = _assets.get(name)
+    if cached is None or cached[0] != stamp:
+        _assets[name] = (stamp, path.read_text(encoding="utf-8"))
+    return _assets[name][1]
+
+
+_data_uris: dict[str, tuple[float, str]] = {}
+
+
+def photo(name: str) -> str:
+    """A photo as a data: URI, for the same reason the CSS is inlined.
+
+    Uses the smaller copies under static/img/inline/, since an inlined image
+    is re-sent with every page view and never cached on its own.
+    """
+    path = HERE / "static" / "img" / "inline" / name
+    if not path.is_file():
+        return ""
+    stamp = path.stat().st_mtime
+    cached = _data_uris.get(name)
+    if cached is None or cached[0] != stamp:
+        encoded = base64.b64encode(path.read_bytes()).decode("ascii")
+        _data_uris[name] = (stamp, f"data:image/jpeg;base64,{encoded}")
+    return _data_uris[name][1]
+
+
+templates.env.globals["asset"] = asset
+templates.env.globals["photo"] = photo
 
 
 @app.exception_handler(InvalidProgram)
@@ -46,7 +81,7 @@ def index(request: Request):
 
 
 @app.get("/program/{slug}", response_class=HTMLResponse)
-def program(request: Request, slug: str):
+def program(request: Request, slug: str, reset: int = 0):
     prog = loader.get(slug)
     if prog is None:
         raise HTTPException(404, "Program not found")
@@ -65,6 +100,7 @@ def program(request: Request, slug: str):
                 if not d.rest_day and progress.key(prog.slug, w.number, i) in done
             ),
             "sessions": sum(w.sessions for w in prog.weeks),
+            "confirm_reset": bool(reset),
         },
     )
 
@@ -92,33 +128,40 @@ def day(request: Request, slug: str, week: int, day: int):
     )
 
 
-@app.post("/api/progress")
-def mark(m: Mark):
-    """Tick or untick one session. State is shared by every device."""
-    prog = loader.get(m.slug)
+@app.post("/toggle")
+def toggle(
+    slug: str = Form(...),
+    week: int = Form(...),
+    day: int = Form(...),
+    done: int = Form(...),
+    back: str = Form(...),
+):
+    """Tick or untick one session, then go back where you came from."""
+    prog = loader.get(slug)
     if prog is None:
         raise HTTPException(404, "Program not found")
-    wk = next((w for w in prog.weeks if w.number == m.week), None)
-    if wk is None or not (1 <= m.day <= len(wk.days)):
+    wk = next((w for w in prog.weeks if w.number == week), None)
+    if wk is None or not (1 <= day <= len(wk.days)):
         raise HTTPException(404, "Day not found")
-    if wk.days[m.day - 1].rest_day:
+    if wk.days[day - 1].rest_day:
         raise HTTPException(400, "Rest days are not sessions")
-    done = progress.set_done(m.slug, m.week, m.day, m.done)
-    completed = sum(
-        1
-        for w in prog.weeks
-        for i, d in enumerate(w.days, 1)
-        if not d.rest_day and progress.key(m.slug, w.number, i) in done
-    )
-    return {"ok": True, "done": m.done, "completed": completed}
+    progress.set_done(slug, week, day, bool(done))
+    return RedirectResponse(_safe_back(back, slug), status_code=303)
 
 
-@app.post("/api/progress/{slug}/reset")
-def reset(slug: str):
+@app.post("/reset")
+def reset(slug: str = Form(...)):
     if loader.get(slug) is None:
         raise HTTPException(404, "Program not found")
     progress.clear_program(slug)
-    return {"ok": True, "completed": 0}
+    return RedirectResponse(f"/program/{slug}", status_code=303)
+
+
+def _safe_back(back: str, slug: str) -> str:
+    """Only ever redirect inside this app."""
+    if back.startswith("/") and not back.startswith("//"):
+        return back
+    return f"/program/{slug}"
 
 
 @app.get("/health")

@@ -70,6 +70,20 @@ the phone shows as ticked on the Mac. That file is kept out of git and out of
 the deploy sync, so redeploying never clears it. `FITNESS_PROGRESS` overrides
 its path. There is no login: the tailnet is the boundary.
 
+## No subresources, no JavaScript
+
+The stylesheet is inlined into every page and the photos are sent as `data:`
+URIs; ticking a box is a plain form POST. This is deliberate. Content blockers
+routinely let the HTML document through while blocking every subresource and
+`fetch()` call from a host they don't recognise, which left the app rendering
+as naked HTML with dead checkboxes. With nothing loaded separately and no
+`fetch()`, there is nothing left for a blocker to break — and the app works
+with JavaScript switched off.
+
+The inlined photos come from `app/static/img/inline/`, deliberately smaller
+than the originals, since an inlined image is re-sent with every page view and
+never cached on its own.
+
 ## Always on
 
 `scripts/deploy_vps.sh` copies the app to the VPS and runs it under systemd as

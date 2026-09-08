@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% import "art.html" as art %}
 {% block body_class %}home{% endblock %}
+{% block head_extra %}<style>.home::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
 {% block content %}
 <h1>My programs</h1>
 {% if not programs %}
@@ -13,7 +14,7 @@
   <li>
     <a class="card" href="/program/{{ p.slug }}" style="--accent: {{ p.color }}">
       <span class="cover">
-        {% if p.image %}<span class="shot"><img src="{{ p.image }}" alt=""></span>{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
+        {% if p.image %}<span class="shot"><img src="{{ photo(p.slug ~ '.jpg') or p.image }}" alt=""></span>{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
       </span>
       <span class="card-body">
         <span class="title">{{ p.name }}</span>

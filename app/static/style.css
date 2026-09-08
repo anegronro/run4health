@@ -171,7 +171,7 @@ ul{list-style:none}
 /* Home: one shot bleeding out of the top of the black page. */
 .home::before{
   content:"";position:fixed;inset:0 0 auto 0;height:56vh;z-index:-1;
-  background:url("/static/img/5k.jpg") center 30% / cover no-repeat;
+  background:center 30% / cover no-repeat;
   filter:grayscale(1) contrast(1.1) brightness(.55);
   -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 88%);
   mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 88%);
@@ -185,6 +185,8 @@ ul{list-style:none}
 }
 .progress-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
 .progress-top b{font-size:15px;font-weight:600}
+.reset-form{display:flex;gap:6px;align-items:center}
+a.reset{text-decoration:none;display:inline-block}
 .reset{
   background:transparent;border:1px solid var(--border);color:var(--muted);
   border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer;font:inherit;
@@ -202,15 +204,17 @@ ul{list-style:none}
 
 .row{display:flex;align-items:stretch;gap:6px}
 .row .day{flex:1;min-width:0}
+.check-form{display:flex;flex:0 0 44px}
+.check{flex:1}
 .check{
-  flex:0 0 44px;border:1px solid var(--border);background:var(--panel);
+  width:100%;border:1px solid var(--border);background:var(--panel);
   border-radius:12px;cursor:pointer;display:grid;place-items:center;padding:0;
 }
 .check::after{
   content:"";width:19px;height:19px;border-radius:50%;
   border:2px solid var(--muted);transition:.15s ease;
 }
-.check[aria-checked="true"]::after{
+.check[aria-pressed="true"]::after{
   border-color:var(--accent);background:var(--accent);
   /* the tick itself */
   box-shadow:inset 0 0 0 2px var(--panel);

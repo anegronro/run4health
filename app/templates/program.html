@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="hero">
-  {% if p.image %}<span class="shot"><img src="{{ p.image }}" alt=""></span>{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
+  {% if p.image %}<span class="shot"><img src="{{ photo(p.slug ~ '.jpg') or p.image }}" alt=""></span>{% else %}{{ art.cover(p.art, p.slug) }}{% endif %}
   <div class="hero-text">
     <h1>{{ p.name }}</h1>
     {% if p.description %}<p class="lede">{{ p.description }}</p>{% endif %}
@@ -15,10 +15,18 @@
 
 <section class="progress" data-slug="{{ p.slug }}">
   <div class="progress-top">
-    <b><span id="done-count">{{ completed }}</span> of {{ sessions }} sessions</b>
-    <button class="reset" type="button">Reset</button>
+    <b>{{ completed }} of {{ sessions }} sessions</b>
+    {% if confirm_reset %}
+      <form method="post" action="/reset" class="reset-form">
+        <input type="hidden" name="slug" value="{{ p.slug }}">
+        <a class="reset" href="/program/{{ p.slug }}">Cancel</a>
+        <button class="reset armed" type="submit">Tap again to clear</button>
+      </form>
+    {% else %}
+      <a class="reset" href="/program/{{ p.slug }}?reset=1">Reset</a>
+    {% endif %}
   </div>
-  <div class="track"><span class="fill" id="progress-fill" data-total="{{ sessions }}"
+  <div class="track"><span class="fill"
        style="width: {{ (completed / sessions * 100) | round(1) if sessions else 0 }}%"></span></div>
 </section>
 
@@ -54,7 +62,7 @@
 {% endif %}
 
 {% for w in p.weeks %}
-<section class="week">
+<section class="week" id="w{{ w.number }}">
   <h2>Week {{ w.number }}{% if w.title %} — {{ w.title }}{% endif %}</h2>
   <p class="week-meta">
     {{ w.sessions }} session{{ "s" if w.sessions != 1 }}{% if w.distance_km %} · {{ w.distance_km }} km{% endif %}
@@ -81,10 +89,15 @@
               {% endif %}
             </span>
           </a>
-          <button class="check" type="button" role="checkbox"
-                  aria-checked="{{ 'true' if marked else 'false' }}"
-                  aria-label="Mark {{ d.title }} as done"
-                  data-week="{{ w.number }}" data-day="{{ loop.index }}"></button>
+          <form method="post" action="/toggle" class="check-form">
+            <input type="hidden" name="slug" value="{{ p.slug }}">
+            <input type="hidden" name="week" value="{{ w.number }}">
+            <input type="hidden" name="day" value="{{ loop.index }}">
+            <input type="hidden" name="done" value="{{ 0 if marked else 1 }}">
+            <input type="hidden" name="back" value="/program/{{ p.slug }}#w{{ w.number }}">
+            <button class="check" type="submit" aria-pressed="{{ 'true' if marked else 'false' }}"
+                    aria-label="{{ 'Completed' if marked else 'Mark as done' }}: {{ d.title }}"></button>
+          </form>
         </div>
       {% endif %}
     </li>
