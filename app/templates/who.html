@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-{% block title %}{{ "Your profile" if me and not switching else "Who's training?" }}{% endblock %}
+{% block title %}{{ "Your profile" if me else "Who's training?" }}{% endblock %}
 {% block body_class %}veil{% endblock %}
 {% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
 {% block content %}
 <section class="signin">
 
-{% if me and not switching %}
+{% if me %}
   <h1>You're signed in</h1>
   <p class="lede">{{ me.id }}</p>
 
   <div class="account">
     <a class="account-go" href="{{ back }}">Back to the app</a>
-    <a class="account-alt" href="/who?back={{ back | urlencode }}&amp;switch=1">Use a different email</a>
     <form method="post" action="/who/out">
       <button class="account-out" type="submit">Sign out</button>
     </form>
@@ -32,10 +31,6 @@
            spellcheck="false" required autofocus>
     <button type="submit">Continue</button>
   </form>
-
-  {% if me %}
-    <p class="fineprint"><a href="/who?back={{ back | urlencode }}">Cancel — stay as {{ me.name }}</a></p>
-  {% endif %}
 {% endif %}
 
 </section>

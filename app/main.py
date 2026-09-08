@@ -315,11 +315,11 @@ def enter_post(password: str = Form(""), back: str = Form("/")):
 
 
 @app.get("/who", response_class=HTMLResponse)
-def who(request: Request, back: str = "/", error: str = "", switch: int = 0):
+def who(request: Request, back: str = "/", error: str = ""):
     """Tapping your name lands here: it offers, it doesn't demand.
 
-    Signed in, this is an account screen — back, switch, or sign out. Signed
-    out, it asks for an email.
+    Signed in, this is an account screen — back, or sign out. Signed out, it
+    asks for an email, which is also how you change to a different person.
     """
     return templates.TemplateResponse(
         request,
@@ -328,7 +328,6 @@ def who(request: Request, back: str = "/", error: str = "", switch: int = 0):
             "back": _safe_back(back, ""),
             "error": error,
             "me": whoami(request),
-            "switching": bool(switch),
         },
     )
 
