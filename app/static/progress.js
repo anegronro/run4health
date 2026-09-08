@@ -74,13 +74,36 @@
     });
   }
 
+  // Two taps, both drawn in the page. A native confirm() can be suppressed
+  // by the browser and comes back as "cancel", which reads as a dead button.
   var reset = document.querySelector(".reset");
   if (reset && slug) {
+    var armed = false;
+    var timer = null;
+
+    function disarm() {
+      armed = false;
+      clearTimeout(timer);
+      reset.textContent = "Reset";
+      reset.classList.remove("armed");
+    }
+
     reset.addEventListener("click", function () {
-      if (!window.confirm("Clear every tick for this program?")) return;
-      post("/api/progress/" + encodeURIComponent(slug) + "/reset", {}).then(function () {
-        location.reload();
-      });
+      if (!armed) {
+        armed = true;
+        reset.textContent = "Tap again to clear";
+        reset.classList.add("armed");
+        timer = setTimeout(disarm, 4000);
+        return;
+      }
+      disarm();
+      reset.disabled = true;
+      post("/api/progress/" + encodeURIComponent(slug) + "/reset", {})
+        .then(function () { location.reload(); })
+        .catch(function () {
+          reset.disabled = false;
+          reset.textContent = "Failed — try again";
+        });
     });
   }
 })();

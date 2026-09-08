@@ -190,6 +190,10 @@ ul{list-style:none}
   border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer;font:inherit;
   font-size:12px;
 }
+.reset.armed{
+  color:#ffb4b4;border-color:#ff6b6b;
+  background:color-mix(in srgb,#ff6b6b 12%,transparent);
+}
 .track{height:7px;border-radius:99px;background:var(--panel2);overflow:hidden}
 .fill{
   display:block;height:100%;border-radius:99px;background:var(--accent);
