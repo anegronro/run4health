@@ -7,13 +7,14 @@ from __future__ import annotations
 
 import base64
 from pathlib import Path
+from urllib.parse import quote
 
 from fastapi import FastAPI, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import loader, progress
+from . import loader, people, progress
 from .loader import InvalidProgram
 
 HERE = Path(__file__).resolve().parent
@@ -61,6 +62,21 @@ def photo(name: str) -> str:
     return _data_uris[name][1]
 
 
+COOKIE = "who"
+A_YEAR = 60 * 60 * 24 * 365
+
+
+def whoami(request: Request) -> dict | None:
+    """The person this browser last signed in as, if their profile still exists."""
+    email = request.cookies.get(COOKIE)
+    return people.get(email) if email else None
+
+
+def _sign_in_first(request: Request) -> RedirectResponse:
+    back = request.url.path or "/"
+    return RedirectResponse(f"/who?back={quote(back, safe='')}", status_code=303)
+
+
 templates.env.globals["asset"] = asset
 templates.env.globals["photo"] = photo
 
@@ -75,22 +91,29 @@ async def invalid_program(request: Request, exc: InvalidProgram):
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
     return templates.TemplateResponse(
-        request, "index.html", {"programs": loader.list_all()}
+        request, "index.html", {"programs": loader.list_all(), "me": me}
     )
 
 
 @app.get("/program/{slug}", response_class=HTMLResponse)
 def program(request: Request, slug: str, reset: int = 0):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
     prog = loader.get(slug)
     if prog is None:
         raise HTTPException(404, "Program not found")
-    done = progress.load()
+    done = progress.load(me["id"])
     return templates.TemplateResponse(
         request,
         "program.html",
         {
             "p": prog,
+            "me": me,
             "done": done,
             "key": progress.key,
             "completed": sum(
@@ -107,6 +130,9 @@ def program(request: Request, slug: str, reset: int = 0):
 
 @app.get("/program/{slug}/w{week}/d{day}", response_class=HTMLResponse)
 def day(request: Request, slug: str, week: int, day: int):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
     prog = loader.get(slug)
     if prog is None:
         raise HTTPException(404, "Program not found")
@@ -118,18 +144,20 @@ def day(request: Request, slug: str, week: int, day: int):
         "day.html",
         {
             "p": prog,
+            "me": me,
             "week": wk,
             "day": wk.days[day - 1],
             "n_day": day,
             "previous": day - 1 if day > 1 else None,
             "next": day + 1 if day < len(wk.days) else None,
-            "is_done": progress.key(slug, week, day) in progress.load(),
+            "is_done": progress.key(slug, week, day) in progress.load(me["id"]),
         },
     )
 
 
 @app.post("/toggle")
 def toggle(
+    request: Request,
     slug: str = Form(...),
     week: int = Form(...),
     day: int = Form(...),
@@ -137,6 +165,9 @@ def toggle(
     back: str = Form(...),
 ):
     """Tick or untick one session, then go back where you came from."""
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
     prog = loader.get(slug)
     if prog is None:
         raise HTTPException(404, "Program not found")
@@ -145,15 +176,18 @@ def toggle(
         raise HTTPException(404, "Day not found")
     if wk.days[day - 1].rest_day:
         raise HTTPException(400, "Rest days are not sessions")
-    progress.set_done(slug, week, day, bool(done))
+    progress.set_done(me["id"], slug, week, day, bool(done))
     return RedirectResponse(_safe_back(back, slug), status_code=303)
 
 
 @app.post("/reset")
-def reset(slug: str = Form(...)):
+def reset(request: Request, slug: str = Form(...)):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
     if loader.get(slug) is None:
         raise HTTPException(404, "Program not found")
-    progress.clear_program(slug)
+    progress.clear_program(me["id"], slug)
     return RedirectResponse(f"/program/{slug}", status_code=303)
 
 
@@ -161,7 +195,41 @@ def _safe_back(back: str, slug: str) -> str:
     """Only ever redirect inside this app."""
     if back.startswith("/") and not back.startswith("//"):
         return back
-    return f"/program/{slug}"
+    return f"/program/{slug}" if slug else "/"
+
+
+@app.get("/who", response_class=HTMLResponse)
+def who(request: Request, back: str = "/", error: str = ""):
+    return templates.TemplateResponse(
+        request,
+        "who.html",
+        {"back": _safe_back(back, ""), "error": error, "me": whoami(request)},
+    )
+
+
+@app.post("/who")
+def sign_in(email: str = Form(""), back: str = Form("/")):
+    target = _safe_back(back, "")
+    try:
+        person = people.sign_in(email)
+    except people.PersonError as e:
+        return RedirectResponse(
+            f"/who?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
+            status_code=303,
+        )
+    response = RedirectResponse(target, status_code=303)
+    response.set_cookie(
+        COOKIE, person["id"], max_age=A_YEAR, httponly=True, samesite="lax"
+    )
+    return response
+
+
+@app.post("/who/out")
+def sign_out():
+    """Forget this browser. Nothing is deleted — the progress stays."""
+    response = RedirectResponse("/who", status_code=303)
+    response.delete_cookie(COOKIE)
+    return response
 
 
 @app.get("/health")

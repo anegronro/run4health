@@ -12,6 +12,13 @@
 <header class="bar">
   {% block back %}{% endblock %}
   <span class="brand">Programs</span>
+  {% if me %}
+    <a class="me" href="/who?back={{ request.url.path | urlencode }}"
+       style="--accent: {{ me.color }}" title="Switch profile">
+      <span class="me-dot">{{ me.name[:1] | upper }}</span>
+      <span class="me-name">{{ me.name }}</span>
+    </a>
+  {% endif %}
 </header>
 <main{% block body_style %}{% endblock %}>{% block content %}{% endblock %}</main>
 </body>

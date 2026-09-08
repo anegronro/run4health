@@ -5,3 +5,5 @@ __pycache__/
 .env
 data/progress.json
 data/progress.json.tmp
+data/people.json
+data/people.json.tmp

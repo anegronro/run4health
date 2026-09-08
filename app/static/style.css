@@ -240,3 +240,42 @@ a.reset{text-decoration:none;display:inline-block}
 .done-btn.is-done .tick{border-color:var(--accent);background:var(--accent);
   box-shadow:inset 0 0 0 2px var(--bg)}
 .done-btn.failed{border-color:#ff6b6b}
+
+/* ── Who's training ────────────────────────────────────────────────── */
+.me{
+  margin-left:auto;display:flex;align-items:center;gap:8px;
+  text-decoration:none;color:var(--muted);font-size:13px;
+  border:1px solid var(--border);border-radius:999px;padding:4px 12px 4px 4px;
+  max-width:52%;
+}
+.me-dot{
+  width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;font-weight:700;color:var(--bg);background:var(--accent);
+  flex:0 0 24px;
+}
+.me-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.signin{max-width:420px;margin:8vh auto 0}
+.signin .lede{margin-bottom:22px}
+.signin-form{display:grid;gap:10px}
+.signin input{
+  font:inherit;font-size:16px;color:var(--text);
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;width:100%;
+}
+.signin input:focus{outline:none;border-color:var(--accent)}
+.signin button{
+  font:inherit;font-size:15px;font-weight:600;cursor:pointer;
+  color:var(--bg);background:var(--accent);border:0;
+  border-radius:12px;padding:14px 16px;
+}
+.signout{margin-top:20px}
+.signout button{
+  background:transparent;border:0;color:var(--muted);
+  font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;padding:0;
+}
+.error{
+  background:color-mix(in srgb,#ff6b6b 12%,transparent);
+  border:1px solid #ff6b6b;color:#ffb4b4;
+  border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:14px;
+}

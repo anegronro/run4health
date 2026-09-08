@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Who's training?{% endblock %}
+{% block content %}
+<section class="signin">
+  <h1>Who's training?</h1>
+  <p class="lede">Type your email to keep your own progress. No password —
+  everyone here shares a private network, so this just keeps the ticks apart.</p>
+
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+  <form method="post" action="/who" class="signin-form">
+    <input type="hidden" name="back" value="{{ back }}">
+    <input type="email" name="email" placeholder="you@example.com"
+           autocomplete="email" autocapitalize="none" autocorrect="off"
+           spellcheck="false" required autofocus>
+    <button type="submit">Continue</button>
+  </form>
+
+  {% if me %}
+    <form method="post" action="/who/out" class="signout">
+      <button type="submit">Not {{ me.name }}? Sign out</button>
+    </form>
+  {% endif %}
+</section>
+{% endblock %}

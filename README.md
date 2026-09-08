@@ -65,10 +65,25 @@ in minutes rather than kilometres, so they don't appear in that total.
 ## Completed sessions
 
 Every training day carries a checkbox, and each day page has a "Mark as done"
-button. Ticks live server-side in `data/progress.json`, so a session ticked on
-the phone shows as ticked on the Mac. That file is kept out of git and out of
-the deploy sync, so redeploying never clears it. `FITNESS_PROGRESS` overrides
-its path. There is no login: the tailnet is the boundary.
+button. Ticks live server-side, so a session ticked on the phone shows as
+ticked on the Mac.
+
+## Profiles
+
+Everyone types their email once and the app remembers that browser for a
+year; the header shows who you are and tapping it switches. A profile is
+created the first time an address is used — there is nothing to set up.
+
+**There is no password and no verification.** An email here is a label that
+keeps each person's progress apart, not proof of who they are: anyone who can
+reach the app can type anyone's address and see their ticks. The private
+network is the only thing keeping people out, so don't put this on the public
+internet as it stands.
+
+`data/people.json` holds the profiles and `data/progress.json` the ticks, one
+list per person. Both are kept out of git and out of the deploy sync, so
+redeploying never clears them; `FITNESS_PEOPLE` and `FITNESS_PROGRESS`
+override their paths.
 
 ## No subresources, no JavaScript
 

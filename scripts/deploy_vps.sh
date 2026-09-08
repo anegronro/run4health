@@ -20,6 +20,7 @@ rsync -az --delete \
   --exclude '.git' --exclude '.venv' --exclude '__pycache__' \
   --exclude '.DS_Store' --exclude '.claude' \
   --exclude 'data/progress.json' --exclude 'data/progress.json.tmp' \
+  --exclude 'data/people.json' --exclude 'data/people.json.tmp' \
   ./ "$HOST:$REMOTE/"
 
 echo "→ installing dependencies"
