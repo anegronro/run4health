@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Your name{% endblock %}
+{% block body_class %}veil{% endblock %}
+{% block head_extra %}<style>.veil::before{background-image:url("{{ photo('home.jpg') }}")}</style>{% endblock %}
+{% block content %}
+<section class="signin">
+  <h1>What should we call you?</h1>
+  <p class="lede">This is the name that shows on your training log.</p>
+
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+  <form method="post" action="/name" class="signin-form">
+    <input type="hidden" name="back" value="{{ back }}">
+    <input type="text" name="name" value="{{ me.name }}" maxlength="40"
+           autocomplete="given-name" autocapitalize="words"
+           spellcheck="false" required autofocus>
+    <button type="submit">Save</button>
+  </form>
+  <p class="fineprint">Accents and all — write it the way you write it.</p>
+</section>
+{% endblock %}

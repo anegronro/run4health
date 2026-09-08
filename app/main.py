@@ -342,11 +342,41 @@ def sign_in(email: str = Form(""), back: str = Form("/")):
             f"/who?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
             status_code=303,
         )
+    # First time with this address: ask what they want to be called, since
+    # an email cannot know that angel is written Ángel.
+    if not person.get("named"):
+        target = f"/name?back={quote(target, safe='')}"
     response = RedirectResponse(target, status_code=303)
     response.set_cookie(
         COOKIE, person["id"], max_age=A_YEAR, httponly=True, samesite="lax"
     )
     return response
+
+
+@app.get("/name", response_class=HTMLResponse)
+def name_page(request: Request, back: str = "/", error: str = ""):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
+    return templates.TemplateResponse(
+        request, "name.html", {"me": me, "back": _safe_back(back, ""), "error": error}
+    )
+
+
+@app.post("/name")
+def name_save(request: Request, name: str = Form(""), back: str = Form("/")):
+    me = whoami(request)
+    if me is None:
+        return _sign_in_first(request)
+    target = _safe_back(back, "")
+    try:
+        people.set_name(me["id"], name)
+    except people.PersonError as e:
+        return RedirectResponse(
+            f"/name?back={quote(target, safe='')}&error={quote(str(e), safe='')}",
+            status_code=303,
+        )
+    return RedirectResponse(target, status_code=303)
 
 
 @app.post("/who/out")

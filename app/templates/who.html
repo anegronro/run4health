@@ -6,11 +6,12 @@
 <section class="signin">
 
 {% if me %}
-  <h1>You're signed in</h1>
+  <h1>{{ me.name }}</h1>
   <p class="lede">{{ me.id }}</p>
 
   <div class="account">
     <a class="account-go" href="{{ back }}">Back to the app</a>
+    <a class="account-alt" href="/name?back={{ back | urlencode }}">Change your name</a>
     <form method="post" action="/who/out">
       <button class="account-out" type="submit">Sign out</button>
     </form>

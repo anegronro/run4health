@@ -83,8 +83,13 @@ shows miles with the kilometres beside them.
 ## Profiles
 
 Everyone types their email once and the app remembers that browser for a
-year. The chip in the header opens an account screen that offers rather than
-demands: back to where you were, or sign out. Signing out only forgets the
+The first time an address is used the app asks what to call you, prefilled
+with a guess from the address — a guess, because no address knows that angel
+is written Ángel. Typed all in lower case, the name gets its capitals; typed
+with any of your own, it is left exactly as written.
+
+The chip in the header opens an account screen that offers rather than
+demands: back to where you were, change your name, or sign out. Signing out only forgets the
 browser — the ticks stay, and it is also how you hand the app to someone
 else, since the email screen comes back. A profile is
 created the first time an address is used — there is nothing to set up.
