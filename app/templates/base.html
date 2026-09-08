@@ -1,4 +1,5 @@
 {% import "brand.html" as brand %}
+{% block share_text %}Running programs and your own training log.{% endblock %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,6 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e0f13">
 <title>{% block title %}run4health{% endblock %}</title>
+<meta name="description" content="{{ self.share_text() }}">
+<meta property="og:site_name" content="run4health">
+<meta property="og:title" content="run4health">
+<meta property="og:description" content="{{ self.share_text() }}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="apple-mobile-web-app-title" content="run4health">
 <link rel="icon" href="data:image/svg+xml,{{ favicon | urlencode }}">
 <style>{{ asset("style.css") | safe }}</style>
 {% block head_extra %}{% endblock %}
