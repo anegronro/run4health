@@ -38,18 +38,19 @@
 
 {% if p.shows_volume %}
 <section class="volume">
-  <h2>Distance per week</h2>
+  <h2>Miles per week</h2>
   <div class="vbars">
     {% for w in p.weeks %}
     <div class="vbar-col">
-      <span class="vbar-km">{{ w.distance_km | round | int }}</span>
+      <span class="vbar-km">{{ miles(w.distance_km) | round | int }}</span>
       <span class="vbar" style="height: {{ (w.distance_km / p.peak_km * 100) | round(1) }}%"></span>
       <span class="vbar-n">{{ w.number }}</span>
     </div>
     {% endfor %}
   </div>
-  <p class="chart-note">Kilometres of measured running per week — peak {{ p.peak_km | round | int }} km.
-  Warm-ups and cool-downs are timed rather than measured, so they are not counted here.
+  <p class="chart-note">Miles of measured running per week — peak
+  {{ miles(p.peak_km) }} mi ({{ p.peak_km | round(1) }} km). Warm-ups and
+  cool-downs are timed rather than measured, so they are not counted here.
   The dips are the down weeks, on purpose.</p>
 </section>
 {% endif %}

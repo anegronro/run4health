@@ -10,17 +10,22 @@ import re
 
 from pydantic import BaseModel, Field
 
-# A distance written as the whole rep field: "5 km", "21.1 km", "400 m".
-_DISTANCE = re.compile(r"^\s*([\d.,]+)\s*(km|m)\s*$", re.IGNORECASE)
+# A distance written as the whole rep field: "5 km", "400 m", "8 mi".
+_DISTANCE = re.compile(r"^\s*([\d.,]+)\s*(km|m|mi|miles?)\s*$", re.IGNORECASE)
+_TO_KM = {"km": 1.0, "m": 0.001, "mi": 1.609344, "mile": 1.609344, "miles": 1.609344}
 
 
 def _km_of(reps: str | None) -> float:
-    """Kilometres in a rep field, or 0 if it isn't a distance at all."""
+    """Kilometres in a rep field, or 0 if it isn't a distance at all.
+
+    Programs may be written in whichever unit suits them; everything is
+    stored and summed in kilometres, and the log converts once at the end.
+    """
     m = _DISTANCE.match(reps or "")
     if not m:
         return 0.0
     value = float(m.group(1).replace(",", "."))
-    return value if m.group(2).lower() == "km" else value / 1000
+    return value * _TO_KM[m.group(2).lower()]
 
 
 class Exercise(BaseModel):

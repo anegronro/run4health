@@ -23,7 +23,7 @@
           {% if p.level %}<span class="pill">{{ p.level }}</span>{% endif %}
           {% if p.total_weeks %}<span class="pill">{{ p.total_weeks }} weeks</span>{% endif %}
           {% if p.days_per_week %}<span class="pill">{{ p.days_per_week }} days/week</span>{% endif %}
-          {% if p.shows_volume %}<span class="pill">peak {{ p.peak_km | round | int }} km</span>{% endif %}
+          {% if p.shows_volume %}<span class="pill">peak {{ miles(p.peak_km) | round | int }} mi/week</span>{% endif %}
         </span>
       </span>
     </a>

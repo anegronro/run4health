@@ -45,6 +45,10 @@ Program → weeks → days → blocks → exercises
 | `title`, `notes` | block | warm-up, superset A, accessories… |
 | `name`, `sets`, `reps`, `rest`, `tempo`, `rpe`, `notes`, `video` | exercise | all free text; `video` is an external link |
 
+A `reps` field that is nothing but a distance — `5 km`, `400 m`, `8 mi` — is
+counted toward the week's mileage, so a program can be written in whichever
+unit suits it. Everything is summed in kilometres and shown in miles.
+
 A week lists all seven days, rest included, so the plan reads as a calendar.
 The `slug` (the URL) comes from the file name.
 
@@ -54,6 +58,7 @@ The `slug` (the URL) comes from the file name.
 |---|---|---|---|
 | Zero to 5K | 8 weeks | 3/week | No running background |
 | 10K in 10 weeks | 10 weeks | 4/week | Already running 5 km |
+| 8 miles in 8 weeks | 8 weeks | 4/week | Already running 10K |
 | Half Marathon — 21K | 12 weeks | 4/week | Already running 10 km |
 
 These are generic, well-built plans — they are not tailored to any individual.
