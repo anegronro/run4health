@@ -1,33 +1,80 @@
 # run4health
 
-A personal reader for training programs. It shows the routines and their
-guides, and lets you tick off each session as you complete it. It does not
-record weights, times or any other workout detail.
+A running app: four training programs, and a log of what you actually ran.
 
-The content is yours: every program is a JSON file in `data/programs/`.
+**[Try the demo →](https://anegronro.github.io/run4health/demo/)** — a frozen
+copy of the real app. Click through the programs, open a session, look at the
+training log. No sign-up.
+
+<p>
+  <img src="docs/screenshots/01-programs.png" width="49%" alt="The programs list">
+  <img src="docs/screenshots/02-program.png" width="49%" alt="A program with its weekly mileage chart">
+</p>
+
+Built for five friends who wanted to train for a race together. It runs on one
+small server and it is in daily use.
+
+## What it does
+
+- **Four running programs** — 5K from scratch, 10K, 8 miles, half marathon.
+  Every week is laid out Monday to Sunday, rest days included, so a plan reads
+  as a calendar rather than a list of loose sessions.
+- **Tick off each session** as you complete it. Everyone has their own account
+  and their own progress.
+- **A training log** — miles run, sessions completed, and a bar per week
+  showing what you did against what the week planned.
+- **Take your data or delete it**, without asking anyone. The download is a
+  PDF you can read; a JSON file is there too, for actually moving elsewhere.
+
+## Decisions worth explaining
+
+**It works with JavaScript switched off, on purpose.** A content blocker on a
+user's browser was letting the HTML through while blocking every subresource
+from the host — stylesheet, script and photos all came back
+`ERR_BLOCKED_BY_CLIENT`, so the app rendered as naked HTML. The same block
+killed the `fetch()` behind the checkboxes, so ticking a session silently did
+nothing. The fix was to remove the attack surface rather than fight it: the
+stylesheet is inlined, the photos are `data:` URIs, and every action is a plain
+form POST that redirects. There is now nothing left for a blocker to break.
+
+**Passwords are hashed with scrypt** from the standard library, salted per
+person. Sessions are random tokens stored only as hashes, so the same database
+leak cannot be replayed as a login. Wrong password and unknown address return
+the same message, so the form can't be used to discover who has an account.
+
+**Backups are verified, not assumed.** Nightly, gzipped, fourteen days, using
+sqlite3's own `.backup` rather than `cp` — copying the file mid-write captures
+a torn page. Each copy is checked with `PRAGMA integrity_check` before the old
+ones are pruned, and restoring one was tested on the server.
+
+**Distance is read off the plan, never invented.** A session prescribed as
+"20 min" contributes zero miles rather than a guess from an assumed pace.
+Programs can be written in kilometres or miles; everything is summed in
+kilometres and shown in miles.
+
+**No third-party anything.** No analytics, no trackers, no CDN. Every page
+loads only from its own server.
+
+## Built with
+
+Python · FastAPI · Jinja2 · SQLite · reportlab · systemd. No front-end
+framework and no build step: the CSS is 400 lines and the pages are rendered
+on the server.
 
 ## Run it
 
 ```bash
-./scripts/run.sh                 # http://127.0.0.1:8770
-./scripts/run.sh 100.64.0.1      # reachable from your phone over Tailscale
+uv sync
+uv run uvicorn app.main:app --port 8770 --reload
 ```
 
-## Create a program
+Then open <http://127.0.0.1:8770>. It creates its own database on first start;
+`FITNESS_PASSWORD` puts a shared password in front of everything, and without
+it the app is open, which is what you want locally.
 
-```bash
-uv run python scripts/new_program.py
-```
+## The content is yours
 
-It writes the skeleton — every week laid out Monday to Sunday, with the days
-you don't train marked as rest — into `data/programs/<slug>.json`. Fill in the
-exercises there. You can also copy `data/programs/_example.json` under another
-name; files starting with `_` stay out of the listing.
-
-The app re-reads the files on every request, so a refresh is enough. If a JSON
-file is broken, the page says which file and what the error is.
-
-## Program structure
+Every program is a JSON file under `data/programs/<lang>/`:
 
 ```
 Program → weeks → days → blocks → exercises
@@ -36,128 +83,39 @@ Program → weeks → days → blocks → exercises
 | Field | Level | Notes |
 |---|---|---|
 | `name`, `description`, `level`, `equipment`, `color` | program | `color` is the card accent |
-| `order` | program | listing order, lowest first (default 100); ties fall back to the name |
+| `order` | program | listing order, lowest first |
 | `art` | program | generated cover: `route`, `track` or `weights` |
-| `image` | program | your own photo instead of the drawing, e.g. `/static/img/run.jpg` — see `app/static/img/README.md` |
-| `guide` | program | long text; separate paragraphs with a blank line |
+| `guide` | program | long text; blank lines separate paragraphs |
 | `number`, `title`, `goal` | week | |
 | `title`, `focus`, `duration`, `notes` | day | `"rest_day": true` marks a rest day |
-| `title`, `notes` | block | warm-up, superset A, accessories… |
-| `name`, `sets`, `reps`, `rest`, `tempo`, `rpe`, `notes`, `video` | exercise | all free text; `video` is an external link |
+| `title`, `notes` | block | warm-up, main, cool-down… |
+| `name`, `sets`, `reps`, `rest`, `tempo`, `rpe`, `notes`, `video` | exercise | free text |
 
-A `reps` field that is nothing but a distance — `5 km`, `400 m`, `8 mi` — is
-counted toward the week's mileage, so a program can be written in whichever
-unit suits it. Everything is summed in kilometres and shown in miles.
+A `reps` field that is only a distance — `5 km`, `400 m`, `8 mi` — counts
+toward the week's mileage. Drop a photo at `app/static/img/<slug>.jpg` and that
+program uses it as its cover, no configuration needed.
 
-A week lists all seven days, rest included, so the plan reads as a calendar.
-The `slug` (the URL) comes from the file name.
+`scripts/new_program.py` writes the skeleton of a new one.
 
-## Included programs
+## Deploying it
 
-| Program | Length | Days | For |
-|---|---|---|---|
-| Zero to 5K | 8 weeks | 3/week | No running background |
-| 10K in 10 weeks | 10 weeks | 4/week | Already running 5 km |
-| 8 miles in 8 weeks | 8 weeks | 4/week | Already running 10K |
-| Half Marathon — 21K | 12 weeks | 4/week | Already running 10 km |
+`scripts/deploy_vps.sh` copies the app to a server and runs it under systemd,
+installing the nightly backup into cron. Put your own host in
+`scripts/deploy.env` — copy `deploy.env.example` — which is git-ignored, so no
+address of yours ends up in a repository.
 
-These are generic, well-built plans — they are not tailored to any individual.
+It expects a Debian-ish box with Python 3.11+ and `sqlite3`. Reaching it from
+outside is your call: a private network, a reverse proxy, or a tunnel. If you
+make it public, set `FITNESS_PASSWORD` first — the accounts inside are not a
+substitute for a front door, and the password should not be guessable from the
+project's own name.
 
-Program pages chart the planned kilometres per week, read straight off the
-exercises, so the down weeks are visible. Warm-ups and cool-downs are written
-in minutes rather than kilometres, so they don't appear in that total.
+`scripts/build_demo.py` freezes a running instance into the static demo linked
+at the top.
 
-## Completed sessions
+## Still to come
 
-Every training day carries a checkbox, and each day page has a "Mark as done"
-button. Ticks live server-side, so a session ticked on the phone shows as
-ticked on the Mac.
-
-## Training log
-
-The **Training log** tab (`/me`) shows miles run, sessions completed,
-and a bar per week of each program you have started — solid for what you
-ticked off, outline for what the week plans.
-
-Distance is read off the exercises, so only what the plan writes as a
-distance counts (`5 km`, `400 m`). A tempo run prescribed as "20 min"
-contributes nothing rather than an invented number, and warm-up strides
-don't count toward the session. Programs are written in kilometres; the log
-shows miles with the kilometres beside them.
-
-## Profiles
-
-Everyone types their email once and the app remembers that browser for a
-The sign-in screen asks for a name as well as an email, because no address
-knows that angel is written Ángel. Typed all in lower case, the name gets its
-capitals; typed with any of your own, it is left exactly as written. Neither
-field is written to disk until both are valid, so a rejected form leaves
-nothing behind.
-
-The chip in the header opens an account screen that offers rather than
-demands: back to where you were, change your name, or sign out. Signing out only forgets the
-browser — the ticks stay, and it is also how you hand the app to someone
-else, since the email screen comes back. A profile is
-created the first time an address is used — there is nothing to set up.
-
-**The email is not a password.** It is a label that keeps each person's
-progress apart, not proof of who they are: anyone who gets in can type anyone
-else's address and see their ticks. What keeps strangers out is the shared
-password below.
-
-`data/people.json` holds the profiles and `data/progress.json` the ticks, one
-list per person. Both are kept out of git and out of the deploy sync, so
-redeploying never clears them; `FITNESS_PEOPLE` and `FITNESS_PROGRESS`
-override their paths.
-
-## No subresources, no JavaScript
-
-The stylesheet is inlined into every page and the photos are sent as `data:`
-URIs; ticking a box is a plain form POST. This is deliberate. Content blockers
-routinely let the HTML document through while blocking every subresource and
-`fetch()` call from a host they don't recognise, which left the app rendering
-as naked HTML with dead checkboxes. With nothing loaded separately and no
-`fetch()`, there is nothing left for a blocker to break — and the app works
-with JavaScript switched off.
-
-The inlined photos come from `app/static/img/inline/`, deliberately smaller
-than the originals, since an inlined image is re-sent with every page view and
-never cached on its own.
-
-## Getting in
-
-`FITNESS_PASSWORD` puts one shared password in front of the whole app —
-required now that it is published to the internet, since the email profiles
-are not authentication. It lives in an environment file on the server, read by the
-unit's `EnvironmentFile` and never in this repo. Unset, the gate is off,
-which is fine for purely local runs.
-
-Pick something that isn't guessable from the project — not the app's own
-name, not the repository's.
-
-`/share.jpg` sits outside the password on purpose — the services that build
-link previews cannot type one — so that image is the single thing a stranger
-with the URL can see. Everything else, including the other photos under
-`/static`, stays behind the gate.
-
-It is asked for on a page of our own, not through HTTP Basic Auth, whose
-browser dialog cannot be styled. A browser that has answered holds a cookie
-derived from the password with HMAC, so it cannot be forged and changing the
-password signs everyone out.
-
-To change it: edit that file and restart the service.
-
-## Always on
-
-`scripts/deploy_vps.sh` copies the app to a server and runs it under systemd
-as `fitness.service`. Put your own host in `scripts/deploy.env` — copy
-`deploy.env.example` — which is git-ignored, so no address of yours ends up
-in a repository.
-
-It expects a Debian-ish box with Python 3.11+ and `sqlite3`, and installs the
-nightly backup into cron itself.
-
-Reaching it from outside is your call: a private network like Tailscale, a
-reverse proxy, or Tailscale Funnel if you want a public HTTPS URL. If you do
-make it reachable from the internet, set `FITNESS_PASSWORD` first — the
-accounts inside are not a substitute for a front door.
+Spanish throughout — the interface strings and the language column are in
+place, the programs themselves are not translated yet. After that, recording a
+run from the phone's GPS, which is the difference between a plan you read and
+one that knows whether you ran.

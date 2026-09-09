@@ -1,0 +1,2107 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e0f13">
+<title>10K in 10 weeks</title>
+<meta name="description" content="Running programs and your own training log.">
+<meta property="og:site_name" content="run4health">
+<meta property="og:title" content="run4health">
+<meta property="og:description" content="Running programs and your own training log.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://127.0.0.1:8770/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lane lines on a running track">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="apple-mobile-web-app-title" content="run4health">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230e0f13%22/%3E%3Cpath%20d%3D%22M7%2024%20C%2011%2012%2C%2021%2012%2C%2025%2024%22%20fill%3D%22none%22%20stroke%3D%22%234ade80%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20d%3D%22M11.5%2024%20C%2014%2017%2C%2018%2017%2C%2020.5%2024%22%20fill%3D%22none%22%20stroke%3D%22%234ade80%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%229.6%22%20r%3D%222.6%22%20fill%3D%22%234ade80%22/%3E%3C/svg%3E">
+<style>:root{
+  --bg:#0e0f13; --panel:#171922; --panel2:#1f2230;
+  --text:#e8eaf0; --muted:#9aa0b0; --border:#272b39; --accent:#5b8cff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{
+  background:transparent; color:var(--text);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+main{max-width:720px;margin:0 auto;padding:20px 16px 96px}
+
+.bar{
+  position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;
+  padding:calc(12px + env(safe-area-inset-top)) 16px 12px;
+  background:rgba(14,15,19,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+
+.back{
+  color:var(--text);text-decoration:none;font-size:20px;line-height:1;
+  width:32px;height:32px;display:grid;place-items:center;
+  border:1px solid var(--border);border-radius:9px;background:var(--panel);
+}
+
+h1{font-size:26px;line-height:1.25;margin:8px 0 10px;letter-spacing:-.01em}
+h2{font-size:17px;margin:26px 0 10px;color:var(--text)}
+h3{font-size:16px;margin-bottom:6px}
+.crumb{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.lede{color:var(--muted);margin-bottom:14px}
+.empty{color:var(--muted);margin-top:20px}
+code{background:var(--panel2);padding:2px 6px;border-radius:5px;font-size:13px}
+.detail{
+  background:var(--panel);border:1px solid var(--border);border-radius:10px;
+  padding:12px;margin-top:12px;overflow-x:auto;font-size:13px;color:#ffb4b4;
+  white-space:pre-wrap;word-break:break-word;
+}
+
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.pill{
+  background:var(--panel2);border:1px solid var(--border);color:var(--muted);
+  border-radius:999px;padding:3px 10px;font-size:12px;white-space:nowrap;
+}
+
+ul{list-style:none}
+.cards{display:grid;gap:12px;margin-top:16px}
+.card{
+  display:grid;gap:8px;text-decoration:none;color:inherit;
+  background:var(--panel);border:1px solid var(--border);
+  border-left:3px solid var(--accent);border-radius:14px;padding:16px;
+}
+.card .title{font-size:18px;font-weight:600}
+.card .desc,.day .desc{color:var(--muted);font-size:14px}
+
+.days{display:grid;gap:8px}
+.day{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  text-decoration:none;color:inherit;
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;
+}
+.day.rest{color:var(--muted);background:transparent;border-style:dashed}
+.goal{color:var(--muted);font-size:14px;margin-bottom:10px}
+
+.guide p,.day-notes,.block-notes{color:var(--muted);margin-bottom:10px}
+.block{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:4px 16px 16px;margin-top:18px;
+}
+.exercise{border-top:1px solid var(--border);padding:14px 0 4px}
+.exercise:first-of-type{border-top:0}
+.figures{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:14px}
+.figures b{color:var(--text)}
+.notes{color:var(--muted);font-size:14px;margin-top:8px}
+.video{
+  display:inline-block;margin-top:10px;font-size:14px;
+  color:var(--accent);text-decoration:none;
+}
+
+.step{display:flex;justify-content:space-between;gap:10px;margin-top:28px}
+.step a{
+  color:var(--text);text-decoration:none;font-size:14px;
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;
+}
+.step .right{margin-left:auto}
+
+@media (hover:hover){
+  .card:hover,.day:hover,.step a:hover{border-color:var(--accent)}
+}
+
+/* ── Cover artwork ─────────────────────────────────────────────── */
+.art,.cover img,.hero img{display:block;width:100%;height:100%;object-fit:cover}
+
+.cover{
+  display:block;height:96px;overflow:hidden;
+  border-radius:13px 13px 0 0;background:var(--panel2);
+}
+.card{padding:0;overflow:hidden;gap:0}
+.card-body{display:grid;gap:8px;padding:16px}
+
+.hero{
+  margin:4px 0 16px;border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);background:var(--panel);
+}
+.hero .art,.hero img{height:128px}
+.hero-text{padding:14px 16px 16px;background:var(--panel)}
+.hero-text h1{margin:0 0 4px}
+.hero-text .lede{margin:0;font-size:14px}
+
+/* ── Weekly volume ─────────────────────────────────────────────── */
+.volume{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:4px 16px 16px;margin-top:22px;
+}
+.vbars{display:flex;align-items:flex-end;gap:5px;height:132px;margin-bottom:8px}
+.vbar-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;height:100%;gap:4px}
+.vbar-km{font-size:10px;color:var(--muted);margin-top:auto}
+.vbar{
+  width:100%;min-height:3px;border-radius:4px 4px 0 0;
+  background:linear-gradient(to top,var(--accent),color-mix(in srgb,var(--accent) 45%,transparent));
+}
+.vbar-n{font-size:11px;color:var(--muted)}
+.chart-note{color:var(--muted);font-size:13px;line-height:1.45}
+
+/* ── Day rows ──────────────────────────────────────────────────── */
+.week-meta{color:var(--muted);font-size:13px;margin:-4px 0 8px}
+.day{align-items:center}
+.day-body{display:grid;gap:2px;flex:1;min-width:0}
+.badge{
+  flex:0 0 30px;width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;font-size:13px;font-weight:600;
+  color:var(--muted);border:1px solid var(--border);background:var(--panel2);
+}
+.badge.on{
+  color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  background:color-mix(in srgb,var(--accent) 14%,transparent);
+}
+.crumb .dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--accent);margin-right:7px;vertical-align:middle;
+}
+
+
+/* ── Photos ────────────────────────────────────────────────────────
+   The shots are warm red track pictures; the app is near-black with a
+   different accent per program. Rather than drop them in raw, each photo
+   is desaturated, tinted with its program's accent and faded out at the
+   bottom, so it dissolves into the page instead of sitting in a box. */
+.shot{position:relative;display:block;width:100%;height:100%;overflow:hidden}
+.shot img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.18) brightness(.92) saturate(0);
+}
+.shot::before{                       /* accent tint over the grey photo */
+  content:"";position:absolute;inset:0;
+  background:var(--accent);mix-blend-mode:color;opacity:.85;
+}
+.shot::after{                        /* melt the bottom edge into the page */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(14,15,19,0) 0%, rgba(14,15,19,.30) 58%, var(--bg) 100%);
+}
+.cover:has(.shot){background:transparent}
+.hero:has(.shot){border-color:transparent;background:transparent}
+.hero:has(.shot) .shot{height:210px}
+.hero:has(.shot) .hero-text{background:transparent;margin-top:-26px;position:relative}
+
+/* Home: one shot bleeding out of the top of the black page. */
+.home::before,
+.veil::before{
+  content:"";position:fixed;inset:0 0 auto 0;height:56vh;z-index:-1;
+  background:center 30% / cover no-repeat;
+  filter:grayscale(1) contrast(1.1) brightness(.55);
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 88%);
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 88%);
+}
+.home main h1{position:relative}
+
+/* ── Completed sessions ────────────────────────────────────────────── */
+.progress{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;margin:0 0 14px;
+}
+.progress-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.progress-top b{font-size:15px;font-weight:600}
+.reset-form{display:flex;gap:6px;align-items:center}
+a.reset{text-decoration:none;display:inline-block}
+.reset{
+  background:transparent;border:1px solid var(--border);color:var(--muted);
+  border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer;font:inherit;
+  font-size:12px;
+}
+.reset.armed{
+  color:#ffb4b4;border-color:#ff6b6b;
+  background:color-mix(in srgb,#ff6b6b 12%,transparent);
+}
+.track{height:7px;border-radius:99px;background:var(--panel2);overflow:hidden}
+.fill{
+  display:block;height:100%;border-radius:99px;background:var(--accent);
+  transition:width .25s ease;
+}
+
+.row{display:flex;align-items:stretch;gap:6px}
+.row .day{flex:1;min-width:0}
+.check-form{display:flex;flex:0 0 44px}
+.check{flex:1}
+.check{
+  width:100%;border:1px solid var(--border);background:var(--panel);
+  border-radius:12px;cursor:pointer;display:grid;place-items:center;padding:0;
+}
+.check::after{
+  content:"";width:19px;height:19px;border-radius:50%;
+  border:2px solid var(--muted);transition:.15s ease;
+}
+.check[aria-pressed="true"]::after{
+  border-color:var(--accent);background:var(--accent);
+  /* the tick itself */
+  box-shadow:inset 0 0 0 2px var(--panel);
+}
+.check.failed{border-color:#ff6b6b}
+.check:disabled{opacity:.5}
+.row.is-done .day{opacity:.55}
+.row.is-done .day b{text-decoration:line-through;text-decoration-color:var(--muted)}
+
+.done-btn{
+  width:100%;margin-top:24px;padding:15px;border-radius:12px;cursor:pointer;
+  background:var(--panel);border:1px solid var(--border);color:var(--text);
+  font:inherit;font-size:15px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.done-btn .tick{
+  width:20px;height:20px;border-radius:50%;border:2px solid var(--muted);
+}
+.done-btn.is-done{
+  border-color:color-mix(in srgb,var(--accent) 55%,transparent);
+  background:color-mix(in srgb,var(--accent) 16%,transparent);
+}
+.done-btn.is-done .tick{border-color:var(--accent);background:var(--accent);
+  box-shadow:inset 0 0 0 2px var(--bg)}
+.done-btn.failed{border-color:#ff6b6b}
+
+.veil::before{height:100vh}
+.veil .signin{margin-top:14vh}
+.veil:not(.home) main{padding-top:calc(20px + env(safe-area-inset-top))}
+.gate{text-align:center}
+.gate .lede{margin-bottom:26px}
+.gate-logo{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  margin:0 0 14px;
+}
+.gate-logo .logo-mark{color:#4ade80}
+.gate-word{
+  font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1;
+}
+.gate-word b{color:#4ade80;font-weight:700}
+.gate .signin-form input{text-align:center}
+
+/* ── Profile screen ────────────────────────────────────────────────── */
+.me{
+  margin-left:auto;display:flex;align-items:center;gap:8px;
+  text-decoration:none;color:var(--muted);font-size:13px;
+  border:1px solid var(--border);border-radius:999px;padding:4px 12px 4px 4px;
+  max-width:52%;
+}
+.me-dot{
+  width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;font-weight:700;color:var(--bg);background:var(--accent);
+  flex:0 0 24px;
+}
+.me-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.signin{max-width:420px;margin:8vh auto 0}
+.signin .lede{margin-bottom:22px}
+.signin-form{display:grid;gap:10px}
+.signin input{
+  font:inherit;font-size:16px;color:var(--text);
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;width:100%;
+}
+.signin input:focus{outline:none;border-color:var(--accent)}
+.signin button{
+  font:inherit;font-size:15px;font-weight:600;cursor:pointer;
+  color:var(--bg);background:var(--accent);border:0;
+  border-radius:12px;padding:14px 16px;
+}
+.signout{margin-top:20px}
+.signout button{
+  background:transparent;border:0;color:var(--muted);
+  font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;padding:0;
+}
+.error{
+  background:color-mix(in srgb,#ff6b6b 12%,transparent);
+  border:1px solid #ff6b6b;color:#ffb4b4;
+  border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:14px;
+}
+
+
+/* ── Training log ──────────────────────────────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 26px}
+.tile{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:14px 12px;display:grid;gap:2px;text-align:center;
+}
+.tile-n{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.tile-l{font-size:12px;color:var(--muted)}
+.tile-s{font-size:11px;color:var(--muted);opacity:.7}
+
+.log{margin-top:26px}
+.log h2{margin-bottom:2px}
+.log h2 a{color:inherit;text-decoration:none}
+.log .vbars{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:14px 12px 10px;height:150px;
+}
+.vbar.ghost{
+  background:none;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  display:flex;align-items:flex-end;overflow:hidden;
+}
+.vbar.ghost > .vbar{width:100%;border-radius:0}
+@media (max-width:400px){ .tile-n{font-size:20px} }
+
+
+/* ── Logo ──────────────────────────────────────────────────────────── */
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text)}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-mark{color:#4ade80;flex:0 0 auto}
+.logo-word{
+  font-size:17px;font-weight:700;letter-spacing:-.02em;
+  font-feature-settings:"ss01";
+}
+.logo-word b{color:#4ade80;font-weight:700}
+
+/* ── Bottom tabs ───────────────────────────────────────────────────── */
+.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;
+  background:rgba(14,15,19,.92);backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:9px 6px 8px;text-decoration:none;color:var(--muted);font-size:11px;
+}
+.tab svg{width:22px;height:22px;fill:currentColor;opacity:.75}
+.tab.on{color:#4ade80}
+.tab.on svg{opacity:1}
+
+
+/* ── Account screen ────────────────────────────────────────────────── */
+.account{display:grid;gap:10px;margin-top:22px}
+.account a,.account button{
+  display:block;width:100%;text-align:center;font:inherit;font-size:15px;
+  border-radius:12px;padding:14px 16px;cursor:pointer;text-decoration:none;
+}
+.account-go{background:var(--accent);color:var(--bg);border:0;font-weight:600}
+.account-alt{
+  background:var(--panel);border:1px solid var(--border);color:var(--text);
+}
+.account button.account-out{
+  background:transparent;border:1px solid #ff6b6b;color:#ffb4b4;font-weight:400;
+}
+.fineprint{margin-top:18px;color:var(--muted);font-size:13px;line-height:1.5}
+.fineprint a{color:var(--muted)}
+
+
+/* ── Week-by-week table ────────────────────────────────────────────── */
+.weeklog{
+  width:100%;border-collapse:collapse;margin:14px 0 10px;font-size:14px;
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;
+}
+.weeklog th,.weeklog td{padding:9px 12px;text-align:right}
+.weeklog th:first-child,.weeklog td:first-child{text-align:left;width:22%}
+.weeklog thead th{
+  font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.05em;border-bottom:1px solid var(--border);
+}
+.weeklog tbody tr+tr td{border-top:1px solid color-mix(in srgb,var(--border) 55%,transparent)}
+.weeklog .mi{font-weight:700;color:var(--text)}
+.weeklog .plan,.weeklog .ses{color:var(--muted)}
+.weeklog tr.idle td{color:var(--muted);opacity:.55}
+.weeklog tr.idle .mi{font-weight:400}
+.weeklog tfoot td{
+  border-top:1px solid var(--border);font-weight:600;
+  background:color-mix(in srgb,var(--accent) 8%,transparent);
+}
+
+/* ── Account panels and prose ──────────────────────────────────────── */
+.panel{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;margin-top:10px;overflow:hidden;
+}
+.panel summary{
+  padding:14px 16px;cursor:pointer;font-size:15px;font-weight:600;
+  list-style:none;
+}
+.panel summary::-webkit-details-marker{display:none}
+.panel summary::after{content:" +";color:var(--muted);font-weight:400}
+.panel[open] summary::after{content:" −"}
+.panel .signin-form{padding:0 16px 16px}
+.panel .fineprint{padding:0 16px 14px;margin:0}
+.saved{
+  background:color-mix(in srgb,var(--accent) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+  border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:14px;
+}
+.prose{max-width:38rem;margin:0 auto}
+.prose h1{margin-bottom:6px}
+.prose h2{font-size:17px;margin:26px 0 8px}
+.prose p,.prose li{color:var(--muted);line-height:1.6}
+.prose b{color:var(--text);font-weight:600}
+.prose ul{padding-left:20px;margin:0 0 12px}
+.prose li{margin-bottom:8px}
+.prose li::marker{color:var(--accent)}
+
+.panel.danger{border-color:color-mix(in srgb,#ff6b6b 40%,var(--border))}
+.panel.danger summary{color:#ffb4b4}
+.panel .account-alt{
+  display:inline-block;width:auto;padding:10px 16px;border-radius:10px;
+  background:var(--panel2);border:1px solid var(--border);color:var(--text);
+  text-decoration:none;font-size:15px;
+}
+.signin-form button.danger-btn{
+  background:transparent;border:1px solid #ff6b6b;color:#ffb4b4;font-weight:600;
+}
+</style>
+
+</head>
+<body class=""><div class="demo-banner">
+  <b>Static demo.</b> A real copy of the app, frozen — browse the programs and
+  the training log. Ticking a session needs the live version.
+  <a href="https://github.com/anegronro/run4health">Source</a>
+</div>
+<style>
+.demo-banner{
+  position:sticky;top:0;z-index:60;padding:9px 16px;font-size:13px;
+  background:#4ade80;color:#0e0f13;text-align:center;line-height:1.4;
+}
+.demo-banner a{color:#0e0f13}
+.check,.done-btn,.reset,.account-out,.signin-form button{
+  pointer-events:none;opacity:.55;
+}
+</style>
+
+<header class="bar">
+  <a class="back" href="index.html">←</a>
+  <a class="brand" href="index.html">
+<span class="logo">
+<svg class="logo-mark" width="26" height="26" viewBox="0 0 32 32"
+     aria-hidden="true" focusable="false">
+  <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor"
+          stroke-opacity=".28" stroke-width="1.5"/>
+  <path d="M7 24 C 11 12, 21 12, 25 24" fill="none" stroke="currentColor"
+        stroke-width="2.6" stroke-linecap="round" stroke-opacity=".55"/>
+  <path d="M11.5 24 C 14 17, 18 17, 20.5 24" fill="none" stroke="currentColor"
+        stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="16" cy="9.6" r="2.6" fill="currentColor"/>
+</svg>
+
+<span class="logo-word">run<b>4</b>health</span>
+</span>
+</a>
+  
+    <a class="me" href="#"
+       style="--accent: #4ade80" title="Your account">
+      <span class="me-dot">Á</span>
+      <span class="me-name">Ángel Negrón</span>
+    </a>
+  
+</header>
+<main style="--accent: #5b8cff">
+
+<div class="hero">
+  <span class="shot"><img src="data:image/jpeg;base64,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" alt=""></span>
+  <div class="hero-text">
+    <h1>10K in 10 weeks</h1>
+    <p class="lede">For runners who already cover 5 km. Four runs a week up to a finished 10K.</p>
+  </div>
+</div>
+
+<section class="progress" data-slug="10k">
+  <div class="progress-top">
+    <b>15 of 40 sessions</b>
+    
+      <a class="reset" href="program-10k.html">Reset</a>
+    
+  </div>
+  <div class="track"><span class="fill"
+       style="width: 37.5%"></span></div>
+</section>
+
+<div class="meta">
+  <span class="pill">Intermediate</span>
+  <span class="pill">4 days/week</span>
+  <span class="pill">Running shoes</span><span class="pill">Watch or app with distance</span>
+</div>
+
+
+<section class="volume">
+  <h2>Miles per week</h2>
+  <div class="vbars">
+    
+    <div class="vbar-col">
+      <span class="vbar-km">8</span>
+      <span class="vbar" style="height: 58.8%"></span>
+      <span class="vbar-n">1</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">9</span>
+      <span class="vbar" style="height: 66.7%"></span>
+      <span class="vbar-n">2</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">11</span>
+      <span class="vbar" style="height: 78.9%"></span>
+      <span class="vbar-n">3</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">8</span>
+      <span class="vbar" style="height: 58.8%"></span>
+      <span class="vbar-n">4</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">12</span>
+      <span class="vbar" style="height: 86.8%"></span>
+      <span class="vbar-n">5</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">12</span>
+      <span class="vbar" style="height: 87.7%"></span>
+      <span class="vbar-n">6</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">14</span>
+      <span class="vbar" style="height: 96.5%"></span>
+      <span class="vbar-n">7</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">10</span>
+      <span class="vbar" style="height: 67.5%"></span>
+      <span class="vbar-n">8</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">14</span>
+      <span class="vbar" style="height: 100.0%"></span>
+      <span class="vbar-n">9</span>
+    </div>
+    
+    <div class="vbar-col">
+      <span class="vbar-km">10</span>
+      <span class="vbar" style="height: 73.3%"></span>
+      <span class="vbar-n">10</span>
+    </div>
+    
+  </div>
+  <p class="chart-note">Miles of measured running per week — peak
+  14.2 mi (22.8 km). Warm-ups and
+  cool-downs are timed rather than measured, so they are not counted here.
+  The dips are the down weeks, on purpose.</p>
+</section>
+
+
+
+<section class="guide">
+  <h2>Guide</h2>
+  <p>Entry requirement: run 5 km non-stop, reasonably comfortably. If you&#39;re not there yet, do the 5K program first.</p><p>Four runs a week: intervals on Tuesday, an easy run on Wednesday, tempo on Thursday and the long run on Saturday. Monday, Friday and Sunday are rest. That layout keeps a day between the two hard sessions and never puts the long run straight after one.</p><p>80 % of the mileage goes slow. This is the most common mistake: running the easy days too fast leaves you with no legs on the days that matter.</p><p>Down weeks lower the load on purpose. Don&#39;t skip them or move them forward — that&#39;s when the body absorbs the work.</p><p>If you miss a week, restart at the week before the one you were due, not where you left off. If you miss three or more, go back to the start of the block.</p><p>Effort guide (RPE): 3-4 you can hold a conversation; 7 you speak in three- or four-word bursts; 8-9 single words only.</p>
+</section>
+
+
+
+<section class="week" id="w1">
+  <h2>Week 1 — Getting going</h2>
+  <p class="week-meta">
+    4 sessions · 13.4 km
+  </p>
+  <p class="goal">Get used to four runs a week.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w1-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 6 × 400 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="1">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w1">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Tuesday — Intervals, 6 × 400 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w1-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 5 km</b>
+              
+                <span class="desc">Base · 53 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="1">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w1">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Wednesday — Easy run, 5 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w1-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 15 min</b>
+              
+                <span class="desc">Threshold · 45 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="1">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w1">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Thursday — Tempo, 15 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w1-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 6 km</b>
+              
+                <span class="desc">Endurance · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="1">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w1">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Saturday — Long run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w2">
+  <h2>Week 2 — Adding volume</h2>
+  <p class="week-meta">
+    4 sessions · 15.2 km
+  </p>
+  <p class="goal">Same shape, a little more load.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w2-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 8 × 400 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="2">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w2">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Tuesday — Intervals, 8 × 400 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w2-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 5 km</b>
+              
+                <span class="desc">Base · 53 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="2">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w2">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Wednesday — Easy run, 5 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w2-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 18 min</b>
+              
+                <span class="desc">Threshold · 48 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="2">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w2">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 18 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w2-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 7 km</b>
+              
+                <span class="desc">Endurance · 67 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="2">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w2">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Saturday — Long run, 7 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w3">
+  <h2>Week 3 — Longer reps</h2>
+  <p class="week-meta">
+    4 sessions · 18.0 km
+  </p>
+  <p class="goal">First taste of 800 m repeats.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w3-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 5 × 800 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="3">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w3">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Tuesday — Intervals, 5 × 800 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w3-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 6 km</b>
+              
+                <span class="desc">Base · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="3">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w3">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Wednesday — Easy run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w3-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 20 min</b>
+              
+                <span class="desc">Threshold · 50 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="3">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w3">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Thursday — Tempo, 20 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w3-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 8 km</b>
+              
+                <span class="desc">Endurance · 74 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="3">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w3">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Saturday — Long run, 8 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w4">
+  <h2>Week 4 — Down week</h2>
+  <p class="week-meta">
+    4 sessions · 13.4 km
+  </p>
+  <p class="goal">Drop the load to absorb the last three weeks.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w4-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 6 × 400 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="4">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w4">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Tuesday — Intervals, 6 × 400 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w4-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 5 km</b>
+              
+                <span class="desc">Base · 53 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="4">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w4">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Wednesday — Easy run, 5 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w4-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 15 min</b>
+              
+                <span class="desc">Threshold · 45 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="4">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w4">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 15 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w4-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 6 km</b>
+              
+                <span class="desc">Endurance · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="4">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w4">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Saturday — Long run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w5">
+  <h2>Week 5 — Building</h2>
+  <p class="week-meta">
+    4 sessions · 19.8 km
+  </p>
+  <p class="goal">Climb again from a firmer base.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w5-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 6 × 800 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="5">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w5">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Tuesday — Intervals, 6 × 800 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row is-done">
+          <a class="day" href="program-10k-w5-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 6 km</b>
+              
+                <span class="desc">Base · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="5">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="0">
+            <input type="hidden" name="back" value="/program/10k#w5">
+            <button class="check" type="submit" aria-pressed="true"
+                    aria-label="Completed: Wednesday — Easy run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w5-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 22 min</b>
+              
+                <span class="desc">Threshold · 52 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="5">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w5">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 22 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w5-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 9 km</b>
+              
+                <span class="desc">Endurance · 81 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="5">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w5">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Saturday — Long run, 9 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w6">
+  <h2>Week 6 — Kilometre repeats</h2>
+  <p class="week-meta">
+    4 sessions · 20.0 km
+  </p>
+  <p class="goal">1000 m reps at goal 10K pace.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w6-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 4 × 1000 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="6">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w6">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Tuesday — Intervals, 4 × 1000 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w6-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 6 km</b>
+              
+                <span class="desc">Base · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="6">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w6">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Wednesday — Easy run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w6-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 25 min</b>
+              
+                <span class="desc">Threshold · 55 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="6">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w6">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 25 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w6-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 10 km</b>
+              
+                <span class="desc">Endurance · 88 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="6">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w6">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Saturday — Long run, 10 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w7">
+  <h2>Week 7 — Peak week</h2>
+  <p class="week-meta">
+    4 sessions · 22.0 km
+  </p>
+  <p class="goal">The highest load in the program.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w7-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 5 × 1000 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="7">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w7">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Tuesday — Intervals, 5 × 1000 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w7-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 6 km</b>
+              
+                <span class="desc">Base · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="7">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w7">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Wednesday — Easy run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w7-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 25 min</b>
+              
+                <span class="desc">Threshold · 55 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="7">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w7">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 25 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w7-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 11 km</b>
+              
+                <span class="desc">Endurance · 95 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="7">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w7">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Saturday — Long run, 11 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w8">
+  <h2>Week 8 — Down week</h2>
+  <p class="week-meta">
+    4 sessions · 15.4 km
+  </p>
+  <p class="goal">Recover before the last push.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w8-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 6 × 400 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="8">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w8">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Tuesday — Intervals, 6 × 400 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w8-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 5 km</b>
+              
+                <span class="desc">Base · 53 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="8">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w8">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Wednesday — Easy run, 5 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w8-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 15 min</b>
+              
+                <span class="desc">Threshold · 45 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="8">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w8">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 15 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w8-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 8 km</b>
+              
+                <span class="desc">Endurance · 74 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="8">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w8">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Saturday — Long run, 8 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w9">
+  <h2>Week 9 — Past the distance</h2>
+  <p class="week-meta">
+    4 sessions · 22.8 km
+  </p>
+  <p class="goal">Run more than 10 km long: race day will feel short.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w9-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 3 × 1600 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="9">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w9">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Tuesday — Intervals, 3 × 1600 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w9-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 6 km</b>
+              
+                <span class="desc">Base · 60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="9">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w9">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Wednesday — Easy run, 6 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w9-d4.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Thursday — Tempo, 20 min</b>
+              
+                <span class="desc">Threshold · 50 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="9">
+            <input type="hidden" name="day" value="4">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w9">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Thursday — Tempo, 20 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w9-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Long run, 12 km</b>
+              
+                <span class="desc">Endurance · 102 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="9">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w9">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Saturday — Long run, 12 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">S</span>
+          <span class="day-body"><b>Sunday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+  </ul>
+</section>
+
+<section class="week" id="w10">
+  <h2>Week 10 — Taper and race</h2>
+  <p class="week-meta">
+    4 sessions · 16.72 km
+  </p>
+  <p class="goal">Arrive rested, not fit — the fitness is already banked.</p>
+  <ul class="days">
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">M</span>
+          <span class="day-body"><b>Monday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w10-d2.html">
+            <span class="badge on">T</span>
+            <span class="day-body">
+              <b>Tuesday — Intervals, 4 × 400 m</b>
+              
+                <span class="desc">Speed · 50-60 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="10">
+            <input type="hidden" name="day" value="2">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w10">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Tuesday — Intervals, 4 × 400 m"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w10-d3.html">
+            <span class="badge on">W</span>
+            <span class="day-body">
+              <b>Wednesday — Easy run, 5 km</b>
+              
+                <span class="desc">Base · 53 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="10">
+            <input type="hidden" name="day" value="3">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w10">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Wednesday — Easy run, 5 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">T</span>
+          <span class="day-body"><b>Thursday — Rest</b><span class="desc">Rest. Nothing you do this week makes you fitter — only more tired.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        <span class="day rest">
+          <span class="badge">F</span>
+          <span class="day-body"><b>Friday — Rest</b><span class="desc">Full rest. Walking and stretching are fine.</span></span>
+        </span>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w10-d6.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Saturday — Shakeout, 15 min</b>
+              
+                <span class="desc">Shakeout · 25 min</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="10">
+            <input type="hidden" name="day" value="6">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w10">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Saturday — Shakeout, 15 min"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+    
+    <li>
+      
+        
+        <div class="row">
+          <a class="day" href="program-10k-w10-d7.html">
+            <span class="badge on">S</span>
+            <span class="day-body">
+              <b>Sunday — RACE, 10 km</b>
+              
+                <span class="desc">Race dayNone</span>
+              
+            </span>
+          </a>
+          <form method="post" action="/toggle" class="check-form" onsubmit="return false">
+            <input type="hidden" name="slug" value="10k">
+            <input type="hidden" name="week" value="10">
+            <input type="hidden" name="day" value="7">
+            <input type="hidden" name="done" value="1">
+            <input type="hidden" name="back" value="/program/10k#w10">
+            <button class="check" type="submit" aria-pressed="false"
+                    aria-label="Mark as done: Sunday — RACE, 10 km"></button>
+          </form>
+        </div>
+      
+    </li>
+  
+  </ul>
+</section>
+
+</main>
+
+<nav class="tabs">
+  <a href="index.html" class="tab on">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/></svg>
+    Programs
+  </a>
+  <a href="me.html" class="tab">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="12" width="4" height="8" rx="1.2"/><rect x="10" y="7" width="4" height="13" rx="1.2"/><rect x="16" y="3" width="4" height="17" rx="1.2"/></svg>
+    Training log
+  </a>
+</nav>
+
+</body>
+</html>
