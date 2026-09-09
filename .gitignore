@@ -7,3 +7,7 @@ data/progress.json
 data/progress.json.tmp
 data/people.json
 data/people.json.tmp
+data/app.db
+data/app.db-wal
+data/app.db-shm
+data/*.migrated

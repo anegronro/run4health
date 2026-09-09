@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS people (
   name           TEXT NOT NULL,
   color          TEXT NOT NULL,
   password_hash  TEXT,                       -- NULL until the account is claimed
+  lang           TEXT NOT NULL DEFAULT 'en',
   created_at     TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -55,3 +56,8 @@ def connect() -> sqlite3.Connection:
 def setup() -> None:
     with connect() as con:
         con.executescript(SCHEMA)
+        # Older databases predate the language column; adding it here keeps
+        # upgrades to "deploy and restart".
+        columns = {r["name"] for r in con.execute("PRAGMA table_info(people)")}
+        if "lang" not in columns:
+            con.execute("ALTER TABLE people ADD COLUMN lang TEXT NOT NULL DEFAULT 'en'")

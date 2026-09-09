@@ -75,7 +75,7 @@ def _check_new_password(password: str) -> None:
 def get(email: str) -> dict | None:
     with db.connect() as con:
         row = con.execute(
-            "SELECT email, name, color FROM people WHERE email = ?", (normalise(email),)
+            "SELECT email, name, color, lang FROM people WHERE email = ?", (normalise(email),)
         ).fetchone()
     return dict(row) if row else None
 
@@ -139,6 +139,17 @@ def set_name(email: str, name: str) -> dict | None:
     return get(email)
 
 
+def set_lang(email: str, lang: str) -> dict | None:
+    from . import i18n
+
+    with db.connect() as con:
+        con.execute(
+            "UPDATE people SET lang = ? WHERE email = ?",
+            (i18n.normalise(lang), normalise(email)),
+        )
+    return get(email)
+
+
 def change_password(email: str, current: str, new: str) -> None:
     email = normalise(email)
     with db.connect() as con:
@@ -167,7 +178,7 @@ def export(email: str) -> dict:
     email = normalise(email)
     with db.connect() as con:
         person = con.execute(
-            "SELECT email, name, color, created_at FROM people WHERE email = ?",
+            "SELECT email, name, color, lang, created_at FROM people WHERE email = ?",
             (email,),
         ).fetchone()
         ticks = con.execute(
@@ -216,7 +227,7 @@ def whoami(token: str | None) -> dict | None:
         return None
     with db.connect() as con:
         row = con.execute(
-            """SELECT p.email, p.name, p.color FROM sessions s
+            """SELECT p.email, p.name, p.color, p.lang FROM sessions s
                JOIN people p ON p.email = s.email
                WHERE s.token_hash = ?""",
             (_hash_token(token),),

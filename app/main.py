@@ -20,7 +20,7 @@ from fastapi.responses import (
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import accounts, db, gate, loader, migrate, progress, report
+from . import accounts, db, gate, i18n, loader, migrate, progress, report
 from .loader import InvalidProgram
 
 HERE = Path(__file__).resolve().parent
@@ -80,6 +80,32 @@ def whoami(request: Request) -> dict | None:
     return accounts.whoami(request.cookies.get(COOKIE))
 
 
+LANG_COOKIE = "lang"
+
+
+def lang_for(request: Request, me: dict | None) -> str:
+    """Someone's own setting wins; before they sign in, the cookie does."""
+    if me and me.get("lang"):
+        return i18n.normalise(me["lang"])
+    return i18n.normalise(request.cookies.get(LANG_COOKIE))
+
+
+def page(request: Request, template: str, me: dict | None = None, **ctx):
+    """Every page gets the viewer, their language, and a bound translator."""
+    lang = lang_for(request, me)
+    return templates.TemplateResponse(
+        request,
+        template,
+        {
+            "me": me,
+            "lang": lang,
+            "langs": i18n.LANGS,
+            "T": lambda key, **kw: i18n.t(lang, key, **kw),
+            **ctx,
+        },
+    )
+
+
 def _sign_in_first(request: Request) -> RedirectResponse:
     back = request.url.path or "/"
     return RedirectResponse(f"/signin?back={quote(back, safe='')}", status_code=303)
@@ -118,9 +144,7 @@ templates.env.globals["photo"] = photo
 @app.exception_handler(InvalidProgram)
 async def invalid_program(request: Request, exc: InvalidProgram):
     """A broken JSON file shows a readable error, not a stack trace."""
-    return templates.TemplateResponse(
-        request, "error.html", {"detail": str(exc)}, status_code=500
-    )
+    return page(request, "error.html", whoami(request), detail=str(exc))
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -128,9 +152,8 @@ def index(request: Request):
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
-    return templates.TemplateResponse(
-        request, "index.html", {"programs": loader.list_all(), "me": me}
-    )
+    return page(request, "index.html", me,
+                programs=loader.list_all(lang_for(request, me)))
 
 
 @app.get("/program/{slug}", response_class=HTMLResponse)
@@ -138,16 +161,16 @@ def program(request: Request, slug: str, reset: int = 0):
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
-    prog = loader.get(slug)
+    prog = loader.get(slug, lang_for(request, me))
     if prog is None:
         raise HTTPException(404, "Program not found")
     done = progress.load(me["email"])
-    return templates.TemplateResponse(
+    return page(
         request,
         "program.html",
-        {
+        me,
+        **{
             "p": prog,
-            "me": me,
             "done": done,
             "key": progress.key,
             "completed": sum(
@@ -167,18 +190,18 @@ def day(request: Request, slug: str, week: int, day: int):
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
-    prog = loader.get(slug)
+    prog = loader.get(slug, lang_for(request, me))
     if prog is None:
         raise HTTPException(404, "Program not found")
     wk = next((w for w in prog.weeks if w.number == week), None)
     if wk is None or not (1 <= day <= len(wk.days)):
         raise HTTPException(404, "Day not found")
-    return templates.TemplateResponse(
+    return page(
         request,
         "day.html",
-        {
+        me,
+        **{
             "p": prog,
-            "me": me,
             "week": wk,
             "day": wk.days[day - 1],
             "n_day": day,
@@ -251,7 +274,7 @@ def me_page(request: Request):
     done = progress.load(me["email"])
 
     tracked, done_km, done_sessions, plan_km, plan_sessions = [], 0.0, 0, 0.0, 0
-    for prog in loader.list_all():
+    for prog in loader.list_all(lang_for(request, me)):
         weeks, p_done_km, p_done, p_plan_km, p_plan = [], 0.0, 0, 0.0, 0
         for w in prog.weeks:
             w_km, w_done = 0.0, 0
@@ -293,11 +316,11 @@ def me_page(request: Request):
         plan_km += p_plan_km
         plan_sessions += p_plan
 
-    return templates.TemplateResponse(
+    return page(
         request,
         "me.html",
-        {
-            "me": me,
+        me,
+        **{
             "tracked": tracked,
             "started": bool(tracked),
             "done_km": round(done_km, 2),
@@ -309,7 +332,7 @@ def me_page(request: Request):
 
 
 def _gate_page(request: Request, back: str):
-    return templates.TemplateResponse(request, "enter.html", {"back": back, "error": ""})
+    return page(request, "enter.html", None, back=back, error="")
 
 
 gate.install(app, _gate_page)
@@ -319,9 +342,7 @@ gate.install(app, _gate_page)
 def enter(request: Request, back: str = "/", error: str = ""):
     if not gate.password():
         return RedirectResponse(_safe_back(back, ""), status_code=303)
-    return templates.TemplateResponse(
-        request, "enter.html", {"back": _safe_back(back, ""), "error": error}
-    )
+    return page(request, "enter.html", None, back=_safe_back(back, ""), error=error)
 
 
 @app.post("/enter")
@@ -344,12 +365,8 @@ def enter_post(password: str = Form(""), back: str = Form("/")):
 
 @app.get("/signin", response_class=HTMLResponse)
 def signin_page(request: Request, back: str = "/", error: str = "", email: str = ""):
-    return templates.TemplateResponse(
-        request,
-        "signin.html",
-        {"back": _safe_back(back, ""), "error": error, "email": email,
-         "me": whoami(request)},
-    )
+    return page(request, "signin.html", whoami(request),
+                back=_safe_back(back, ""), error=error, email=email)
 
 
 @app.post("/signin")
@@ -372,13 +389,9 @@ def signin(
 @app.get("/signup", response_class=HTMLResponse)
 def signup_page(request: Request, back: str = "/", error: str = "",
                 name: str = "", email: str = ""):
-    return templates.TemplateResponse(
-        request,
-        "signup.html",
-        {"back": _safe_back(back, ""), "error": error, "name": name,
-         "email": email, "me": whoami(request),
-         "min_password": accounts.MIN_PASSWORD},
-    )
+    return page(request, "signup.html", whoami(request),
+                back=_safe_back(back, ""), error=error, name=name, email=email,
+                min_password=accounts.MIN_PASSWORD)
 
 
 @app.post("/signup")
@@ -421,12 +434,8 @@ def account(request: Request, back: str = "/", error: str = "", saved: str = "")
     me = whoami(request)
     if me is None:
         return _sign_in_first(request)
-    return templates.TemplateResponse(
-        request,
-        "account.html",
-        {"me": me, "back": _safe_back(back, ""), "error": error, "saved": saved,
-         "min_password": accounts.MIN_PASSWORD},
-    )
+    return page(request, "account.html", me, back=_safe_back(back, ""),
+                error=error, saved=saved, min_password=accounts.MIN_PASSWORD)
 
 
 @app.post("/account/name")
@@ -527,12 +536,12 @@ def account_delete(request: Request, confirm: str = Form("")):
 
 @app.get("/gone", response_class=HTMLResponse)
 def gone(request: Request):
-    return templates.TemplateResponse(request, "gone.html", {"me": None})
+    return page(request, "gone.html", None)
 
 
 @app.get("/privacy", response_class=HTMLResponse)
 def privacy(request: Request):
-    return templates.TemplateResponse(request, "privacy.html", {"me": whoami(request)})
+    return page(request, "privacy.html", whoami(request))
 
 
 @app.get("/share.jpg")
