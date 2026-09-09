@@ -10,7 +10,7 @@ The content is yours: every program is a JSON file in `data/programs/`.
 
 ```bash
 ./scripts/run.sh                 # http://127.0.0.1:8770
-./scripts/run.sh 100.64.0.1   # reachable from the phone over Tailscale
+./scripts/run.sh 100.64.0.1      # reachable from your phone over Tailscale
 ```
 
 ## Create a program
@@ -128,9 +128,12 @@ never cached on its own.
 
 `FITNESS_PASSWORD` puts one shared password in front of the whole app —
 required now that it is published to the internet, since the email profiles
-are not authentication. It lives in `/etc/fitness.env` on the server (mode
-600, read by the unit's `EnvironmentFile`), never in this repo. Unset, the
-gate is off, which is fine for purely local runs.
+are not authentication. It lives in an environment file on the server, read by the
+unit's `EnvironmentFile` and never in this repo. Unset, the gate is off,
+which is fine for purely local runs.
+
+Pick something that isn't guessable from the project — not the app's own
+name, not the repository's.
 
 `/share.jpg` sits outside the password on purpose — the services that build
 link previews cannot type one — so that image is the single thing a stranger
@@ -142,18 +145,19 @@ browser dialog cannot be styled. A browser that has answered holds a cookie
 derived from the password with HMAC, so it cannot be forged and changing the
 password signs everyone out.
 
-To change it: edit `/etc/fitness.env` and `systemctl restart fitness`.
+To change it: edit that file and restart the service.
 
 ## Always on
 
-`scripts/deploy_vps.sh` copies the app to the VPS and runs it under systemd as
-`fitness.service`. Two tailnet addresses reach it, and neither is public:
+`scripts/deploy_vps.sh` copies the app to a server and runs it under systemd
+as `fitness.service`. Put your own host in `scripts/deploy.env` — copy
+`deploy.env.example` — which is git-ignored, so no address of yours ends up
+in a repository.
 
-- <https://your-server.example.ts.net:8443> — **public**, for
-  people outside the tailnet, behind the shared password. Port 8443 keeps it
-  clear of the Gatsby Funnel already on 443 of that name.
-- <https://your-app.example.ts.net> — tailnet only, from a separate node
-  (`tailscaled-run4health.service`). Tailscale never published a public DNS
-  record for this second node, which is why the public URL uses the other
-  hostname.
-- <http://203.0.113.10:8770> — tailnet only, the plain address
+It expects a Debian-ish box with Python 3.11+ and `sqlite3`, and installs the
+nightly backup into cron itself.
+
+Reaching it from outside is your call: a private network like Tailscale, a
+reverse proxy, or Tailscale Funnel if you want a public HTTPS URL. If you do
+make it reachable from the internet, set `FITNESS_PASSWORD` first — the
+accounts inside are not a substitute for a front door.

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Levanta la app. Por defecto solo en local; pasa una IP para exponerla al tailnet.
+# Runs the app. Local only by default; pass an address to expose it on your
+# own private network.
 #   ./scripts/run.sh                 -> http://127.0.0.1:8770
-#   ./scripts/run.sh 100.64.0.1   -> accesible desde el teléfono por Tailscale
+#   ./scripts/run.sh 100.64.0.1      -> reachable from your phone over Tailscale
 set -euo pipefail
 cd "$(dirname "$0")/.."
 HOST="${1:-127.0.0.1}"

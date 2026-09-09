@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
-# Deploys the app to the VPS and (re)starts it under systemd.
-# The app listens on the tailnet address, and the "run4health" Tailscale node
-# also fronts it over HTTPS. Both work, on the tailnet only:
-#   https://your-app.example.ts.net   (the name, no port)
-#   http://203.0.113.10:8770            (the old address, still valid)
-# It is never bound to the droplet's public IP.
+# Copies the app to a server and (re)starts it under systemd.
+#
+# Your own addresses go in scripts/deploy.env, which is git-ignored — see
+# deploy.env.example. Nothing about your server belongs in this repository.
 set -euo pipefail
 
-HOST="${WBJ_FITNESS_HOST:-root@203.0.113.10}"
-BIND="${WBJ_FITNESS_BIND:-203.0.113.10}"
-PORT="${WBJ_FITNESS_PORT:-8770}"
-REMOTE=/opt/fitness-app
-
 cd "$(dirname "$0")/.."
+[ -f scripts/deploy.env ] && . scripts/deploy.env
+
+HOST="${FITNESS_HOST:-}"
+BIND="${FITNESS_BIND:-127.0.0.1}"
+PORT="${FITNESS_PORT:-8770}"
+URL="${FITNESS_URL:-http://$BIND:$PORT}"
+REMOTE="${FITNESS_REMOTE:-/opt/fitness-app}"
+
+if [ -z "$HOST" ]; then
+  echo "Set FITNESS_HOST — copy scripts/deploy.env.example to scripts/deploy.env" >&2
+  exit 1
+fi
 
 echo "→ copying source to $HOST:$REMOTE"
 ssh "$HOST" "mkdir -p $REMOTE"
@@ -57,4 +62,4 @@ sleep 2
 echo "→ health check"
 ssh "$HOST" "systemctl is-active fitness.service && curl -sf http://$BIND:$PORT/health"
 echo
-echo "Live at https://your-app.example.ts.net"
+echo "Live at $URL"
