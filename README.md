@@ -119,3 +119,7 @@ Spanish throughout — the interface strings and the language column are in
 place, the programs themselves are not translated yet. After that, recording a
 run from the phone's GPS, which is the difference between a plan you read and
 one that knows whether you ran.
+
+## Licence
+
+MIT — see [LICENSE](LICENSE). The photos are Angel's own.
